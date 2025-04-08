@@ -24,12 +24,12 @@ void GameStart()
 
 void GameEnd()
 {
-	printf("Thanks for playing!\n\n\nprass...\nA)Try again\nB)New Player\nC)Exit\n");
+	printf("\n\nprass...\nA)Try again\nB)New Player\nC)Exit\n");
 	char choice[10];
 	scanf_s("%9s", choice, (unsigned)_countof(choice));
 	if (strcmp(choice, "a") == 0 || strcmp(choice, "Try again") == 0 || strcmp(choice, "TryAgain") == 0)// Try Agian
 	{
-		printf("Try again\n");
+		GameStart();// ask the user who is playing?
 	}
 	else if (strcmp(choice, "b") == 0 || strcmp(choice, "New Player") == 0 || strcmp(choice, "NewPlayer") == 0)// New Player
 	{
@@ -37,15 +37,20 @@ void GameEnd()
 	}
 	else if (strcmp(choice, "c") == 0 || strcmp(choice, "Exit") == 0)// Exit
 	{
-		printf("Exit\n");
-		exit(0);
+		//exit
 	}
 	else
 	{
 		printf("Invalid choice..\n");
-		GameEnd();//need to fix
+		GameEnd();
 	}
 
+}
+
+void EndScreen()
+{
+	printf("Thanks for playing!");
+	GameEnd();
 }
 
 void main() 
@@ -58,5 +63,5 @@ void main()
 	}
 	printf("game tuturial\n");// need to be more detailed
 	GameStart();
-	GameEnd();
+	EndScreen();
 }
