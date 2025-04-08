@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h> 
-#include "Player.c"
+#include "Player.h"
 
 
 #ifndef _countof
@@ -13,8 +13,7 @@ void NewPlayer(int playerNumber)
     printf("Enter Your name: ");
 	char name[50];
 	scanf_s("%49s", name, (unsigned int)_countof(name));
-	strcpy_s(player[playerNumber].name, sizeof(name), name);
-
+	strcpy_s(player[playerNumber].name, sizeof(name), name , 1);
 }
 
 void GameEnd()
@@ -66,7 +65,7 @@ void main()
 	int playerCount = 0;
 	NewPlayer(playerCount);
 	playerCount++;
-	printf("Player 1 name is: %s\n", player[0].name);
+	printf("Player 1 name is:%s\n", player[0].name);
 
 	printf("game tuturial\n");// need to be more detailed
 	GameStart();
