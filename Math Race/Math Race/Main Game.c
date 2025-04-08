@@ -24,16 +24,16 @@ void GameStart()
 
 void GameEnd()
 {
-	printf("Thanks for playing!\n\n\nprass...\nA)Try again\nB)New Player\nC)Exit...\n");
+	printf("Thanks for playing!\n\n\nprass...\nA)Try again\nB)New Player\nC)Exit\n");
 	char choice[10];
 	scanf_s("%9s", choice, (unsigned)_countof(choice));
-	if (strcmp(choice, "a") == 0 || strcmp(choice, "Try again") == 0 || strcmp(choice, "Tryagain") == 0)// Try Agian
+	if (strcmp(choice, "a") == 0 || strcmp(choice, "Try again") == 0 || strcmp(choice, "TryAgain") == 0)// Try Agian
 	{
 		printf("Try again\n");
 	}
 	else if (strcmp(choice, "b") == 0 || strcmp(choice, "New Player") == 0 || strcmp(choice, "NewPlayer") == 0)// New Player
 	{
-		printf("New Player\n");
+		NewPlayer();
 	}
 	else if (strcmp(choice, "c") == 0 || strcmp(choice, "Exit") == 0)// Exit
 	{
@@ -43,7 +43,7 @@ void GameEnd()
 	else
 	{
 		printf("Invalid choice..\n");
-		GameEnd();
+		GameEnd();//need to fix
 	}
 
 }
@@ -51,9 +51,6 @@ void GameEnd()
 void main() 
 {
     printf("Welcome to Math Race!\n\n");
-	NewPlayer();
-	NewPlayer();
-	NewPlayer();
 	NewPlayer();
 	for (int i = 0; i < MAX_PLAYERS; i++)
 	{
