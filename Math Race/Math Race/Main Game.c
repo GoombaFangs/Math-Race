@@ -1,18 +1,54 @@
+#include <stdio.h>
+#include <string.h> 
+#include <stddef.h>
 #include "Player.c"
 
-#define MAX_PLAYERS 3
 
-void InputPlayerName() 
+#ifndef _countof
+#define _countof(array) (sizeof(array) / sizeof(array[0]))
+#endif
+
+
+void NewPlayer() 
 {
-    struct Player players[MAX_PLAYERS];
     printf("Enter Your name: ");
-    fgets(players[0].name, sizeof(players[0].name), stdin);
+	char name[50];
+	scanf_s("%49s", name, (unsigned int)_countof(name));
+	strcpy_s(player[0].name, sizeof(player[0].name), name);
+	name[_countof(name) - 1] = '\0';
+	printf("Your Name is: %s\n", player[0].name);
+
 }
 
+//void EndGameSceen()
+//{
+//	printf("Thanks for playing!\n\n\nprass...\nA)Try again\nB)New Player\nC)Exit...\n");
+//	char choice[10];
+//	scanf_s("%9s", choice, (unsigned)_countof(choice));
+//	if (strcmp(choice, "a") == 0 || strcmp(choice, "Try again") == 0 || strcmp(choice, "Tryagain") == 0)// Try Agian
+//	{
+//		printf("Try again\n");
+//	}
+//	else if (strcmp(choice, "b") == 0 || strcmp(choice, "New Player") == 0 || strcmp(choice, "NewPlayer") == 0)// New Player
+//	{
+//		printf("New Player\n");
+//	}
+//	else if (strcmp(choice, "c") == 0 || strcmp(choice, "Exit") == 0)// Exit
+//	{
+//		printf("Exit\n");
+//		exit(0);
+//	}
+//	else
+//	{
+//		printf("Invalid choice..\n");
+//		EndGameSceen();
+//	}
+//
+//}
 void main() 
 {
     printf("Welcome to Math Race!\n\n");
-	InputPlayerName();
+	NewPlayer();
 	printf("game tuturial\n");// need to be more detailed
 
 	int round = 0;
@@ -35,6 +71,5 @@ void main()
 		//timer stop
 		round++;
 	}
-
 
 }
