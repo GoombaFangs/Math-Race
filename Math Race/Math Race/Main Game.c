@@ -17,7 +17,7 @@ void NewPlayer(int playerNumber)
 
 }
 
-void EndGameSceen()
+void GameEnd()
 {
 	printf("Thanks for playing!\n\n\nprass...\nA)Try again\nB)New Player\nC)Exit...\n");
 	char choice[10];
@@ -38,35 +38,20 @@ void EndGameSceen()
 	else
 	{
 		printf("Invalid choice..\n");
-		EndGameSceen();
+		GameEnd();
 	}
 
 }
-void main() 
+void GameStart()
 {
-    printf("Welcome to Math Race!\n\n");
-	int playerCount = 0;
-	NewPlayer(playerCount);
-	playerCount++;
-
-	printf("Player 1 name is: %s\n", player[0].name);
-
-
-	printf("game tuturial\n");// need to be more detailed
-
 	int round = 0;
-	int try = 0;
-	int penalty = 0;
-	
-
 	while (round < 3)
 	{
 		//timer start
 		printf("Round %d\n", round + 1);
-		for (int i = 0; i < 2; i++)//round details
+		for (int i = 0; i < 2; i++)//need to change to 10 questions
 		{
-			//random question by difficukty (bass on round number)
-			printf("Question %d: What is %d + %d?\n", i + 1, i, i);	// need to get random number
+			printf("Question %d: What is %d + %d?\n", i + 1, i, i);//random question by difficukty (bass on round number)
 			int answer;
 			scanf_s("%d", &answer);
 			printf("Your answer: %d\n", answer); //answer checker
@@ -74,5 +59,16 @@ void main()
 		//timer stop
 		round++;
 	}
-	EndGameSceen();
+}
+void main() 
+{
+    printf("Welcome to Math Race!\n\n");
+	int playerCount = 0;
+	NewPlayer(playerCount);
+	playerCount++;
+	printf("Player 1 name is: %s\n", player[0].name);
+
+	printf("game tuturial\n");// need to be more detailed
+	GameStart();
+	GameEnd();
 }
