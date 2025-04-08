@@ -1,6 +1,3 @@
-#include <stdio.h>
-#include <string.h>
-
 #define MAX_PLAYERS 3
 
 typedef struct player {
