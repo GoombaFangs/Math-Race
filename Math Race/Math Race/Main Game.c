@@ -13,7 +13,7 @@ void main()
 {
     printf("Welcome to Math Race!\n\n");
 	InputPlayerName();
-	printf("game tuturial\n");
+	printf("game tuturial\n");// need to be more detailed
 
 	int round = 0;
 	int try = 0;
@@ -30,8 +30,7 @@ void main()
 			printf("Question %d: What is %d + %d?\n", i + 1, i, i);	// need to get random number
 			int answer;
 			scanf_s("%d", &answer);
-			printf("Your answer: %d\n", answer);
-			//answer check
+			printf("Your answer: %d\n", answer); //answer checker
 		}
 		//timer stop
 		round++;
