@@ -20,16 +20,22 @@ void main()
 	int penalty = 0;
 	
 
-	//timer start
-
-	for (int i = 0; i < 10; i++)
+	while (round < 3)
 	{
-		//random question by difficukty (bass on round number)
-		printf("Question %d: What is %d + %d?\n", i + 1, i, i);	// need to get random number
-		int answer;
-		scanf_s("%d", &answer);
-		printf("Your answer: %d\n", answer);
-		//answer check
+		//timer start
+		printf("Round %d\n", round + 1);
+		for (int i = 0; i < 10; i++)//round details
+		{
+			//random question by difficukty (bass on round number)
+			printf("Question %d: What is %d + %d?\n", i + 1, i, i);	// need to get random number
+			int answer;
+			scanf_s("%d", &answer);
+			printf("Your answer: %d\n", answer);
+			//answer check
+		}
+		//timer stop
+		round++;
 	}
+
 
 }
