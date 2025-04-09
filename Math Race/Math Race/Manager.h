@@ -9,7 +9,6 @@
 
 int WhatNext()
 {
-
    printf("\n\nPress...\nA) Try again\nB) New Player\nC) Exit\n");
    char choice[2];
    scanf_s("%1s", choice, (unsigned)_countof(choice));
@@ -41,6 +40,7 @@ void AppStart()
 	{
 		//Game tutorial
 		PlayTheGame();
+		UpdatePlayerScore();
 		printf("Thanks for playing!");
 		theGameIsRunning = WhatNext();
 	}

@@ -11,7 +11,7 @@
 
 typedef struct player {
     char name[50];
-    int score;
+    double score;
 } Player;
 
 Player players[MAX_PLAYERS];

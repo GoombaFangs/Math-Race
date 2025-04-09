@@ -7,9 +7,9 @@
 
 double ScroeCalculator(double* scoreFirstRound, double* scoreSecondRound, double* scoreThirdRound)
 {
-    double totalScore = *scoreFirstRound + *scoreSecondRound + *scoreThirdRound;
-    printf("Total score: %.1f\n", totalScore);
-    return totalScore;
+    double finalScore = *scoreFirstRound + *scoreSecondRound + *scoreThirdRound;
+    printf("Total score: %.1f\n", finalScore);
+    return finalScore;
 }
 
 double score[3] = { 0.0, 0.0 , 0.0 };
@@ -39,5 +39,12 @@ void GetScore(double seconds , int round)
         ScroeCalculator(&score[0], &score[1], &score[2]);
     }
 }
-
+ void UpdatePlayerScore()
+ {
+	 for (int i = 0; i < NumberOfPlayers; i++)
+	 {
+		 players[i].score = score[0] + score[1] + score[2];
+		 printf("Player %s, your final score is: %.1f\n", players[i].name, players[i].score);
+	 }
+ }
 #endif
