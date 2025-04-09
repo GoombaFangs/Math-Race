@@ -26,4 +26,17 @@ double ElapsedTime(clock_t start, clock_t end)
     return seconds;
 }
 
+void HoldoneSceond()
+{
+	clock_t start = clock();
+	while (1)
+	{
+		clock_t end = clock();
+		double seconds = ((double)(end - start)) / CLOCKS_PER_SEC;
+		if (seconds >= 1.0)
+		{
+			break;
+		}
+	}
+}
 #endif

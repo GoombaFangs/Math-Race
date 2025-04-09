@@ -17,12 +17,27 @@ void RoundTime(clock_t* startTime, clock_t* endTime, int* round)
 	GetScore(roundDuration[*round], *round);	
 }
 
+void GetReadyForNextRound(int round)
+{
+	if (round != 0) 
+	{
+	printf("Get ready for the next round!\n");
+	}
+	for (int i = 3; i > 0; i--)
+	{
+
+		printf("%d...\n", i);
+		HoldoneSceond();
+	}
+	printf("Go!\n");
+}
+
 void PlayTheGame()
 {
-	 int round = 0;
-	//ready for next round?
+	 int round = 0; 
 	while (round < TOTAL_ROUNDS)
 	{
+		GetReadyForNextRound(round);
 		clock_t startTime = TimerStart();
 		printf("Round %d\n", round + 1);
 		for (int i = 0; i < 2; i++)//need to change to 10 questions

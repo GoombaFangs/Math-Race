@@ -5,13 +5,6 @@
 #include "Player.h"
 #include "Timer.h"
 
-double ScroeCalculator(double* scoreFirstRound, double* scoreSecondRound, double* scoreThirdRound)
-{
-    double finalScore = *scoreFirstRound + *scoreSecondRound + *scoreThirdRound;
-    printf("Total score: %.1f\n", finalScore);
-    return finalScore;
-}
-
 double score[3] = { 0.0, 0.0 , 0.0 };
 
 void GetScore(double seconds , int round)
@@ -33,10 +26,6 @@ void GetScore(double seconds , int round)
     default:
 		printf("Invalid round number\n");
         break;
-    }
-    if (score[0] != 0.0 && score[1] != 0.0 && score[2] != 0.0) 
-    {
-        ScroeCalculator(&score[0], &score[1], &score[2]);
     }
 }
  void UpdatePlayerScore()
