@@ -17,7 +17,7 @@ typedef struct player {
 Player player[MAX_PLAYERS];
 int NumberOfPlayers = 0;
 
-void NewPlayer()
+ void NewPlayer()
 {
 	if (NumberOfPlayers < MAX_PLAYERS) 
 	{

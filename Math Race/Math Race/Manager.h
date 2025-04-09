@@ -14,7 +14,6 @@ int WhatNext()
    char choice[2];
    scanf_s("%1s", choice, (unsigned)_countof(choice));
 
-
    switch (choice[0])
    {
    case 'a':// Try again
@@ -41,7 +40,7 @@ void AppStart()
 	while (theGameIsRunning == 1)
 	{
 		//Game tutorial
-		MainGame();
+		PlayTheGame();
 		printf("Thanks for playing!");
 		theGameIsRunning = WhatNext();
 	}

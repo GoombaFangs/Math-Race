@@ -11,15 +11,15 @@
 
 void RoundTime(clock_t* startTime, clock_t* endTime, int* round)
 {
-	static double elapsedTime[TOTAL_ROUNDS];
-	elapsedTime[*round] = ElapsedTime(*startTime, *endTime);
-	printf("Elapsed time for round %d: %.2f seconds\n", *round + 1, elapsedTime[*round]);
-	GetScore(elapsedTime[*round], *round);	
+	double roundDuration[TOTAL_ROUNDS];
+	roundDuration[*round] = ElapsedTime(*startTime, *endTime);
+	printf("Elapsed time for round %d: %.2f seconds\n", *round + 1, roundDuration[*round]);
+	GetScore(roundDuration[*round], *round);	
 }
 
-void MainGame()
+void PlayTheGame()
 {
-	static int round = 0;
+	 int round = 0;
 	//ready for next round?
 	while (round < TOTAL_ROUNDS)
 	{
