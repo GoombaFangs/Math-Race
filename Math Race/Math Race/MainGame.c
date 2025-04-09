@@ -61,7 +61,7 @@ void main()
 {
     printf("Welcome to Math Race!\n\n");
 	NewPlayer();
-	printf("game tuturial\n");// need to be more detailed
+    //Game tutorial
 	GameStart();
 	EndScreen();
 }
