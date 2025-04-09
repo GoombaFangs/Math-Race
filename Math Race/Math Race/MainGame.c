@@ -1,14 +1,18 @@
 #include <stdio.h>
 #include <string.h> 
+#include <time.h>
 #include "Player.h"
+#include "TimerTracker.c"
+
 
 
 void GameStart()
 {
 	int round = 0;
+	//ready for next round?
 	while (round < 3)
 	{
-		//timer start
+		clock_t Start = TimerStart();
 		printf("Round %d\n", round + 1);
 		for (int i = 0; i < 2; i++)//need to change to 10 questions
 		{
@@ -17,7 +21,7 @@ void GameStart()
 			scanf_s("%d", &answer);
 			printf("Your answer: %d\n", answer); //answer checker
 		}
-		//timer stop
+		TimerStop(Start);
 		round++;
 	}
 }

@@ -15,7 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main Game.c">
+    <ClCompile Include="MainGame.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TimerTracker.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

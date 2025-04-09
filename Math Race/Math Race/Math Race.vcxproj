@@ -127,7 +127,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Main Game.c" />
+    <ClCompile Include="MainGame.c" />
+    <ClCompile Include="TimerTracker.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h" />
