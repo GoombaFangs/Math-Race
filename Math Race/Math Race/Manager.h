@@ -3,24 +3,26 @@
 #include <time.h>
 #include "Player.h"
 #include "Timer.h"
+#include "ScoreCalculator.h"
 
 
-void GameStart()
+void MainGame()
 {
 	int round = 0;
 	//ready for next round?
 	while (round < 3)
 	{
-		clock_t start = TimerStart();
+		clock_t startTime = TimerStart();
 		printf("Round %d\n", round + 1);
 		for (int i = 0; i < 2; i++)//need to change to 10 questions
 		{
 			printf("Question %d: What is %d + %d?\n", i + 1, i, i);//random question by difficukty (bass on round number)
 			int answer;
 			scanf_s("%d", &answer);
-			printf("Your answer: %d\n", answer); //answer checker
+			//answer checker
 		}
-		TimerStop(start);
+		clock_t endTime = TimerStop();
+		ElapsedTime(startTime , endTime);
 		round++;
 	}
 }
@@ -51,11 +53,6 @@ int WhatNext()
    }
 }
 
-void ScoreCalculator()
-{
-	printf("Thanks for playing!");
-}
-
 void AppStart()
 {
 	int theGameIsRunning = 1;
@@ -64,8 +61,9 @@ void AppStart()
 	while (theGameIsRunning == 1)
 	{
 		//Game tutorial
-		GameStart();
-		ScoreCalculator();
+		MainGame();
+		printf("Thanks for playing!");
+		GetScore();
 		theGameIsRunning = WhatNext();
 	}
 }
