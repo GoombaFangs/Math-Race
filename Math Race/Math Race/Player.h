@@ -1,3 +1,6 @@
+#ifndef PLAYER_H
+#define PLAYER_H
+
 #include <stdio.h>
 
 #define MAX_PLAYERS 3
@@ -27,3 +30,4 @@ void NewPlayer()
 		printf("Maximum number of players reached\n");
 	}
 }
+#endif

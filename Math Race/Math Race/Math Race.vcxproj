@@ -132,6 +132,7 @@
   <ItemGroup>
     <ClInclude Include="Manager.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Rounds.h" />
     <ClInclude Include="ScoreCalculator.h" />
     <ClInclude Include="Timer.h" />
   </ItemGroup>

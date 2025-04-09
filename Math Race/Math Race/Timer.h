@@ -1,3 +1,6 @@
+#ifndef TIMER_H
+#define TIMER_H
+
 #include <stdio.h>
 #include <time.h>
 
@@ -20,6 +23,7 @@ clock_t TimerStop()
 double ElapsedTime(clock_t start, clock_t end)
 {
     double seconds = ((double)(end - start)) / CLOCKS_PER_SEC;
-    printf("Elapsed time: %.1f seconds\n", seconds);
     return seconds;
 }
+
+#endif
