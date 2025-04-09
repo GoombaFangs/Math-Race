@@ -26,42 +26,49 @@ void GameStart()
 	}
 }
 
-void GameEnd()
+int WhatNext()
 {
 	printf("\n\nprass...\nA)Try again\nB)New Player\nC)Exit\n");
 	char choice[10];
 	scanf_s("%9s", choice, (unsigned)_countof(choice));
 	if (strcmp(choice, "a") == 0 || strcmp(choice, "Try again") == 0 || strcmp(choice, "TryAgain") == 0)// Try Agian
 	{
-		GameStart();// ask the user who is playing?
+		// ask the user who is playing?
+		return 1;
 	}
 	else if (strcmp(choice, "b") == 0 || strcmp(choice, "New Player") == 0 || strcmp(choice, "NewPlayer") == 0)// New Player
 	{
 		NewPlayer();
+		return 1;
 	}
 	else if (strcmp(choice, "c") == 0 || strcmp(choice, "Exit") == 0)// Exit
 	{
 		//exit
+		return 0;
 	}
 	else
 	{
 		printf("Invalid choice..\n");
-		GameEnd();
+		WhatNext();
+		return 1;
 	}
-
 }
 
-void EndScreen()
+void ScoreCalculator()
 {
 	printf("Thanks for playing!");
-	GameEnd();
 }
 
-void main() 
+void AppStart()
 {
-    printf("Welcome to Math Race!\n\n");
+	int theGameIsRunning = 1;
+	printf("Welcome to Math Race!\n\n");
 	NewPlayer();
-    //Game tutorial
-	GameStart();
-	EndScreen();
+	while (theGameIsRunning == 1)
+	{
+		//Game tutorial
+		GameStart();
+		ScoreCalculator();
+		theGameIsRunning = WhatNext();
+	}
 }
