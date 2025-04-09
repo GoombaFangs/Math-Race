@@ -2,7 +2,7 @@
 #include <string.h> 
 #include <time.h>
 #include "Player.h"
-#include "TimerTracker.c"
+#include "Timer.h"
 
 
 
@@ -12,7 +12,7 @@ void GameStart()
 	//ready for next round?
 	while (round < 3)
 	{
-		clock_t Start = TimerStart();
+		clock_t start = TimerStart();
 		printf("Round %d\n", round + 1);
 		for (int i = 0; i < 2; i++)//need to change to 10 questions
 		{
@@ -21,7 +21,7 @@ void GameStart()
 			scanf_s("%d", &answer);
 			printf("Your answer: %d\n", answer); //answer checker
 		}
-		TimerStop(Start);
+		TimerStop(start);
 		round++;
 	}
 }
@@ -61,10 +61,6 @@ void main()
 {
     printf("Welcome to Math Race!\n\n");
 	NewPlayer();
-	for (int i = 0; i < MAX_PLAYERS; i++)
-	{
-		printf("Player %d name is:%s\n", i + 1, player[i].name);
-	}
 	printf("game tuturial\n");// need to be more detailed
 	GameStart();
 	EndScreen();
