@@ -43,7 +43,7 @@ void GetScore(double seconds , int round)
  {
 	 for (int i = 0; i < NumberOfPlayers; i++)
 	 {
-		 players[i].score = score[0] + score[1] + score[2];
+		 players[i].score = 100 - (score[0] + score[1] + score[2]);
 		 printf("Player %s, your final score is: %.1f\n", players[i].name, players[i].score);
 	 }
  }

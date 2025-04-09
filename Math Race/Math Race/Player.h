@@ -3,11 +3,9 @@
 
 #include <stdio.h>
 
-#define MAX_PLAYERS 3
-
-#ifndef _countof
+#define MAX_PLAYERS 3 
 #define _countof(array) (sizeof(array) / sizeof(array[0]))
-#endif
+
 
 typedef struct player {
     char name[50];

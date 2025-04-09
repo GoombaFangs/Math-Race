@@ -1,3 +1,6 @@
+#ifndef MANAGER_H
+#define MANAGER_H
+
 #include <stdio.h>
 #include <string.h> 
 #include <time.h>
@@ -45,3 +48,4 @@ void AppStart()
 		theGameIsRunning = WhatNext();
 	}
 }
+#endif
