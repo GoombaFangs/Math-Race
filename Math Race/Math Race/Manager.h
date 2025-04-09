@@ -5,7 +5,6 @@
 #include "Timer.h"
 
 
-
 void GameStart()
 {
 	int round = 0;
@@ -28,30 +27,28 @@ void GameStart()
 
 int WhatNext()
 {
-	printf("\n\nprass...\nA)Try again\nB)New Player\nC)Exit\n");
-	char choice[10];
-	scanf_s("%9s", choice, (unsigned)_countof(choice));
-	if (strcmp(choice, "a") == 0 || strcmp(choice, "Try again") == 0 || strcmp(choice, "TryAgain") == 0)// Try Agian
-	{
-		// ask the user who is playing?
-		return 1;
-	}
-	else if (strcmp(choice, "b") == 0 || strcmp(choice, "New Player") == 0 || strcmp(choice, "NewPlayer") == 0)// New Player
-	{
-		NewPlayer();
-		return 1;
-	}
-	else if (strcmp(choice, "c") == 0 || strcmp(choice, "Exit") == 0)// Exit
-	{
-		//exit
-		return 0;
-	}
-	else
-	{
-		printf("Invalid choice..\n");
-		WhatNext();
-		return 1;
-	}
+
+   printf("\n\nPress...\nA) Try again\nB) New Player\nC) Exit\n");
+   char choice[2];
+   scanf_s("%1s", choice, (unsigned)_countof(choice));
+
+
+   switch (choice[0])
+   {
+   case 'a':// Try again
+	   return 1; 
+
+   case 'b': // New Player
+	   NewPlayer();
+	   return 1;
+
+   case 'c': // Exit
+	   return 0; 
+
+   default:
+	   printf("Invalid choice. Please enter A, B, or C\n");
+	   return WhatNext();
+   }
 }
 
 void ScoreCalculator()
