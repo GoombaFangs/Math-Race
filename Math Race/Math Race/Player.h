@@ -14,15 +14,16 @@ typedef struct player {
     int score;
 } Player;
 
-Player player[MAX_PLAYERS];
+Player players[MAX_PLAYERS];
+
 int NumberOfPlayers = 0;
 
- void NewPlayer()
+  void NewPlayer()
 {
 	if (NumberOfPlayers < MAX_PLAYERS) 
 	{
 		printf("Enter Your name: ");
-		scanf_s("%49s", player[NumberOfPlayers].name, (unsigned)_countof(player[NumberOfPlayers].name));
+		scanf_s("%49s", players[NumberOfPlayers].name, (unsigned)_countof(players[NumberOfPlayers].name));
 		NumberOfPlayers++;
 	}
 	else
