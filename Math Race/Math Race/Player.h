@@ -17,9 +17,9 @@ Player players[MAX_PLAYERS];
 int NumberOfPlayers;
 void NewPlayer();
 
-void SavePlayers()
+void SaveNumberOfPlayers()
 {
-	FILE* file = fopen("player.dat", "w"); // Open file
+	FILE* file = fopen("numberOfPlayers.dat", "w"); // Open file
 	if (file == NULL)
 	{
 		printf("Error: Could not open file player.dat for writing.\n");
@@ -27,48 +27,38 @@ void SavePlayers()
 	}
 
 	fprintf(file, "%d\n", NumberOfPlayers);// Saveing NumberOfPlayers
-
-	for (int i = 0; i < NumberOfPlayers; i++) // Saveing each player's name and score
-	{
-		fprintf(file, "%s %.2lf\n", players[i].name, players[i].score);
-	}
-
 	fclose(file); // Close file
-	printf("Players and NumberOfPlayers saved successfully.\n");
+	printf("NumberOfPlayers saved successfully.\n");
 	return;
 }
 
-void LoadPlayers()
+void SavePlayers() // Save each player
 {
-	FILE* file = fopen("player.dat", "r"); // Open file in read mode
-	if (file == NULL)
+	for (int i = 0; i < NumberOfPlayers; i++) 
 	{
-		printf("Error: Could not open file player.dat for reading.\n");
-		return;
-	}
+		char fileName[20];
+		snprintf(fileName, sizeof(fileName), "player%d.dat", i + 1);
 
-	for (int i = 0; i < NumberOfPlayers; i++) // Load each player's name and score
-	{
-		if (fscanf_s(file, "%d %49s %lf", &NumberOfPlayers, players[i].name, (unsigned)_countof(players[i].name), &players[i].score) != 3)
+		FILE* file = fopen(fileName, "w"); // Open files
+		if (file == NULL)
 		{
-			printf("Error: Invalid data for player %d. Stopping load.\n", i + 1);
-			NumberOfPlayers = i; // Adjust player count to valid entries
-			fclose(file);
-			return;
+			printf("Error: Could not open file %s for writing.\n", fileName);
+			continue; // Skip to the next player if the file cannot be opened
 		}
-		printf("Player number %d, welcome back %s, your score is: %.2f\n", NumberOfPlayers , players[i].name, players[i].score);
+
+		fprintf(file, "%s %.2lf\n", players[i].name, players[i].score); // Save player's name and score
+		fclose(file); // Close file
+		printf("Player %d saved successfully in %s.\n", i + 1, fileName);
 	}
-	fclose(file); // Close file
-	printf("Players loaded successfully.\n");
 }
-void PlayerManager()
+
+void LoadNumberOfPlayers() 
 {
-	FILE* file = fopen("player.dat", "r"); // Open file in read mode
+	FILE* file = fopen("numberOfPlayers.dat", "r"); // Open file in read mode
 	if (file == NULL)
 	{
 		NumberOfPlayers = 0;
 		printf("No players found. Starting with 0 players.\n");
-		NewPlayer();
 		return;
 	}
 
@@ -76,17 +66,50 @@ void PlayerManager()
 	{
 		printf("Error: Invalid player count in file.\n");
 		NumberOfPlayers = 0;
-		fclose(file);
-		NewPlayer();
+		fclose(file); // Close file
 		return;
 	}
+	printf("Player loaded successfully. Number of players: %d\n", NumberOfPlayers);
+	fclose(file); // Close file
+}
+void LoadPlayers()
+{
+	for (int i = 0; i < NumberOfPlayers; i++) // Load each player's name and score
+	{
+		char fileName[20]; // Buffer to hold the file name
+		snprintf(fileName, sizeof(fileName), "player%d.dat", i + 1); // Generate file name dynamically
 
+		FILE* file = fopen(fileName, "r"); // Open file for the specific player
+		if (file == NULL)
+		{
+			printf("Error: Could not open file %s for reading.\n", fileName);
+			continue; // Skip to the next player if the file cannot be opened
+		}
+
+		if (fscanf_s(file, "%49s %lf", players[i].name, (unsigned)_countof(players[i].name), &players[i].score) != 2)
+		{
+			printf("Error: Invalid data in %s. Stopping load for this player.\n", fileName);
+			fclose(file);
+			continue; // Skip to the next player if the data is invalid
+		}
+
+		printf("Player %d loaded successfully from %s. Name: %s, Score: %.2f\n", i + 1, fileName, players[i].name, players[i].score);
+		fclose(file); // Close file
+	}
+	printf("All players loaded successfully.\n");
+}
+
+void PlayerManager()
+{	
+	LoadNumberOfPlayers(); 
 	if (NumberOfPlayers > 0)
 	{
-		fclose(file); // Close file
-		LoadPlayers(); // Load players if there are any
+		LoadPlayers(); 
 	}
-	printf("Player count loaded successfully. Number of players: %d\n", NumberOfPlayers);
+	else if(NumberOfPlayers == 0)
+	{
+		NewPlayer(); 
+	}
 }
 
 void NewPlayer()
@@ -96,7 +119,7 @@ void NewPlayer()
 		printf("Enter Your name: ");
 		scanf_s("%49s", players[NumberOfPlayers].name, (unsigned)_countof(players[NumberOfPlayers].name));
 		NumberOfPlayers++;
-		SavePlayers();
+		SaveNumberOfPlayers();
 		printf("New player created and saved.\n");
 	}
 	else
