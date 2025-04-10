@@ -56,14 +56,14 @@ int LoadNumberOfPlayers(int numberOfPlayers)
 	if (file == NULL)
 	{
 		printf("No players found. Starting with 0 players\n");
-		return;
+		return 0;
 	}
 
 	if (fscanf_s(file, "%d", &numberOfPlayers) != 1 || numberOfPlayers > MAX_PLAYERS)
 	{
 		printf("Error: Invalid player count in file\n");
 		fclose(file); // Close file
-		return;
+		return 0;
 	}
 	printf("Number of players found: %d\n", numberOfPlayers);
 	fclose(file); // Close file
