@@ -24,10 +24,10 @@ void GetScore(double seconds , int round)
         break;
     }
 }
- void UpdatePlayerScore()
+ void UpdatePlayerScore(int numberOfPlayers)
  {
-     players[NumberOfPlayers - 1].score = 100 - (score[0] + score[1] + score[2]);
-     printf("%s, your final score is: %.1f\n", players[NumberOfPlayers - 1].name, players[NumberOfPlayers - 1].score);
-	 SavePlayers();
+     players[numberOfPlayers - 1].score = 100 - (score[0] + score[1] + score[2]);
+     printf("%s, your final score is: %.1f\n", players[numberOfPlayers - 1].name, players[numberOfPlayers - 1].score);
+	 SavePlayers(numberOfPlayers);
  }
 #endif

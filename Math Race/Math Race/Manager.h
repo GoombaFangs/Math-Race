@@ -23,8 +23,7 @@ int WhatNext()
 	   return 1; 
 
    case 'b': // New Player
-	   NewPlayer();
-	   return 1;
+	   return 2;
 
    case 'c': // Exit
 	   return 0; 
@@ -38,15 +37,24 @@ int WhatNext()
 void AppStart()
 {
 	int theGameIsRunning = 1;
-	//PrintTitle();
-	PlayerManager();
-	while (theGameIsRunning == 1)
+	PrintTitle();
+	int numberOfPlayers = PlayerManager();
+	while (theGameIsRunning != 0)
 	{
 		//Game tutorial
 		PlayTheGame();
-		UpdatePlayerScore();
+		UpdatePlayerScore(numberOfPlayers);
 		printf("Thanks for playing!");
 		theGameIsRunning = WhatNext();
+		if (theGameIsRunning == 1)
+		{
+         //ask the user who is playing
+		}
+		else
+		if(theGameIsRunning == 2) 
+		{
+			NewPlayer(numberOfPlayers);
+		}
 	}
 }
 #endif

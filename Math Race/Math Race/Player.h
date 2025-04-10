@@ -7,6 +7,7 @@
 #define _countof(array) (sizeof(array) / sizeof(array[0]))
 
 
+
 typedef struct player {
     char name[50];
     double score;
@@ -14,10 +15,8 @@ typedef struct player {
 
 Player players[MAX_PLAYERS];
 
-int NumberOfPlayers;
-void NewPlayer();
 
-void SaveNumberOfPlayers()
+void SaveNumberOfPlayers(int numberOfPlayers)
 {
 	FILE* file = fopen("numberOfPlayers.dat", "w"); // Open file
 	if (file == NULL)
@@ -26,14 +25,14 @@ void SaveNumberOfPlayers()
 		return;
 	}
 
-	fprintf(file, "%d\n", NumberOfPlayers);// Saveing NumberOfPlayers
+	fprintf(file, "%d\n", numberOfPlayers);// Saveing NumberOfPlayers
 	fclose(file); // Close file
 	return;
 }
 
-void SavePlayers() // Save each player
+void SavePlayers(int numberOfPlayers) // Save each player
 {
-	for (int i = 0; i < NumberOfPlayers; i++) 
+	for (int i = 0; i < numberOfPlayers; i++)
 	{
 		char fileName[20];
 		snprintf(fileName, sizeof(fileName), "player%d.dat", i + 1);
@@ -51,29 +50,28 @@ void SavePlayers() // Save each player
 	}
 }
 
-void LoadNumberOfPlayers() 
+int LoadNumberOfPlayers(int numberOfPlayers)
 {
 	FILE* file = fopen("numberOfPlayers.dat", "r"); // Open file
 	if (file == NULL)
 	{
-		NumberOfPlayers = 0;
 		printf("No players found. Starting with 0 players\n");
 		return;
 	}
 
-	if (fscanf_s(file, "%d", &NumberOfPlayers) != 1 || NumberOfPlayers > MAX_PLAYERS) 
+	if (fscanf_s(file, "%d", &numberOfPlayers) != 1 || numberOfPlayers > MAX_PLAYERS)
 	{
 		printf("Error: Invalid player count in file\n");
-		NumberOfPlayers = 0;
 		fclose(file); // Close file
 		return;
 	}
-	printf("Number of players found: %d\n", NumberOfPlayers);
+	printf("Number of players found: %d\n", numberOfPlayers);
 	fclose(file); // Close file
+	return numberOfPlayers;
 }
-void LoadPlayers() // Load each player
+void LoadPlayers(int numberOfPlayers) // Load each player
 {
-	for (int i = 0; i < NumberOfPlayers; i++)
+	for (int i = 0; i < numberOfPlayers; i++)
 	{
 		char fileName[20];
 		snprintf(fileName, sizeof(fileName), "player%d.dat", i + 1);
@@ -97,32 +95,34 @@ void LoadPlayers() // Load each player
 	}
 }
 
-void PlayerManager()
-{	
-	LoadNumberOfPlayers(); 
-	if (NumberOfPlayers > 0)
-	{
-		LoadPlayers(); 
-	}
-	else if(NumberOfPlayers == 0)
-	{
-		NewPlayer(); 
-	}
-}
-
-void NewPlayer()
+void NewPlayer(int numberOfPlayers)
 {
-	if (NumberOfPlayers < MAX_PLAYERS)
+	if (numberOfPlayers < MAX_PLAYERS)
 	{
 		printf("Enter Your name: ");
-		scanf_s("%49s", players[NumberOfPlayers].name, (unsigned)_countof(players[NumberOfPlayers].name));
-		NumberOfPlayers++;
-		SaveNumberOfPlayers();
+		scanf_s("%49s", players[numberOfPlayers].name, (unsigned)_countof(players[numberOfPlayers].name));
 	}
 	else
 	{
 		printf("Maximum number of players reached\n");
 	}
+}
+
+int PlayerManager()
+{
+	int Players = 0;
+	Players = LoadNumberOfPlayers(Players);
+	if (Players > 0)
+	{
+		LoadPlayers(Players);
+	}
+	else if (Players == 0)
+	{
+		NewPlayer(Players);
+		Players++;
+		SaveNumberOfPlayers(Players);
+	}
+	return Players;
 }
 
 #endif
