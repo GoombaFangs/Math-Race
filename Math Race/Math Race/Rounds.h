@@ -13,7 +13,7 @@ void RoundTime(clock_t* startTime, clock_t* endTime, int* round)
 {
 	double roundDuration[TOTAL_ROUNDS];
 	roundDuration[*round] = ElapsedTime(*startTime, *endTime);
-	printf("Elapsed time for round %d: %.2f seconds\n", *round + 1, roundDuration[*round]);
+	printf("round %d: %.2f seconds\n", *round + 1, roundDuration[*round]);
 	GetScore(roundDuration[*round], *round);	
 }
 
@@ -41,7 +41,7 @@ void PlayTheGame()
 		printf("Round %d\n", round + 1);
 		for (int i = 0; i < 2; i++)//need to change to 10 questions
 		{
-			printf("Question %d: What is %d + %d?\n", i + 1, i, i);//random question by difficukty (bass on round number)
+			printf("%d + %d?\n",i, i);//random question by difficukty (bass on round number)
 			int answer;
 			scanf_s("%d", &answer);
 			//answer checker
