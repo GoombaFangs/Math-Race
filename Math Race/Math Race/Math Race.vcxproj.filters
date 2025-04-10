@@ -35,5 +35,8 @@
     <ClInclude Include="Rounds.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Visuals.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -8,6 +8,7 @@
 #include "Rounds.h"
 #include "Timer.h"
 #include "ScoreCalculator.h"
+#include "Visuals.h"
 
 
 int WhatNext()
@@ -37,7 +38,7 @@ int WhatNext()
 void AppStart()
 {
 	int theGameIsRunning = 1;
-	printf("Welcome to Math Race!\n\n");
+	PrintTitle();
 	NewPlayer();
 	while (theGameIsRunning == 1)
 	{

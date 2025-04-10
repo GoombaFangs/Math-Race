@@ -26,7 +26,7 @@ void GetReadyForNextRound(int round)
 	for (int i = 3; i > 0; i--)
 	{
 		printf("%d...\n", i);
-		HoldOneSceond();
+		HoldSceonds(1.0);
 	}
 	printf("Go!\n");
 }

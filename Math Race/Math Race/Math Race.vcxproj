@@ -135,6 +135,7 @@
     <ClInclude Include="Rounds.h" />
     <ClInclude Include="ScoreCalculator.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="Visuals.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
