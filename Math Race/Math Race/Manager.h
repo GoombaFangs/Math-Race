@@ -38,7 +38,7 @@ int WhatNext()
 void AppStart()
 {
 	int theGameIsRunning = 1;
-	PrintTitle();
+	//PrintTitle();
 	PlayerManager();
 	while (theGameIsRunning == 1)
 	{

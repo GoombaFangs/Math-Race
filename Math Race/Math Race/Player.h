@@ -19,10 +19,10 @@ void NewPlayer();
 
 void SavePlayers()
 {
-	FILE* file = fopen("player.txt", "w"); // Open file
+	FILE* file = fopen("player.dat", "w"); // Open file
 	if (file == NULL)
 	{
-		printf("Error: Could not open file player.txt for writing.\n");
+		printf("Error: Could not open file player.dat for writing.\n");
 		return;
 	}
 
@@ -35,32 +35,35 @@ void SavePlayers()
 
 	fclose(file); // Close file
 	printf("Players and NumberOfPlayers saved successfully.\n");
+	return;
 }
 
 void LoadPlayers()
 {
-	FILE* file = fopen("player.txt", "a"); // Open file 
+	FILE* file = fopen("player.dat", "r"); // Open file in read mode
 	if (file == NULL)
 	{
-		printf("Error: Could not open file player.txt for reading.\n");
+		printf("Error: Could not open file player.dat for reading.\n");
 		return;
 	}
 
 	for (int i = 0; i < NumberOfPlayers; i++) // Load each player's name and score
 	{
-		if (fscanf_s(file, "%49s %lf", players[i].name, (unsigned)_countof(players[i].name), &players[i].score) != 2)
+		if (fscanf_s(file, "%d %49s %lf", &NumberOfPlayers, players[i].name, (unsigned)_countof(players[i].name), &players[i].score) != 3)
 		{
-			printf("welcome back %s your score is: %1f\n", players[i].name, players[i].score);
+			printf("Error: Invalid data for player %d. Stopping load.\n", i + 1);
+			NumberOfPlayers = i; // Adjust player count to valid entries
 			fclose(file);
 			return;
 		}
+		printf("Player number %d, welcome back %s, your score is: %.2f\n", NumberOfPlayers , players[i].name, players[i].score);
 	}
-	fclose(file); // Close  file
+	fclose(file); // Close file
 	printf("Players loaded successfully.\n");
 }
 void PlayerManager()
 {
-	FILE* file = fopen("player.txt", "a"); // Open file 
+	FILE* file = fopen("player.dat", "r"); // Open file in read mode
 	if (file == NULL)
 	{
 		NumberOfPlayers = 0;
@@ -69,22 +72,20 @@ void PlayerManager()
 		return;
 	}
 
-	if (fscanf_s(file, "%d", &NumberOfPlayers) != 1 || NumberOfPlayers > MAX_PLAYERS)//loading NumberOfPlayers
+	if (fscanf_s(file, "%d", &NumberOfPlayers) != 1 || NumberOfPlayers > MAX_PLAYERS) // Load NumberOfPlayers
 	{
-		if (NumberOfPlayers > 0)
-		{
-			LoadPlayers(); // Load players if there are any
-		}
-		else
-		{
-			NumberOfPlayers = 0; // No players found
-			printf("No players found. Starting with 0 players.\n");
-			NewPlayer();
-		}
+		printf("Error: Invalid player count in file.\n");
+		NumberOfPlayers = 0;
 		fclose(file);
+		NewPlayer();
 		return;
 	}
-	fclose(file); // Close file
+
+	if (NumberOfPlayers > 0)
+	{
+		fclose(file); // Close file
+		LoadPlayers(); // Load players if there are any
+	}
 	printf("Player count loaded successfully. Number of players: %d\n", NumberOfPlayers);
 }
 
