@@ -31,5 +31,6 @@ void GetScore(double seconds , int round)
 		 players[i].score = 100 - (score[0] + score[1] + score[2]);
 		 printf("%s, your final score is: %.1f\n", players[i].name, players[i].score);
 	 }
+	 SavePlayers();
  }
 #endif

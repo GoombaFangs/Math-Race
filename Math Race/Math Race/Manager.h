@@ -39,7 +39,7 @@ void AppStart()
 {
 	int theGameIsRunning = 1;
 	PrintTitle();
-	NewPlayer();
+	PlayerManager();
 	while (theGameIsRunning == 1)
 	{
 		//Game tutorial
