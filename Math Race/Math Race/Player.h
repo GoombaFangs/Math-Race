@@ -19,10 +19,10 @@ void NewPlayer();
 
 void SavePlayers()
 {
-	FILE* file = fopen("player.dat", "w"); // Open file
+	FILE* file = fopen("player.txt", "w"); // Open file
 	if (file == NULL)
 	{
-		printf("Error: Could not open file %s for writing.\n", "player.dat");
+		printf("Error: Could not open file player.txt for writing.\n");
 		return;
 	}
 
@@ -39,10 +39,10 @@ void SavePlayers()
 
 void LoadPlayers()
 {
-	FILE* file = fopen("player.dat", "r"); // Open file 
+	FILE* file = fopen("player.txt", "a"); // Open file 
 	if (file == NULL)
 	{
-		printf("Error: Could not open file player.dat for reading.\n");
+		printf("Error: Could not open file player.txt for reading.\n");
 		return;
 	}
 
@@ -60,30 +60,32 @@ void LoadPlayers()
 }
 void PlayerManager()
 {
-	FILE* file = fopen("player.dat", "r"); // Open file 
+	FILE* file = fopen("player.txt", "a"); // Open file 
 	if (file == NULL)
 	{
-		printf("No players found. Starting with 0 players.\n");
 		NumberOfPlayers = 0;
+		printf("No players found. Starting with 0 players.\n");
 		NewPlayer();
-		SavePlayers();
-		printf("New player created and saved.\n");
 		return;
 	}
 
 	if (fscanf_s(file, "%d", &NumberOfPlayers) != 1 || NumberOfPlayers > MAX_PLAYERS)//loading NumberOfPlayers
 	{
-		printf("Error: Invalid number of players in file.\n");
+		if (NumberOfPlayers > 0)
+		{
+			LoadPlayers(); // Load players if there are any
+		}
+		else
+		{
+			NumberOfPlayers = 0; // No players found
+			printf("No players found. Starting with 0 players.\n");
+			NewPlayer();
+		}
 		fclose(file);
 		return;
 	}
 	fclose(file); // Close file
 	printf("Player count loaded successfully. Number of players: %d\n", NumberOfPlayers);
-
-	if (NumberOfPlayers > 0)
-	{
-		LoadPlayers(); // Load players if there are any
-	}
 }
 
 void NewPlayer()
@@ -93,6 +95,8 @@ void NewPlayer()
 		printf("Enter Your name: ");
 		scanf_s("%49s", players[NumberOfPlayers].name, (unsigned)_countof(players[NumberOfPlayers].name));
 		NumberOfPlayers++;
+		SavePlayers();
+		printf("New player created and saved.\n");
 	}
 	else
 	{

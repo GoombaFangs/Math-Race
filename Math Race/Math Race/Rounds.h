@@ -33,7 +33,7 @@ void GetReadyForNextRound(int round)
 
 void PlayTheGame()
 {
-	 int round = 0; 
+	int round = 0; 
 	while (round < TOTAL_ROUNDS)
 	{
 		GetReadyForNextRound(round);
