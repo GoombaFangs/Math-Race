@@ -16,7 +16,7 @@ void clearConsole() {
 
 void PrintTitle()
 {
-    HoldSceonds(0.12);
+    HoldSceonds(0.2);
     printf("    _       _\n");
     printf("   | |     / /\n");
     printf("   | | /| / / _ \\/ \n");
