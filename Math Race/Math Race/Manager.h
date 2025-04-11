@@ -37,9 +37,9 @@ int WhatNext()
 void AppStart()
 {
 	int theGameIsRunning = 1;
-	PrintTitle();
-	int numberOfPlayers = PlayerManager();
 	int DoNext = 1;
+	//PrintTitle();
+	int numberOfPlayers = PlayerManager(DoNext);
 	//Main Menu
 	//Game tutorial
 	while (theGameIsRunning != 0)
@@ -49,21 +49,22 @@ void AppStart()
 		case 0:// exit the game
 			theGameIsRunning = 0;
 			break;
+
 		case 1:
 			//ask the user who is playing
 			PlayTheGame();
 			UpdatePlayerScore(numberOfPlayers);
 			printf("Thanks for playing!");
+			DoNext = WhatNext();
 			break;
+
 		case 2: //new player
-			NewPlayer(numberOfPlayers);
+			numberOfPlayers = PlayerManager(DoNext);
+			DoNext = 1;
 			break;
+
 		default:
 			break;
-		}
-		if (theGameIsRunning != 0)
-		{
-			DoNext = WhatNext();
 		}
 	}
 }

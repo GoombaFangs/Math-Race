@@ -108,15 +108,26 @@ void NewPlayer(int numberOfPlayers)
 	}
 }
 
-int PlayerManager()
+int PlayerManager(int decision)
 {
-	int Players = 0;
-	Players = LoadNumberOfPlayers(Players);
-	if (Players > 0)
+	static int Players = 0;
+	if(decision == 1)
 	{
-		LoadPlayers(Players);
+		Players = LoadNumberOfPlayers(Players);
+		if (Players > 0)
+		{
+			LoadPlayers(Players);
+		}
+		else if (Players == 0)
+		{
+			NewPlayer(Players);
+			Players++;
+			SaveNumberOfPlayers(Players);
+		}
+		return Players;
 	}
-	else if (Players == 0)
+
+	if (decision == 2)
 	{
 		NewPlayer(Players);
 		Players++;
@@ -124,5 +135,4 @@ int PlayerManager()
 	}
 	return Players;
 }
-
 #endif
