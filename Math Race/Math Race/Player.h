@@ -111,8 +111,9 @@ void NewPlayer(int numberOfPlayers)
 int PlayerManager(int decision)
 {
 	static int Players = 0;
-	if(decision == 1)
+	switch (decision)
 	{
+	case 1: // Default
 		Players = LoadNumberOfPlayers(Players);
 		if (Players > 0)
 		{
@@ -124,14 +125,16 @@ int PlayerManager(int decision)
 			Players++;
 			SaveNumberOfPlayers(Players);
 		}
-		return Players;
-	}
+		break;
 
-	if (decision == 2)
-	{
+	case 2: // New Player
 		NewPlayer(Players);
 		Players++;
 		SaveNumberOfPlayers(Players);
+		break;
+
+	default:
+		break;
 	}
 	return Players;
 }
