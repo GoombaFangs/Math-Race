@@ -25,6 +25,7 @@ Player NewPlayer(int numberOfPlayers)
 		printf("Enter Your name: ");
 		scanf_s("%49s", players[numberOfPlayers].name, (unsigned)_countof(players[numberOfPlayers].name));
 		players[numberOfPlayers].playerNumber = numberOfPlayers + 1;
+		SavePlayers(numberOfPlayers + 1);
 		return players[numberOfPlayers];
 	}
 	else
@@ -43,11 +44,18 @@ void PrintPlayerOptions(int numberOfPlayers)
 		printf("Player %d, Name: %s, Score: %.2f\n", i + 1, players[i].name, players[i].score);
 	}
 	printf("Choose a player\nPress.. ");
+
 	for (int i = 1; i <= numberOfPlayers; i++)
 	{
 		printf("%d", i);
-		if (i != numberOfPlayers) printf(" or ");
-
+		if (i - 1 != numberOfPlayers)
+		{
+			printf(" or ");
+		}
+		if (i == numberOfPlayers) 
+		{
+			printf("%d(for New Player)", i + 1);
+		}
 	}
 	printf(":");
 }
@@ -55,7 +63,6 @@ void PrintPlayerOptions(int numberOfPlayers)
 Player ChooseAPlayer(int numberOfPlayers)
 {
 	PrintPlayerOptions(numberOfPlayers);
-
 	int choice;
 	while (true)
 	{
@@ -101,15 +108,16 @@ Player PlayerManager(int decision)
 		}
 		break;
 
-	case 2: // New Player
+	case 2: // Try again
+		currentPlayer = ChooseAPlayer(players);
+		break;
+
+	case 3: // New Player
 		currentPlayer = NewPlayer(players);
 		players++;
 		SaveNumberOfPlayers(players);
 		break;
 
-	case 3:	// Choose Player
-		currentPlayer = ChooseAPlayer(players);
-		break;
 	}
 	return currentPlayer;
 }

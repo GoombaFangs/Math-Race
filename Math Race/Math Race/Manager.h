@@ -20,10 +20,10 @@ int WhatNext()
 	switch (choice[0])
 	{
 	case 'a':// Try again
-		return 1;
+		return 2;
 
 	case 'b': // New Player
-		return 2;
+		return 3;
 
 	case 'c': // Exit
 		return 0;
@@ -42,6 +42,7 @@ void AppStart()
 	Player currentPlayer;
 	//Main Menu
 	//Game tutorial
+	currentPlayer = PlayerManager(DoNext);
 	while (theGameIsRunning != 0)
 	{
 		switch (DoNext)
@@ -50,7 +51,14 @@ void AppStart()
 			theGameIsRunning = 0;
 			break;
 
-		case 1:// try again
+		case 1:// default
+			PlayTheGame();
+			UpdatePlayerScore(currentPlayer.playerNumber);
+			printf("Thanks for playing!");
+			DoNext = WhatNext();
+			break;
+
+		case 2:// try again
 			currentPlayer = PlayerManager(DoNext);
 			PlayTheGame();
 			UpdatePlayerScore(currentPlayer.playerNumber);
@@ -58,7 +66,7 @@ void AppStart()
 			DoNext = WhatNext();
 			break;
 
-		case 2: //new player
+		case 3: //new player
 			PlayerManager(DoNext);
 			DoNext = 1;
 			break;
