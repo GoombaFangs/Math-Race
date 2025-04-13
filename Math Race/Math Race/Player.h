@@ -106,7 +106,7 @@ Player NewPlayer(int numberOfPlayers)
 	else
 	{
 		printf("Maximum number of players reached\n");
-		return players[0]; // Return the first player as a fallback
+		return players[0]; 
 
 	}
 
@@ -167,7 +167,7 @@ Player PlayerManager(int decision)
 		if (players > 0)
 		{
 			LoadPlayers(players);
-			currentPlayer = ChooseAPlayer(players);
+ 		currentPlayer = ChooseAPlayer(players);
 		}
 		else if (players == 0)
 		{
@@ -183,7 +183,8 @@ Player PlayerManager(int decision)
 		SaveNumberOfPlayers(players);
 		break;
 
-	default:
+	case 3:
+		currentPlayer = ChooseAPlayer(players);
 		break;
 	}
 	return currentPlayer;
