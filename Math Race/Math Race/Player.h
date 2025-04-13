@@ -7,7 +7,6 @@
 #define _countof(array) (sizeof(array) / sizeof(array[0]))
 
 
-
 typedef struct player {
     char name[50];
     double score;
@@ -30,7 +29,7 @@ void SaveNumberOfPlayers(int numberOfPlayers)
 	return;
 }
 
-void SavePlayers(int numberOfPlayers) // Save each player
+int SavePlayers(int numberOfPlayers) // Save each player
 {
 	for (int i = 0; i < numberOfPlayers; i++)
 	{
@@ -47,6 +46,7 @@ void SavePlayers(int numberOfPlayers) // Save each player
 		fprintf(file, "Player number:%d\nName:%s\nScore:%.2lf\n", i , players[i].name, players[i].score); // Save player's name and score
 		fclose(file); // Close file
 		printf("Player %d saved successfully in %s\n", i + 1, fileName);
+		return i;
 	}
 }
 
@@ -69,7 +69,7 @@ int LoadNumberOfPlayers(int numberOfPlayers)
 	fclose(file); // Close file
 	return numberOfPlayers;
 }
-void LoadPlayers(int numberOfPlayers) // Load each player
+int LoadPlayers(int numberOfPlayers) // Load each player
 {
 	for (int i = 0; i < numberOfPlayers; i++)
 	{
@@ -92,6 +92,7 @@ void LoadPlayers(int numberOfPlayers) // Load each player
 
 		printf("Player %d, Name: %s, Score: %.2f\n", i + 1, players[i].name, players[i].score);
 		fclose(file); // Close file
+		return i;
 	}
 }
 
@@ -111,6 +112,7 @@ void NewPlayer(int numberOfPlayers)
 int PlayerManager(int decision)
 {
 	static int Players = 0;
+	static int currentPlayer = 0;
 	switch (decision)
 	{
 	case 1: // Default
@@ -124,6 +126,7 @@ int PlayerManager(int decision)
 			NewPlayer(Players);
 			Players++;
 			SaveNumberOfPlayers(Players);
+			SavePlayers(Players);
 		}
 		break;
 
@@ -131,6 +134,7 @@ int PlayerManager(int decision)
 		NewPlayer(Players);
 		Players++;
 		SaveNumberOfPlayers(Players);
+		SavePlayers(Players);
 		break;
 
 	default:
