@@ -5,7 +5,7 @@
 #include <stdbool.h>
 #include "ScoreCalculator.h"
 
-#define MAX_PLAYERS 3 
+#define MAX_PLAYERS 15 
 #define _countof(array) (sizeof(array) / sizeof(array[0]))
 
 
@@ -192,7 +192,7 @@ Player PlayerManager(int decision)
 		SaveNumberOfPlayers(players);
 		break;
 
-	case 3:
+	case 3:	// Choose Player
 		currentPlayer = ChooseAPlayer(players);
 		break;
 	}
