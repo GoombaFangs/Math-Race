@@ -18,24 +18,21 @@ void SaveNumberOfPlayers(int numberOfPlayers)
 	return;
 }
 
-void SavePlayers(int numberOfPlayers) // Save each player
+void SavePlayers(int playerNumber, Player player) // Save each player
 {
-	for (int i = 0; i < numberOfPlayers; i++)
+	char fileName[20];
+	snprintf(fileName, sizeof(fileName), "player%d.dat", playerNumber + 1);
+
+	FILE* file = fopen(fileName, "w"); // Open files
+	if (file == NULL)
 	{
-		char fileName[20];
-		snprintf(fileName, sizeof(fileName), "player%d.dat", i + 1);
-
-		FILE* file = fopen(fileName, "w"); // Open files
-		if (file == NULL)
-		{
-			printf("Error: Could not open file %s for writing\n", fileName);
-			continue; // Skip to the next player if the file cannot be opened
-		}
-
-		fprintf(file, "Player number:%d\nName:%s\nScore:%.2lf\n", i , players[i].name, players[i].score); // Save player's name and score
-		fclose(file); // Close file
-		printf("Player %d saved successfully in %s\n", i + 1, fileName);
+		printf("Error: Could not open file %s for writing\n", fileName);
 	}
+
+	fprintf(file, "Player number:%d\nName:%s\nScore:%.2lf\n", playerNumber, player.name, player.score); // Save player's name and score
+	fclose(file); // Close file
+	printf("Player %d saved successfully in %s\n", playerNumber + 1, fileName);
+
 }
 
 int LoadNumberOfPlayers(int numberOfPlayers)

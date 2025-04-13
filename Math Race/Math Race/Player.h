@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include "SaveLoad.h"
+#include "ScoreCalculator.h"
 
 #define MAX_PLAYERS 3 
 #define _countof(array) (sizeof(array) / sizeof(array[0]))
@@ -15,60 +16,82 @@ typedef struct player {
 
 Player players[MAX_PLAYERS];
 
-void SavePlayers(int numberOfPlayers);
+// save and load functions
+void SavePlayers(int playerNumber, Player player);
 void LoadPlayers(int numberOfPlayers);
 void SaveNumberOfPlayers(int numberOfPlayers);
 int LoadNumberOfPlayers(int numberOfPlayers);
 
-void NewPlayer(int numberOfPlayers)
+Player NewPlayer(int numberOfPlayers)
 {
+	static Player newPlayer;
 	if (numberOfPlayers < MAX_PLAYERS)
 	{
 		printf("Enter Your name: ");
 		scanf_s("%49s", players[numberOfPlayers].name, (unsigned)_countof(players[numberOfPlayers].name));
+		newPlayer = players[numberOfPlayers];
 	}
 	else
 	{
 		printf("Maximum number of players reached\n");
 	}
+	return newPlayer;
 }
 
-int PlayerManager(int decision)
+double UpdatePlayerScore(Player currentPlayer)
 {
-	static int Players = 0;
-	static int currentPlayer = 0;
+	currentPlayer.score = 100 - (score[0] + score[1] + score[2]);
+	printf("%s, your final score is: %.1f\n", currentPlayer.name, currentPlayer.score);
+	return currentPlayer.score;
+}
+
+Player PlayerManager(int decision, Player player)
+{
+	static int Players = 0;																 
+	static Player currentPlayer;
 	switch (decision)
 	{
 	case 1: // Default
 		Players = LoadNumberOfPlayers(Players);
-		if (Players > 0)
+		//if (Players > 0)//need to fix
+		//{
+		//	LoadPlayers(Players);
+		//	currentPlayer = players[0];
+		//}
+		 if (Players == 0)//good
 		{
-			LoadPlayers(Players);
-		}
-		else if (Players == 0)
-		{
-			NewPlayer(Players);
+			currentPlayer = NewPlayer(Players);
 			Players++;
 			SaveNumberOfPlayers(Players);
-			SavePlayers(Players);
 		}
+		return currentPlayer;
 		break;
 
-	case 2: // New Player
-		NewPlayer(Players);
+	case 2: // New Player //good
+		currentPlayer = NewPlayer(Players);
 		Players++;
 		SaveNumberOfPlayers(Players);
-		SavePlayers(Players);
+		for (int i = 0; i < Players; i++)
+		{
+			SavePlayers(i, currentPlayer);
+		}
+		
+		return currentPlayer;
 		break;
 
-	case 3: // Just Save
+	case 3: // Just Save //need to fix
 		SaveNumberOfPlayers(Players);
-		SavePlayers(Players);
+		for (int i = 0; i < Players; i++)
+		{
+			SavePlayers(i, player);
+		}
+		currentPlayer = player;
+		return currentPlayer;
 		break;
 
 	default:
+		return currentPlayer;
 		break;
 	}
-	return Players;
 }
 #endif

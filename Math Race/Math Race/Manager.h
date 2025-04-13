@@ -39,11 +39,12 @@ void AppStart()
 {
 	int theGameIsRunning = 1;
 	int DoNext = 1;
+	static Player currentPlayer = { "", 0.0 };
 	//PrintTitle();
-	int currentPlayer = PlayerManager(DoNext);
+    currentPlayer = PlayerManager(DoNext, currentPlayer);
 	//Main Menu
 	//Game tutorial
-	while (theGameIsRunning != 0)
+	while (theGameIsRunning != 0) //the game loop
 	{
 		switch (DoNext)
 		{
@@ -54,14 +55,15 @@ void AppStart()
 		case 1:
 			//ask the user who is playing
 			PlayTheGame();
-			UpdatePlayerScore(currentPlayer);
-			PlayerManager(3);// Save the players
+			double finalScore = UpdatePlayerScore(currentPlayer);
+			currentPlayer.score = finalScore;
+			PlayerManager(3 , currentPlayer);
 			printf("Thanks for playing!");
 			DoNext = WhatNext();
 			break;
 
 		case 2: //new player
-			currentPlayer = PlayerManager(DoNext);
+			PlayerManager(DoNext , currentPlayer);
 			DoNext = 1;
 			break;
 
