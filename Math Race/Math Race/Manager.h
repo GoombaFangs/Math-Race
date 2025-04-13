@@ -53,7 +53,7 @@ void AppStart()
 
 		case 1:// default
 			PlayTheGame();
-			UpdatePlayerScore(currentPlayer.playerNumber);
+			UpdatePlayerScore(currentPlayer);
 			printf("Thanks for playing!");
 			DoNext = WhatNext();
 			break;
@@ -61,7 +61,7 @@ void AppStart()
 		case 2:// try again
 			currentPlayer = PlayerManager(DoNext);
 			PlayTheGame();
-			UpdatePlayerScore(currentPlayer.playerNumber);
+			UpdatePlayerScore(currentPlayer);
 			printf("Thanks for playing!");
 			DoNext = WhatNext();
 			break;

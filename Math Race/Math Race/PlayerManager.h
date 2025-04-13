@@ -6,19 +6,12 @@
 #include "ScoreCalculator.h"
 #include "Player.h"
 #include "SaveLoadData.h"
+#include "Visuals.h"
 
 #define MAX_PLAYERS 15 
 #define _countof(array) (sizeof(array) / sizeof(array[0]))
 
 Player PlayerManager(int decision);
-
-
-void UpdatePlayerScore(int numberOfPlayers)
-{
-	players[numberOfPlayers - 1].score = FinalScore();
-	printf("%s, your final score is: %.2f\n", players[numberOfPlayers - 1].name, players[numberOfPlayers - 1].score);
-	SavePlayers(numberOfPlayers);
-}
 
 Player NewPlayer(int numberOfPlayers)
 {
@@ -26,6 +19,9 @@ Player NewPlayer(int numberOfPlayers)
 	{
 		printf("Enter Your name: ");
 		scanf_s("%49s", players[numberOfPlayers].name, (unsigned)_countof(players[numberOfPlayers].name));
+
+		NameArrangement(numberOfPlayers);//VISUALS_H
+
 		players[numberOfPlayers].playerNumber = numberOfPlayers + 1;
 		SavePlayers(numberOfPlayers + 1);
 		return players[numberOfPlayers];
@@ -34,9 +30,18 @@ Player NewPlayer(int numberOfPlayers)
 	{
 		printf("Maximum number of players reached\n");
 		return players[0];
-
 	}
+}
 
+void UpdatePlayerScore(Player player)
+{
+	double finalScore = FinalScore(player.playerNumber);//SCORECALCULATOR_H
+	if (finalScore > players[player.playerNumber - 1].score)
+	{
+		players[player.playerNumber - 1].score = finalScore;
+	}	
+	printf("Yours final score is: %.2f\n", players[player.playerNumber - 1].score);
+	SavePlayers(player.playerNumber);
 }
 
 void PrintPlayerOptions(int numberOfPlayers)

@@ -26,25 +26,6 @@ void SaveNumberOfPlayers(int numberOfPlayers)
 	return;
 }
 
-void SavePlayers(int numberOfPlayers) // Save each player
-{
-	for (int i = 0; i < numberOfPlayers; i++)
-	{
-		char fileName[20];
-		snprintf(fileName, sizeof(fileName), "player%d.dat", i + 1);
-
-		FILE* file = fopen(fileName, "w"); // Open files
-		if (file == NULL)
-		{
-			printf("Error: Could not open file %s for writing\n", fileName);
-			continue; // Skip to the next player if the file cannot be opened
-		}
-
-		fprintf(file, "Player number:%d\nName:%s\nScore:%.2lf\n", players[i].playerNumber, players[i].name, players[i].score); // Save player's name and score
-		fclose(file); // Close file
-	}
-}
-
 int LoadNumberOfPlayers(int numberOfPlayers)
 {
 	FILE* file = fopen("numberOfPlayers.dat", "r"); // Open file
@@ -65,7 +46,33 @@ int LoadNumberOfPlayers(int numberOfPlayers)
 	return numberOfPlayers;
 }
 
-void LoadPlayers(int numberOfPlayers) // Load each player
+void SavePlayers(int numberOfPlayers)
+{
+	for (int i = 0; i < numberOfPlayers; i++)
+	{
+		players[i].place = i + 1; //placeHolder
+		char fileName[20];
+		snprintf(fileName, sizeof(fileName), "player%d.dat", i + 1);
+
+		FILE* file = fopen(fileName, "w"); // Open files
+		if (file == NULL)
+		{
+			printf("Error: Could not open file %s for writing\n", fileName);
+			continue; 
+		}
+
+		// Save
+		// player's data (playerNumber, name, score, place)
+		fprintf(file, "Player number:%d\nName:%s\nScore:%.2lf\nplace:%d", 
+			players[i].playerNumber, 
+			players[i].name, 
+			players[i].score,
+			players[i].place);
+		fclose(file); // Close file
+	}
+}
+
+void LoadPlayers(int numberOfPlayers)
 {
 	for (int i = 0; i < numberOfPlayers; i++)
 	{
@@ -76,14 +83,19 @@ void LoadPlayers(int numberOfPlayers) // Load each player
 		if (file == NULL)
 		{
 			printf("Error: Could not open file %s for reading\n", fileName);
-			continue; // Skip to the next player if the file cannot be opened
+			continue;
 		}
-
-		if (fscanf_s(file, "Player number:%d\nName:%49s\nScore:%lf\n", &players[i].playerNumber, players[i].name, (unsigned)_countof(players[i].name), &players[i].score) != 3)
+		// Load 
+		// player's data (playerNumber, name, score, place)
+		if (fscanf_s(file, "Player number:%d\nName:%49s\nScore:%lf\nplace:%d", 
+			&players[i].playerNumber, 
+			players[i].name, (unsigned)_countof(players[i].name), 
+			&players[i].score , 
+			&players[i].place) != 4)
 		{
 			printf("Error: Invalid data in %s. Stopping load for this player\n", fileName);
 			fclose(file);
-			continue; // Skip to the next player if the data is invalid
+			continue; 
 		}
 		fclose(file); // Close file
 	}

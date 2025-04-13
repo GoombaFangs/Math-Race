@@ -3,6 +3,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
+#include "Player.h"
 
 
 void clearConsole() {
@@ -131,5 +133,17 @@ void PrintTitle()
     HoldSceonds(0.03);
     clearConsole();
     HoldSceonds(0.5);
+}
+
+void NameArrangement(int PlayerNumber) 
+{
+    // Capitalize the first letter
+    players[PlayerNumber].name[0] = toupper((unsigned char)players[PlayerNumber].name[0]);
+    // Convert the rest of the name to lowercase
+    for (int i = 1; players[PlayerNumber].name[i] != '\0'; i++)
+    {
+        players[PlayerNumber].name[i] = tolower((unsigned char)players[PlayerNumber].name[i]);
+    }
+
 }
 #endif

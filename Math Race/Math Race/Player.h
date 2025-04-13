@@ -8,6 +8,7 @@ typedef struct player
 	int playerNumber;
 	char name[50];
 	double score;
+	int place;
 } Player;
 
 extern Player players[MAX_PLAYERS];
