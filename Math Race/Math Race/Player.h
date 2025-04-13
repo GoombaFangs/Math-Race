@@ -90,8 +90,6 @@ void LoadPlayers(int numberOfPlayers) // Load each player
 			fclose(file);
 			continue; // Skip to the next player if the data is invalid
 		}
-
-		printf("Player %d, Name: %s, Score: %.2f\n", i + 1, players[i].name, players[i].score);
 		fclose(file); // Close file
 	}
 }
@@ -113,8 +111,13 @@ Player NewPlayer(int numberOfPlayers)
 	}
 
 }
+
 void PrintPlayerOptions(int numberOfPlayers)
 {
+	for (int i = 0; i < numberOfPlayers; i++)
+	{
+		printf("Player %d, Name: %s, Score: %.2f\n", i + 1, players[i].name, players[i].score);
+	}
 	printf("Choose a player\nPress.. ");
 	for (int i = 1; i <= numberOfPlayers; i++)
 	{
