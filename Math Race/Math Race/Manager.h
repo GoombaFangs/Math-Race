@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <string.h> 
 #include <time.h>
+#include "SaveLoad.h"
 #include "Player.h"
 #include "Rounds.h"
 #include "Timer.h"
@@ -54,6 +55,7 @@ void AppStart()
 			//ask the user who is playing
 			PlayTheGame();
 			UpdatePlayerScore(currentPlayer);
+			PlayerManager(3);// Save the players
 			printf("Thanks for playing!");
 			DoNext = WhatNext();
 			break;
