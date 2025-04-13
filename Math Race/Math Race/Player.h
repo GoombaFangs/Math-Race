@@ -8,7 +8,9 @@
 
 
 
-typedef struct player {
+typedef struct player 
+{
+	int playerNumber;
 	char name[50];
 	double score;
 } Player;
@@ -44,7 +46,7 @@ void SavePlayers(int numberOfPlayers) // Save each player
 			continue; // Skip to the next player if the file cannot be opened
 		}
 
-		fprintf(file, "Player number:%d\nName:%s\nScore:%.2lf\n", i, players[i].name, players[i].score); // Save player's name and score
+		fprintf(file, "Player number:%d\nName:%s\nScore:%.2lf\n", players[i].playerNumber, players[i].name, players[i].score); // Save player's name and score
 		fclose(file); // Close file
 		printf("Player %d saved successfully in %s\n", i + 1, fileName);
 	}
@@ -83,7 +85,7 @@ void LoadPlayers(int numberOfPlayers) // Load each player
 			continue; // Skip to the next player if the file cannot be opened
 		}
 
-		if (fscanf_s(file, "Player number:%d\nName:%49s\nScore:%lf\n", &i, players[i].name, (unsigned)_countof(players[i].name), &players[i].score) != 3)
+		if (fscanf_s(file, "Player number:%d\nName:%49s\nScore:%lf\n", &players[i].playerNumber, players[i].name, (unsigned)_countof(players[i].name), &players[i].score) != 3)
 		{
 			printf("Error: Invalid data in %s. Stopping load for this player\n", fileName);
 			fclose(file);
@@ -101,6 +103,7 @@ void NewPlayer(int numberOfPlayers)
 	{
 		printf("Enter Your name: ");
 		scanf_s("%49s", players[numberOfPlayers].name, (unsigned)_countof(players[numberOfPlayers].name));
+		players[numberOfPlayers].playerNumber = numberOfPlayers + 1;
 	}
 	else
 	{
