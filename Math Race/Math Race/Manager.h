@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <string.h> 
 #include <time.h>
-#include "Player.h"
+#include "PlayerManager.h"
 #include "Rounds.h"
 #include "Timer.h"
 #include "ScoreCalculator.h"
