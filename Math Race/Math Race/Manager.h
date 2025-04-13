@@ -36,9 +36,9 @@ int WhatNext()
 
 void AppStart()
 {
+	VisualManager();
 	int theGameIsRunning = 1;
 	int DoNext = 1;
-	//PrintTitle();
 	Player currentPlayer;
 	//Main Menu
 	//Game tutorial

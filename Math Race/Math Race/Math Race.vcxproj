@@ -137,6 +137,7 @@
     <ClInclude Include="SaveLoadData.h" />
     <ClInclude Include="ScoreCalculator.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="Title.h" />
     <ClInclude Include="Visuals.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

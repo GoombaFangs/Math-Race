@@ -12,6 +12,5 @@ typedef struct player
 } Player;
 
 extern Player players[MAX_PLAYERS];
-
 #endif
 
