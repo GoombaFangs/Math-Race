@@ -42,7 +42,6 @@ void SavePlayers(int numberOfPlayers) // Save each player
 
 		fprintf(file, "Player number:%d\nName:%s\nScore:%.2lf\n", players[i].playerNumber, players[i].name, players[i].score); // Save player's name and score
 		fclose(file); // Close file
-		printf("Player %d saved successfully in %s\n", i + 1, fileName);
 	}
 }
 

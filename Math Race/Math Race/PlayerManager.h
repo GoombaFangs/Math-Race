@@ -10,11 +10,13 @@
 #define MAX_PLAYERS 15 
 #define _countof(array) (sizeof(array) / sizeof(array[0]))
 
+Player PlayerManager(int decision);
+
 
 void UpdatePlayerScore(int numberOfPlayers)
 {
 	players[numberOfPlayers - 1].score = FinalScore();
-	printf("%s, your final score is: %.1f\n", players[numberOfPlayers - 1].name, players[numberOfPlayers - 1].score);
+	printf("%s, your final score is: %.2f\n", players[numberOfPlayers - 1].name, players[numberOfPlayers - 1].score);
 	SavePlayers(numberOfPlayers);
 }
 
@@ -72,6 +74,11 @@ Player ChooseAPlayer(int numberOfPlayers)
 			{
 				printf("You chose %s\n", players[choice - 1].name);
 				return players[choice - 1];
+			}
+			else if(choice == numberOfPlayers + 1)
+			{
+				Player newPlayer = PlayerManager(3); // New Player
+				return newPlayer;
 			}
 			else
 			{
