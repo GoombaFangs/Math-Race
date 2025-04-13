@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdbool.h>
+#include "ScoreCalculator.h"
 
 #define MAX_PLAYERS 3 
 #define _countof(array) (sizeof(array) / sizeof(array[0]))
@@ -70,6 +71,7 @@ int LoadNumberOfPlayers(int numberOfPlayers)
 	fclose(file); // Close file
 	return numberOfPlayers;
 }
+
 void LoadPlayers(int numberOfPlayers) // Load each player
 {
 	for (int i = 0; i < numberOfPlayers; i++)
@@ -92,6 +94,13 @@ void LoadPlayers(int numberOfPlayers) // Load each player
 		}
 		fclose(file); // Close file
 	}
+}
+
+void UpdatePlayerScore(int numberOfPlayers)
+{
+	players[numberOfPlayers - 1].score = FinalScore();
+	printf("%s, your final score is: %.1f\n", players[numberOfPlayers - 1].name, players[numberOfPlayers - 1].score);
+	SavePlayers(numberOfPlayers);
 }
 
 Player NewPlayer(int numberOfPlayers)

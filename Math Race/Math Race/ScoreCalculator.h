@@ -30,12 +30,6 @@ double FinalScore()
     double finalScore = 100 - (score[0] + score[1] + score[2]);
 	return finalScore;
 }
-void UpdatePlayerScore(int numberOfPlayers)
-{
-    players[numberOfPlayers - 1].score = FinalScore();
-    printf("%s, your final score is: %.1f\n", players[numberOfPlayers - 1].name, players[numberOfPlayers - 1].score);
-    SavePlayers(numberOfPlayers);
-}
 #endif
 
 
