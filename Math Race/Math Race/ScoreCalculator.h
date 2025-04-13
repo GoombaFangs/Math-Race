@@ -7,7 +7,7 @@
 
 double score[3] = { 0.0, 0.0 , 0.0 };
 
-void GetScore(double seconds , int round)
+void GetScore(double seconds, int round)
 {
     switch (round)
     {
@@ -17,12 +17,19 @@ void GetScore(double seconds , int round)
     case 1:
         score[1] = seconds * 0.3;
         break;
-	case 2:
+    case 2:
         score[2] = seconds * 0.5;
-		break;
+        break;
     default:
         break;
     }
 }
-
+void UpdatePlayerScore(int numberOfPlayers)
+{
+    players[numberOfPlayers - 1].score = 100 - (score[0] + score[1] + score[2]);
+    printf("%s, your final score is: %.1f\n", players[numberOfPlayers - 1].name, players[numberOfPlayers - 1].score);
+    SavePlayers(numberOfPlayers);
+}
 #endif
+
+

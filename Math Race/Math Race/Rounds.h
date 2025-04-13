@@ -12,9 +12,10 @@
 void RoundTime(clock_t* startTime, clock_t* endTime, int* round)
 {
 	double roundDuration[TOTAL_ROUNDS];
+	double finalScore = 0;
 	roundDuration[*round] = ElapsedTime(*startTime, *endTime);
 	printf("round %d: %.2f seconds\n", *round + 1, roundDuration[*round]);
-	GetScore(roundDuration[*round], *round);	
+	GetScore(roundDuration[*round], *round);
 }
 
 void GetReadyForNextRound(int round)
