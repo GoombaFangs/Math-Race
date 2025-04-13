@@ -2,10 +2,10 @@
 #define PLAYER_H
 
 #include <stdio.h>
+#include <stdbool.h>
 
 #define MAX_PLAYERS 3 
 #define _countof(array) (sizeof(array) / sizeof(array[0]))
-
 
 
 typedef struct player 
@@ -16,7 +16,6 @@ typedef struct player
 } Player;
 
 Player players[MAX_PLAYERS];
-
 
 void SaveNumberOfPlayers(int numberOfPlayers)
 {
@@ -97,49 +96,94 @@ void LoadPlayers(int numberOfPlayers) // Load each player
 	}
 }
 
-void NewPlayer(int numberOfPlayers)
+Player NewPlayer(int numberOfPlayers)
 {
 	if (numberOfPlayers < MAX_PLAYERS)
 	{
 		printf("Enter Your name: ");
 		scanf_s("%49s", players[numberOfPlayers].name, (unsigned)_countof(players[numberOfPlayers].name));
 		players[numberOfPlayers].playerNumber = numberOfPlayers + 1;
+		return players[numberOfPlayers];
 	}
 	else
 	{
 		printf("Maximum number of players reached\n");
+		return players[0]; // Return the first player as a fallback
+
 	}
+
+}
+void PrintPlayerOptions(int numberOfPlayers)
+{
+	printf("Choose a player\nPress.. ");
+	for (int i = 1; i <= numberOfPlayers; i++)
+	{
+		printf("%d", i);
+		if (i != numberOfPlayers) printf(" or ");
+
+	}
+	printf(":");
 }
 
-int PlayerManager(int decision)
+Player ChooseAPlayer(int numberOfPlayers)
 {
-	static int Players = 0;
+	PrintPlayerOptions(numberOfPlayers);
+
+	int choice;
+	while (true)
+	{
+		if (scanf_s("%d", &choice) == 1)
+		{
+			if (choice >= 1 && choice <= numberOfPlayers)
+			{
+				printf("You chose %s\n", players[choice - 1].name);
+				return players[choice - 1];
+			}
+			else
+			{
+				PrintPlayerOptions(numberOfPlayers);
+			}
+		}
+		else
+		{
+			PrintPlayerOptions(numberOfPlayers);
+			while (getchar() != '\n'); // Clear the input buffer
+		}
+	}
+
+}
+
+Player PlayerManager(int decision)
+{
+	static int players = 0;
+	static Player currentPlayer;
 	switch (decision)
 	{
 	case 1: // Default
-		Players = LoadNumberOfPlayers(Players);
-		if (Players > 0)
+		players = LoadNumberOfPlayers(players);
+		if (players > 0)
 		{
-			LoadPlayers(Players);
+			LoadPlayers(players);
+			currentPlayer = ChooseAPlayer(players);
 		}
-		else if (Players == 0)
+		else if (players == 0)
 		{
-			NewPlayer(Players);
-			Players++;
-			SaveNumberOfPlayers(Players);
+			currentPlayer = NewPlayer(players);
+			players++;
+			SaveNumberOfPlayers(players);
 		}
 		break;
 
 	case 2: // New Player
-		NewPlayer(Players);
-		Players++;
-		SaveNumberOfPlayers(Players);
+		currentPlayer = NewPlayer(players);
+		players++;
+		SaveNumberOfPlayers(players);
 		break;
 
 	default:
 		break;
 	}
-	return Players;
+	return currentPlayer;
 }
 #endif
 
