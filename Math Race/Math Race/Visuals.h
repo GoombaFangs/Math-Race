@@ -19,6 +19,8 @@ void VisualManager()
 {
 	clearConsole();
 	PrintTitle();
+    //Main Menu
+    //Game tutorial
 }
 
 

@@ -36,12 +36,10 @@ int WhatNext()
 
 void AppStart()
 {
-	VisualManager();
+	//VisualManager();
 	int theGameIsRunning = 1;
 	int DoNext = 1;
 	Player currentPlayer;
-	//Main Menu
-	//Game tutorial
 	currentPlayer = PlayerManager(DoNext);
 	while (theGameIsRunning != 0)
 	{

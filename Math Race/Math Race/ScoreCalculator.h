@@ -33,9 +33,20 @@ double FinalScore(int playerNumber)
 	return finalScore;
 }
 
-void SaveTheBest() 
+void SortPlayers(int numberOfPlayer)
 {
-
+	for (int i = 0; i < numberOfPlayer - 1; i++)
+	{
+        for (int j = 0; j < numberOfPlayer - i - 1; j++)
+        {
+            if (players[j].score < players[j + 1].score)
+            {
+                int temp = players[j].place;
+                players[j].place = players[j+1].place;
+                players[j+1].place = temp;
+            }
+        }
+	}
 }
 #endif
 

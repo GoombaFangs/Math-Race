@@ -50,7 +50,6 @@ void SavePlayers(int numberOfPlayers)
 {
 	for (int i = 0; i < numberOfPlayers; i++)
 	{
-		players[i].place = i + 1; //placeHolder
 		char fileName[20];
 		snprintf(fileName, sizeof(fileName), "player%d.dat", i + 1);
 

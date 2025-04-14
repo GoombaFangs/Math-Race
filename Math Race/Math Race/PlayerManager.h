@@ -8,7 +8,6 @@
 #include "SaveLoadData.h"
 #include "Visuals.h"
 
-#define MAX_PLAYERS 15 
 #define _countof(array) (sizeof(array) / sizeof(array[0]))
 
 Player PlayerManager(int decision);
@@ -23,6 +22,8 @@ Player NewPlayer(int numberOfPlayers)
 		NameArrangement(numberOfPlayers);//VISUALS_H
 
 		players[numberOfPlayers].playerNumber = numberOfPlayers + 1;
+		players[numberOfPlayers].place = numberOfPlayers + 1;
+
 		SavePlayers(numberOfPlayers + 1);
 		return players[numberOfPlayers];
 	}
@@ -41,6 +42,10 @@ void UpdatePlayerScore(Player player)
 		players[player.playerNumber - 1].score = finalScore;
 	}	
 	printf("Yours final score is: %.2f\n", players[player.playerNumber - 1].score);
+	if (player.playerNumber > 1) 
+	{
+		SortPlayers(player.playerNumber);//SCORECALCULATOR_H
+	}
 	SavePlayers(player.playerNumber);
 }
 
@@ -48,7 +53,7 @@ void PrintPlayerOptions(int numberOfPlayers)
 {
 	for (int i = 0; i < numberOfPlayers; i++)
 	{
-		printf("Player %d, Name: %s, Score: %.2f\n", i + 1, players[i].name, players[i].score);
+		printf("%s, Score: %.2f, you are in %d\n", players[i].name, players[i].score, players[i].place);
 	}
 	printf("Choose a player\nPress.. ");
 
