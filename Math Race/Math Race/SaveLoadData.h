@@ -7,10 +7,10 @@
 #include "Player.h"
 #include "PlayerManager.h"
 
-#define MAX_PLAYERS 15 
 #define _countof(array) (sizeof(array) / sizeof(array[0]))
 
 Player players[MAX_PLAYERS];
+
 
 void SaveNumberOfPlayers(int numberOfPlayers)
 {
@@ -21,7 +21,7 @@ void SaveNumberOfPlayers(int numberOfPlayers)
 		return;
 	}
 
-	fprintf(file, "%d\n", numberOfPlayers);// Saveing NumberOfPlayers
+	fprintf(file, "%d\n", numberOfPlayers);
 	fclose(file); // Close file
 	return;
 }
@@ -41,6 +41,7 @@ int LoadNumberOfPlayers(int numberOfPlayers)
 		fclose(file); // Close file
 		return 0;
 	}
+
 	printf("Number of players found: %d\n", numberOfPlayers);
 	fclose(file); // Close file
 	return numberOfPlayers;
@@ -84,9 +85,10 @@ void LoadPlayers(int numberOfPlayers)
 			printf("Error: Could not open file %s for reading\n", fileName);
 			continue;
 		}
+
 		// Load 
 		// player's data (playerNumber, name, score, place)
-		if (fscanf_s(file, "Player number:%d\nName:%49s\nScore:%lf\nplace:%d", 
+		if (fscanf_s(file, "Player number:%d\nName:%19s\nScore:%lf\nplace:%d", 
 			&players[i].playerNumber, 
 			players[i].name, (unsigned)_countof(players[i].name), 
 			&players[i].score , 

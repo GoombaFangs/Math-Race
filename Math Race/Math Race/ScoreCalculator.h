@@ -7,6 +7,7 @@
 
 double score[3] = { 0.0, 0.0 , 0.0 };
 
+
 void GetScore(double seconds, int round)
 {
     switch (round)
@@ -33,7 +34,7 @@ double FinalScore(int playerNumber)
 	return finalScore;
 }
 
-void SortPlayers(int numberOfPlayer)
+void PlacePlayers(int numberOfPlayer)//sort
 {
 	for (int i = 0; i < numberOfPlayer - 1; i++)
 	{

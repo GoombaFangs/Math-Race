@@ -6,30 +6,18 @@
 #include <time.h>
 #include "Timer.h"
 #include "ScoreCalculator.h"
+#include "visuals.h"
 
 #define TOTAL_ROUNDS 3
+
 
 void RoundTime(clock_t* startTime, clock_t* endTime, int* round)
 {
 	double roundDuration[TOTAL_ROUNDS];
 	double finalScore = 0;
-	roundDuration[*round] = ElapsedTime(*startTime, *endTime);
+	roundDuration[*round] = ElapsedTime(*startTime, *endTime);//TIMER_H
 	printf("round %d: %.2f seconds\n", *round + 1, roundDuration[*round]);
-	GetScore(roundDuration[*round], *round);
-}
-
-void GetReadyForNextRound(int round)
-{
-	if (round != 0) 
-	{
-	printf("Get ready for the next round!\n");
-	}
-	for (int i = 3; i > 0; i--)
-	{
-		printf("%d...\n", i);
-		HoldSceonds(1.0);
-	}
-	printf("Go!\n");
+	GetScore(roundDuration[*round], *round);//SCORECALCULATOR_H
 }
 
 void PlayTheGame()
@@ -37,15 +25,14 @@ void PlayTheGame()
 	int round = 0; 
 	while (round < TOTAL_ROUNDS)
 	{
-		GetReadyForNextRound(round);
+		GetReadyForNextRound(round);//VISUALS_H
 		clock_t startTime = TimerStart();
 		printf("Round %d\n", round + 1);
-		for (int i = 0; i < 2; i++)//need to change to 10 questions
+		for (int i = 0; i < 2; i++)
 		{
-			printf("%d + %d?\n",i, i);//random question by difficukty (bass on round number)
+			printf("%d + %d?\n",i, i);
 			int answer;
 			scanf_s("%d", &answer);
-			//answer checker
 		}
 		clock_t endTime = TimerStop();
 		RoundTime(&startTime, &endTime ,&round);

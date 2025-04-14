@@ -12,12 +12,13 @@
 
 Player PlayerManager(int decision);
 
+
 Player NewPlayer(int numberOfPlayers)
 {
 	if (numberOfPlayers < MAX_PLAYERS)
 	{
 		printf("Enter Your name: ");
-		scanf_s("%49s", players[numberOfPlayers].name, (unsigned)_countof(players[numberOfPlayers].name));
+		scanf_s("%19s", players[numberOfPlayers].name, (unsigned)_countof(players[numberOfPlayers].name));
 
 		NameArrangement(numberOfPlayers);//VISUALS_H
 
@@ -40,41 +41,21 @@ void UpdatePlayerScore(Player player)
 	if (finalScore > players[player.playerNumber - 1].score)
 	{
 		players[player.playerNumber - 1].score = finalScore;
-	}	
+	}
+
 	printf("Yours final score is: %.2f\n", players[player.playerNumber - 1].score);
+
 	if (player.playerNumber > 1) 
 	{
-		SortPlayers(player.playerNumber);//SCORECALCULATOR_H
+		PlacePlayers(player.playerNumber);//SCORECALCULATOR_H
 	}
+
 	SavePlayers(player.playerNumber);
-}
-
-void PrintPlayerOptions(int numberOfPlayers)
-{
-	for (int i = 0; i < numberOfPlayers; i++)
-	{
-		printf("%d) %s\n", players[i].playerNumber, players[i].name);
-	}
-	printf("Choose a player\nPress.. ");
-
-	for (int i = 1; i <= numberOfPlayers; i++)
-	{
-		printf("%d", i);
-		if (i - 1 != numberOfPlayers)
-		{
-			printf(" or ");
-		}
-		if (i == numberOfPlayers) 
-		{
-			printf("%d(for New Player)", i + 1);
-		}
-	}
-	printf(":");
 }
 
 Player ChooseAPlayer(int numberOfPlayers)
 {
-	PrintPlayerOptions(numberOfPlayers);
+	PrintPlayerOptions(numberOfPlayers);//VISUALS_H
 	int choice;
 	while (true)
 	{
@@ -87,21 +68,20 @@ Player ChooseAPlayer(int numberOfPlayers)
 			}
 			else if(choice == numberOfPlayers + 1)
 			{
-				Player newPlayer = PlayerManager(3); // New Player
+				Player newPlayer = PlayerManager(3); //New Player
 				return newPlayer;
 			}
 			else
 			{
-				PrintPlayerOptions(numberOfPlayers);
+				PrintPlayerOptions(numberOfPlayers);//VISUALS_H
 			}
 		}
 		else
 		{
-			PrintPlayerOptions(numberOfPlayers);
+			PrintPlayerOptions(numberOfPlayers);//VISUALS_H
 			while (getchar() != '\n'); // Clear the input buffer
 		}
 	}
-
 }
 
 Player PlayerManager(int decision)
@@ -134,7 +114,6 @@ Player PlayerManager(int decision)
 		players++;
 		SaveNumberOfPlayers(players);
 		break;
-
 	}
 	return currentPlayer;
 }

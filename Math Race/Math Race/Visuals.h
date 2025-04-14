@@ -6,8 +6,11 @@
 #include <ctype.h>
 #include "Player.h"
 #include "Title.h"
+#include "time.h"
 
-void clearConsole() {
+
+void clearConsole() 
+{
 #ifdef _WIN32
     system("cls");
 #else
@@ -15,25 +18,60 @@ void clearConsole() {
 #endif
 }
 
-void VisualManager()
+void GetReadyForNextRound(int round)//ROUNDS.H
 {
-	clearConsole();
-	PrintTitle();
-    //Main Menu
-    //Game tutorial
+	if (round != 0)
+	{
+		printf("Get ready for the next round!\n");
+	}
+	for (int i = 3; i > 0; i--)
+	{
+		printf("%d...\n", i);
+		HoldSceonds(1.0);
+	}
+	printf("Go!\n");
 }
 
-
-void NameArrangement(int PlayerNumber) 
+void PrintPlayerOptions(int numberOfPlayers)//PLAYERMANAGER.H
 {
-    // Capitalize the first letter
+	for (int i = 0; i < numberOfPlayers; i++)
+	{
+		printf("%d) %s\n", players[i].playerNumber, players[i].name);
+	}
+
+	printf("Choose a player\nPress.. ");
+
+	for (int i = 1; i <= numberOfPlayers; i++)
+	{
+		printf("%d", i);
+		if (i - 1 != numberOfPlayers)
+		{
+			printf(" or ");
+		}
+		if (i == numberOfPlayers)
+		{
+			printf("%d(for New Player)", i + 1);
+		}
+	}
+	printf(":");
+}
+
+void NameArrangement(int PlayerNumber)//PLAYERMANAGER.H 
+{
+    //Capitalize the first letter
     players[PlayerNumber].name[0] = toupper((unsigned char)players[PlayerNumber].name[0]);
-    // Convert the rest of the name to lowercase
+    //Convert the rest of the name to lowercase
     for (int i = 1; players[PlayerNumber].name[i] != '\0'; i++)
     {
         players[PlayerNumber].name[i] = tolower((unsigned char)players[PlayerNumber].name[i]);
     }
-
 }
 
+void VisualManager()
+{
+	clearConsole();
+	PrintTitle();
+	//Main Menu
+	//Game tutorial
+}
 #endif

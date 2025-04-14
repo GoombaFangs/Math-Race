@@ -36,7 +36,7 @@ int WhatNext()
 
 void AppStart()
 {
-	//VisualManager();
+	VisualManager();
 	int theGameIsRunning = 1;
 	int DoNext = 1;
 	Player currentPlayer;
@@ -50,16 +50,16 @@ void AppStart()
 			break;
 
 		case 1:// default
-			PlayTheGame();
-			UpdatePlayerScore(currentPlayer);
+			PlayTheGame();//ROUNDS.H
+			UpdatePlayerScore(currentPlayer);//PLAYERMANAGER.H
 			printf("Thanks for playing!");
 			DoNext = WhatNext();
 			break;
 
 		case 2:// try again
 			currentPlayer = PlayerManager(DoNext);
-			PlayTheGame();
-			UpdatePlayerScore(currentPlayer);
+			PlayTheGame();//ROUNDS.H
+			UpdatePlayerScore(currentPlayer);//PLAYERMANAGER.H
 			printf("Thanks for playing!");
 			DoNext = WhatNext();
 			break;

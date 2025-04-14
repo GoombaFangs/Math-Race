@@ -14,7 +14,6 @@ clock_t TimerStart()
 
 clock_t TimerStop()
 {
-	
     clock_t end = clock();
     printf("Timer stopped...\n"); 
 	return end;
