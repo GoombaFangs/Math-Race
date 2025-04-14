@@ -53,7 +53,7 @@ void PrintPlayerOptions(int numberOfPlayers)
 {
 	for (int i = 0; i < numberOfPlayers; i++)
 	{
-		printf("%s, Score: %.2f, you are in %d\n", players[i].name, players[i].score, players[i].place);
+		printf("%d) %s\n", players[i].playerNumber, players[i].name);
 	}
 	printf("Choose a player\nPress.. ");
 
