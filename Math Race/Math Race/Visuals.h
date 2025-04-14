@@ -4,9 +4,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
-#include "Player.h"
 #include "Title.h"
-#include "time.h"
+#include "Timer.h"
+#include "MenuScroll.h"
+#include "KeyBinding.h"
 
 
 void clearConsole() 
@@ -71,7 +72,8 @@ void VisualManager()
 {
 	clearConsole();
 	PrintTitle();
-	//Main Menu
+	PrintScroll();
+	MenuKeys();
 	//Game tutorial
 }
 #endif
