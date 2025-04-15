@@ -12,6 +12,7 @@
 #include "KeyBinding.h"
 
 
+
 int WhatNext()
 {
 	printf("\n\nPress...\nA) Try again\nB) New Player\nC) Exit\n");
@@ -38,6 +39,7 @@ int WhatNext()
 void AppStart()
 {
 	VisualManager();
+	srand((unsigned int)time(NULL));
 	int theGameIsRunning = 1;
 	int DoNext = 1;
 	Player currentPlayer;

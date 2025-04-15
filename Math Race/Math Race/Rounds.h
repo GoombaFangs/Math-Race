@@ -7,6 +7,7 @@
 #include "Timer.h"
 #include "ScoreCalculator.h"
 #include "visuals.h"
+#include "qGeneratorAndChecker.h"
 
 #define TOTAL_ROUNDS 3
 
@@ -28,12 +29,7 @@ void PlayTheGame()
 		GetReadyForNextRound(round);//VISUALS_H
 		clock_t startTime = TimerStart();
 		printf("Round %d\n", round + 1);
-		for (int i = 0; i < 2; i++)
-		{
-			printf("%d + %d?\n",i, i);
-			int answer;
-			scanf_s("%d", &answer);
-		}
+		generate_and_check_question(round); //QGENERATORANDCHECKER_H
 		clock_t endTime = TimerStop();
 		RoundTime(&startTime, &endTime ,&round);
 		round++;

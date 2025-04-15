@@ -25,7 +25,7 @@ double ElapsedTime(clock_t start, clock_t end)
     return seconds;
 }
 
-void HoldSceonds(double second)
+void HoldSeconds(double second)
 {
 	clock_t start = clock();
 	while (1)

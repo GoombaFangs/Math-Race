@@ -135,6 +135,7 @@
     <ClInclude Include="MenuScroll.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerManager.h" />
+    <ClInclude Include="qGeneratorAndChecker.h" />
     <ClInclude Include="Rounds.h" />
     <ClInclude Include="SaveLoadData.h" />
     <ClInclude Include="ScoreCalculator.h" />

@@ -28,7 +28,7 @@ void GetReadyForNextRound(int round)//ROUNDS.H
 	for (int i = 3; i > 0; i--)
 	{
 		printf("%d...\n", i);
-		HoldSceonds(1.0);
+		HoldSeconds(1.0);
 	}
 	printf("Go!\n");
 }
