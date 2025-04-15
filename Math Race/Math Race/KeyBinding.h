@@ -6,15 +6,11 @@
 #include "MenuScroll.h"
 #include "Visuals.h"
 
-void CloseScroll();
-int PrintMenuOnPlay();
-int PrintMenuOnLeaderBoard();
-int PrintMenuOnExit();
 
 int MenuKeys()
 {
     int ch;
-    int defaultOption = PrintMenuOnPlay();
+    int defaultOption = 0;
     while (1) 
     {
         ch = _getch();
@@ -27,21 +23,21 @@ int MenuKeys()
             case 72://Up arrow
                 if (defaultOption == 3)
                 {
-                    defaultOption = PrintMenuOnLeaderBoard();
+                    //defaultOption = PrintMenuOnLeaderBoard();
                 }
                 else if (defaultOption == 2)
                 {
-                    defaultOption = PrintMenuOnPlay();
+                    //defaultOption = PrintMenuOnPlay();
                 }
                 break;
             case 80://Down arrow
                 if (defaultOption == 1)
                 {
-                    defaultOption = PrintMenuOnLeaderBoard();
+                    //defaultOption = PrintMenuOnLeaderBoard();
                 }
                 else if (defaultOption == 2)
                 {
-                    defaultOption = PrintMenuOnExit();
+                    //defaultOption = PrintMenuOnExit();
                 }
                 break;
             }
@@ -51,17 +47,14 @@ int MenuKeys()
             switch (defaultOption)
             {
             case 1://Play
-                CloseScroll();
                 return 1;
                 break;
 
             case 2://LeaderBoard
-                CloseScroll();
                 return 1;
                 break;
 
             case 3://Exit
-                CloseScroll();
                 return 0;
 
             }

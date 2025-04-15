@@ -37,8 +37,9 @@ int WhatNext()
 
 void AppStart()
 {
+	VisualManager();
 	int theGameIsRunning = 1;
-	int DoNext = VisualManager();
+	int DoNext = 1;
 	Player currentPlayer;
 	currentPlayer = PlayerManager(DoNext);
 	while (theGameIsRunning != 0)

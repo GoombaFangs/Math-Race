@@ -68,13 +68,12 @@ void NameArrangement(int PlayerNumber)//PLAYERMANAGER.H
     }
 }
 
-int VisualManager()
+void VisualManager()
 {
 	clearConsole();
 	PrintTitle();
-	PrintScroll();
-	int DoNext = MenuKeys();
-	return DoNext;
+	//int DoNext = MenuKeys();
+	//return DoNext;
 	//Game tutorial
 }
 #endif
