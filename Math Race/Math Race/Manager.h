@@ -9,8 +9,6 @@
 #include "Timer.h"
 #include "ScoreCalculator.h"
 #include "Visuals.h"
-#include "KeyBinding.h"
-
 
 
 int WhatNext()
@@ -38,10 +36,9 @@ int WhatNext()
 
 void AppStart()
 {
-	VisualManager();
 	srand((unsigned int)time(NULL));
 	int theGameIsRunning = 1;
-	int DoNext = 1;
+	int DoNext = VisualManager();
 	Player currentPlayer;
 	currentPlayer = PlayerManager(DoNext);
 	while (theGameIsRunning != 0)

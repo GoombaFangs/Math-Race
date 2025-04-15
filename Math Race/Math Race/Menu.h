@@ -1,16 +1,20 @@
-#ifndef KEYBINDING_H
-#define KEYBINDING_H
+#ifndef MENU_H
+#define MENU_H
 
 #include <stdio.h>
 #include <conio.h>
-#include "MenuScroll.h"
 #include "Visuals.h"
+#include "PrintMenu.h"
+
+int OnPlay();
+int OnLeaderBoard();
+int OnExit();
 
 
-int MenuKeys()
+int MenuDecision()
 {
     int ch;
-    int defaultOption = 0;
+    int defaultOption = OnPlay();
     while (1) 
     {
         ch = _getch();
@@ -23,21 +27,21 @@ int MenuKeys()
             case 72://Up arrow
                 if (defaultOption == 3)
                 {
-                    //defaultOption = PrintMenuOnLeaderBoard();
+                    defaultOption = OnLeaderBoard();
                 }
                 else if (defaultOption == 2)
                 {
-                    //defaultOption = PrintMenuOnPlay();
+                    defaultOption =  OnPlay();
                 }
                 break;
             case 80://Down arrow
                 if (defaultOption == 1)
                 {
-                    //defaultOption = PrintMenuOnLeaderBoard();
+                    defaultOption = OnLeaderBoard();
                 }
                 else if (defaultOption == 2)
                 {
-                    //defaultOption = PrintMenuOnExit();
+                    defaultOption = OnExit();
                 }
                 break;
             }
@@ -47,14 +51,17 @@ int MenuKeys()
             switch (defaultOption)
             {
             case 1://Play
+                clearConsole();
                 return 1;
                 break;
 
             case 2://LeaderBoard
+                clearConsole();
                 return 1;
                 break;
 
             case 3://Exit
+                clearConsole();
                 return 0;
 
             }

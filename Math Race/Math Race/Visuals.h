@@ -6,8 +6,7 @@
 #include <ctype.h>
 #include "Title.h"
 #include "Timer.h"
-#include "MenuScroll.h"
-#include "KeyBinding.h"
+#include "Menu.h"
 
 
 void clearConsole() 
@@ -68,12 +67,12 @@ void NameArrangement(int PlayerNumber)//PLAYERMANAGER.H
     }
 }
 
-void VisualManager()
+int VisualManager()
 {
 	clearConsole();
 	PrintTitle();
-	//int DoNext = MenuKeys();
-	//return DoNext;
+	int DoNext = MenuDecision();
+	return DoNext;
 	//Game tutorial
 }
 #endif
