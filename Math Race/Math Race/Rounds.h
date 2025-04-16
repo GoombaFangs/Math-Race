@@ -28,7 +28,7 @@ void PlayTheGame()
 	int round = 0; 
 	while (round < TOTAL_ROUNDS)
 	{
-		PrintRound(round + 1);
+		PrintRounds(round + 1);
 		GetReadyForNextRound(round);//VISUALS_H
 		clock_t startTime = TimerStart();
 		generate_and_check_question(round); //QGENERATORANDCHECKER_H

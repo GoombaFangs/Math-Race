@@ -8,6 +8,7 @@
 #include "Title.h"
 #include "Timer.h"
 #include "Menu.h"
+#include "PrintRounds.h"
 
 void clearConsole() 
 {
@@ -17,6 +18,7 @@ void clearConsole()
     system("clear");
 #endif
 }
+
 
 void printg(const char* format, ...)
 {
@@ -33,101 +35,22 @@ void printg(const char* format, ...)
         HoldSeconds(0.004);//0.030
     }
 }
-void PrintRound(int round)
+void PrintRounds(int round)
 {
     double durition = 0.005;
     if (round == 1)
     {
-        clearConsole();
-        printf(" _____                       _      \n");
-        printf("|  __ \\                     | |     \n");
-        printf("| |__) |___  _   _ _ __   __| |     \n");
-        printf("|  _  // _ \\| | | | '_ \\ / _` |     \n");
-        printf("| | \\ \\ (_) | |_| | | | | (_| |     \n");
-        printf("|_|  \\_\\___/ \\__,_|_| |_|\\__,_|  \n");
-        HoldSeconds(0.4);
-        clearConsole();
-        printf(" _____                       _   |_|\n");
-        printf("|  __ \\                     | |     \n");
-        printf("| |__) |___  _   _ _ __   __| |     \n");
-        printf("|  _  // _ \\| | | | '_ \\ / _` |     \n");
-        printf("| | \\ \\ (_) | |_| | | | | (_| |     \n");
-        printf("|_|  \\_\\___/ \\__,_|_| |_|\\__,_|  \n");
-        HoldSeconds(durition);
-        clearConsole();
-        printf(" _____                       _   | |\n");
-        printf("|  __ \\                     | |  |_|\n");
-        printf("| |__) |___  _   _ _ __   __| |     \n");
-        printf("|  _  // _ \\| | | | '_ \\ / _` |     \n");
-        printf("| | \\ \\ (_) | |_| | | | | (_| |     \n");
-        printf("|_|  \\_\\___/ \\__,_|_| |_|\\__,_|  \n");
-        HoldSeconds(durition);
-        clearConsole();
-        printf(" _____                       _   | |\n");
-        printf("|  __ \\                     | |  | |\n");
-        printf("| |__) |___  _   _ _ __   __| |  |_|\n");
-        printf("|  _  // _ \\| | | | '_ \\ / _` |     \n");
-        printf("| | \\ \\ (_) | |_| | | | | (_| |     \n");
-        printf("|_|  \\_\\___/ \\__,_|_| |_|\\__,_|  \n");
-        HoldSeconds(durition);
-        clearConsole();
-        printf(" _____                       _   | |\n");
-        printf("|  __ \\                     | |  | |\n");
-        printf("| |__) |___  _   _ _ __   __| |  | |\n");
-        printf("|  _  // _ \\| | | | '_ \\ / _` |  |_|\n");
-        printf("| | \\ \\ (_) | |_| | | | | (_| |     \n");
-        printf("|_|  \\_\\___/ \\__,_|_| |_|\\__,_|  \n");
-        HoldSeconds(durition);
-        clearConsole();
-        printf(" _____                       _  /_ |\n");
-        printf("|  __ \\                     | |  | |\n");
-        printf("| |__) |___  _   _ _ __   __| |  | |\n");
-        printf("|  _  // _ \\| | | | '_ \\ / _` |  | |\n");
-        printf("| | \\ \\ (_) | |_| | | | | (_| |  |_|\n");
-        printf("|_|  \\_\\___/ \\__,_|_| |_|\\__,_|  \n");
-        HoldSeconds(durition);
-        clearConsole();
-        printf(" _____                       _   __ \n");
-        printf("|  __ \\                     | | /_ |\n");
-        printf("| |__) |___  _   _ _ __   __| |  | |\n");
-        printf("|  _  // _ \\| | | | '_ \\ / _` |  | |\n");
-        printf("| | \\ \\ (_) | |_| | | | | (_| |  | |\n");
-        printf("|_|  \\_\\___/ \\__,_|_| |_|\\__,_|  |_|\n");
-        HoldSeconds(durition);
-        clearConsole();
-        printf(" _____                       _   __ \n");
-        printf("|  __ \\                     | | /_ |\n");
-        printf("| |__) |___  _   _ _ __   __| |  | |\n");
-        printf("|  _  // _ \\| | | | '_ \\ / _` |  | |\n");
-        printf("| | \\ \\ (_) | |_| | | | | (_| |  | |\n");
-        printf("|_|  \\_\\___/ \\__,_|_| |_|\\__,_|  |_|\n");
-        HoldSeconds(1.5);////
-        clearConsole();
-        printf(" _____                       _   __ \n");
-        printf("|  __ \\                     | | /_ |\n");
-        printf("| |__) |___  _   _ _ __   __| |  | |\n");
-        printf("|  _  // _ \\| | | | '_ \\ / _` |  | |\n");
-        printf("| | \\ \\ (_) | |_| | | | | (_| |  | |\n");
-        HoldSeconds(durition);
-        clearConsole();
-        printf(" _____                       _   __ \n");
-        printf("|  __ \\                     | | /_ |\n");
-        printf("| |__) |___  _   _ _ __   __| |  | |\n");
-        printf("|  _  // _ \\| | | | '_ \\ / _` |  | |\n");
-        HoldSeconds(durition);
-        clearConsole();
-        printf(" _____                       _   __ \n");
-        printf("|  __ \\                     | | /_ |\n");
-        printf("| |__) |___  _   _ _ __   __| |  | |\n");
-        HoldSeconds(durition);
-        clearConsole();
-        printf(" _____                       _   __ \n");
-        printf("|  __ \\                     | | /_ |\n");
-        HoldSeconds(durition);
-        clearConsole();
-        printf(" _____                       _   __ \n");
-        HoldSeconds(durition);
-    }		
+        RoundOne(durition);
+    }
+	else if (round == 2)
+	{
+		RoundTwo(durition);
+	}
+	else if (round == 3)
+	{
+		RoundThree(durition);
+	}
+	
 }
 
 void GetReadyForNextRound(int round)//ROUNDS.H
