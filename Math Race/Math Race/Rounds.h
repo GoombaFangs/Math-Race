@@ -32,6 +32,7 @@ void PlayTheGame()
 		generate_and_check_question(round); //QGENERATORANDCHECKER_H
 		clock_t endTime = TimerStop();
 		RoundTime(&startTime, &endTime ,&round);
+		HoldSeconds(0.2);
 		round++;
 	}
 }
