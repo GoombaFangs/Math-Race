@@ -22,7 +22,7 @@ double generate_and_check_question(int round_number) // returns the penalty for 
 	double round_penalty = 0;
 	if (round_number < 0 || round_number > 2) // stops bugs if round_number is wrong
 	{
-		printf("Invalid round number. Please enter a number between 0 and 2.\n");
+		printg("Invalid round number. Please enter a number between 0 and 2.\n");
 		return -1; // Return an error code
 	}
 
@@ -116,19 +116,19 @@ void print_operator(int operator_index) //Prints Operator to the screen
 	switch (operator_index)
 	{
 	case 0:
-		printf("+ ");
+		printg("+ ");
 		break;
 
 	case 1:
-		printf("- ");
+		printg("- ");
 		break;
 
 	case 2:
-		printf("* ");
+		printg("* ");
 		break;
 
 	default:
-		printf(" ");
+		printg(" ");
 		break;
 	}
 }
@@ -137,7 +137,7 @@ double answer_checker(int questionAnswer, char* maarah) // Outputs penalty
 {
 	if (maarah == NULL)
 	{
-		printf("Error: maarah is NULL\n"); // Check for NULL pointer bug
+		printg("Error: maarah is NULL\n"); // Check for NULL pointer bug
 		return -1; // Return an error code
 	}
 
@@ -151,14 +151,14 @@ double answer_checker(int questionAnswer, char* maarah) // Outputs penalty
 			penalty += 5.0;
 			if (j == 2)
 			{
-				printf("Wrong answer, Next Question\nPenalty: 5 Seconds, Be careful!\n");
+				printg("Wrong answer, Next Question\nPenalty: 5 Seconds, Be careful!\n");
 				HoldSeconds(2); // wait for 2 seconds
 				clearConsole();
 				print_question(maarah);
 			}
 			else
 			{
-				printf("Wrong answer, Try again!\nPenalty: 5 Seconds, Be careful!\n");
+				printg("Wrong answer, Try again!\nPenalty: 5 Seconds, Be careful!\n");
 				HoldSeconds(2);
 				clearConsole();
 				print_question(maarah);
@@ -166,7 +166,7 @@ double answer_checker(int questionAnswer, char* maarah) // Outputs penalty
 		}
 		else
 		{
-			printf("Correct! Next Question:\n");
+			printg("Correct! Next Question:\n");
 			HoldSeconds(1); // wait for 1 seconds
 			return penalty; // No penalty
 			break;
@@ -177,12 +177,12 @@ double answer_checker(int questionAnswer, char* maarah) // Outputs penalty
 
 void print_question(char* maarah) // Prints the question
 {
-	printf("%d ", maarah[0]);
+	printg("%d ", maarah[0]);
 	print_operator(maarah[1]);
-	printf("%d ", maarah[2]);
+	printg("%d ", maarah[2]);
 	print_operator(maarah[3]);
-	printf("%d ", maarah[4]);
-	printf("= ?\n");
+	printg("%d ", maarah[4]);
+	printg("= ?\n");
 }
 #endif
 

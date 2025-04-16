@@ -8,7 +8,6 @@
 #include "SaveLoadData.h"
 #include "Visuals.h"
 
-#define _countof(array) (sizeof(array) / sizeof(array[0]))
 
 Player PlayerManager(int decision);
 
@@ -17,7 +16,7 @@ Player NewPlayer(int numberOfPlayers)
 {
 	if (numberOfPlayers < MAX_PLAYERS)
 	{
-		printf("Enter Your name: ");
+		printg("Enter Your name: ");
 		scanf_s("%19s", players[numberOfPlayers].name, (unsigned)_countof(players[numberOfPlayers].name));
 
 		NameArrangement(numberOfPlayers);//VISUALS_H
@@ -30,7 +29,7 @@ Player NewPlayer(int numberOfPlayers)
 	}
 	else
 	{
-		printf("Maximum number of players reached\n");
+		printg("Maximum number of players reached\n");
 		return players[0];
 	}
 }
@@ -43,7 +42,7 @@ void UpdatePlayerScore(Player player)
 		players[player.playerNumber - 1].score = finalScore;
 	}
 
-	printf("Yours final score is: %.2f\n", players[player.playerNumber - 1].score);
+	printg("Yours final score is: %.2f\n", players[player.playerNumber - 1].score);
 
 	if (player.playerNumber > 1) 
 	{

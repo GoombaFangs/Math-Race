@@ -13,7 +13,7 @@
 
 int WhatNext()
 {
-	printf("\n\nPress...\nA) Try again\nB) New Player\nC) Exit\n");
+	printg("\n\nPress...\nA) Try again\nB) New Player\nC) Exit\n");
 	char choice[2];
 	scanf_s("%1s", choice, (unsigned)_countof(choice));
 
@@ -29,7 +29,7 @@ int WhatNext()
 		return 0;
 
 	default:
-		printf("Invalid choice. Please enter A, B, or C\n");
+		printg("Invalid choice. Please enter A, B, or C\n");
 		return WhatNext();
 	}
 }
@@ -52,7 +52,7 @@ void AppStart()
 		case 1:// default
 			PlayTheGame();//ROUNDS.H
 			UpdatePlayerScore(currentPlayer);//PLAYERMANAGER.H
-			printf("Thanks for playing!");
+			printg("Thanks for playing!");
 			DoNext = WhatNext();
 			break;
 
@@ -60,7 +60,7 @@ void AppStart()
 			currentPlayer = PlayerManager(DoNext);
 			PlayTheGame();//ROUNDS.H
 			UpdatePlayerScore(currentPlayer);//PLAYERMANAGER.H
-			printf("Thanks for playing!");
+			printg("Thanks for playing!");
 			DoNext = WhatNext();
 			break;
 

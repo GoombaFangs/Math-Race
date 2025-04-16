@@ -6,6 +6,7 @@
 #include "Visuals.h"
 
 void clearConsole();
+void HoldSeconds(double second);
 
 
 void PrintTitle()

@@ -4,16 +4,12 @@
 #include <stdio.h>
 #include "Visuals.h"
 
+void printg(const char* format, ...);
 
 int OnStart()
 {
 	clearConsole();
-    const char* message = "  Press an Up or Down arrow and Enter to confirm :";
-    for (int i = 0; message[i] != '\0'; i++)
-    {
-        printf("%c",message[i]);
-        HoldSeconds(0.008);
-    }
+	printg("  Press an Up or Down arrow and Enter to confirm :\n");
     printf("                                                                                                         \n");
     printf("                 _________                                                                               \n");
     printf("                |  Play!  |                                                                              \n");

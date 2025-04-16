@@ -9,7 +9,6 @@
 #include "Timer.h"
 #include "Menu.h"
 
-
 void clearConsole() 
 {
 #ifdef _WIN32
@@ -64,6 +63,28 @@ int PrintPlayerOptions(int numberOfPlayers)//PLAYERMANAGER.H
 {
     int ch;
     int defaultOption = 0; 
+
+    printg("Choose a player\n\n");
+    for (int i = 0; i < numberOfPlayers; i++)
+    {
+        if (i == defaultOption)
+        {
+            printg("  - %s -\n", players[i].name);
+        }
+        else
+        {
+            printg("    %s\n", players[i].name);
+        }
+    }
+
+    if (defaultOption == numberOfPlayers)
+    {
+        printg("\n  - New Player -\n");
+    }
+    else
+    {
+        printg("\n    New Player\n");
+    }
 
     while (1)
     {

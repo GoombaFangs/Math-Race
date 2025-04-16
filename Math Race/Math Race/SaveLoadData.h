@@ -6,6 +6,7 @@
 #include "ScoreCalculator.h"
 #include "Player.h"
 #include "PlayerManager.h"
+#include "Visuals.h"
 
 #define _countof(array) (sizeof(array) / sizeof(array[0]))
 
@@ -17,7 +18,7 @@ void SaveNumberOfPlayers(int numberOfPlayers)
 	FILE* file = fopen("numberOfPlayers.dat", "w"); // Open file
 	if (file == NULL)
 	{
-		printf("Error: Could not open file player.dat for writing\n");
+		printg("Error: Could not open file player.dat for writing\n");
 		return;
 	}
 
@@ -31,13 +32,13 @@ int LoadNumberOfPlayers(int numberOfPlayers)
 	FILE* file = fopen("numberOfPlayers.dat", "r"); // Open file
 	if (file == NULL)
 	{
-		printf("No players found\n");
+		printg("No players found\n");
 		return 0;
 	}
 
 	if (fscanf_s(file, "%d", &numberOfPlayers) != 1 || numberOfPlayers > MAX_PLAYERS)
 	{
-		printf("Error: Invalid player count in file\n");
+		printg("Error: Invalid player count in file\n");
 		fclose(file); // Close file
 		return 0;
 	}
@@ -56,7 +57,7 @@ void SavePlayers(int numberOfPlayers)
 		FILE* file = fopen(fileName, "w"); // Open files
 		if (file == NULL)
 		{
-			printf("Error: Could not open file %s for writing\n", fileName);
+			printg("Error: Could not open file %s for writing\n", fileName);
 			continue; 
 		}
 
@@ -81,7 +82,7 @@ void LoadPlayers(int numberOfPlayers)
 		FILE* file = fopen(fileName, "r"); // Open files
 		if (file == NULL)
 		{
-			printf("Error: Could not open file %s for reading\n", fileName);
+			printg("Error: Could not open file %s for reading\n", fileName);
 			continue;
 		}
 
@@ -93,7 +94,7 @@ void LoadPlayers(int numberOfPlayers)
 			&players[i].score , 
 			&players[i].place) != 4)
 		{
-			printf("Error: Invalid data in %s. Stopping load for this player\n", fileName);
+			printg("Error: Invalid data in %s. Stopping load for this player\n", fileName);
 			fclose(file);
 			continue; 
 		}

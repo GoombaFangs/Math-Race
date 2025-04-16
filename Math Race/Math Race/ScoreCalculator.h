@@ -29,8 +29,8 @@ void GetScore(double seconds, int round)
 double FinalScore(int playerNumber) 
 {
     double finalScore = 100 - (score[0] + score[1] + score[2]);
-    printf("%s\n", players[playerNumber - 1].name);
-    printf("Yours final Score THIS ROUND is: %.2f\n", finalScore);
+    printg("%s\n", players[playerNumber - 1].name);
+    printg("Yours final Score THIS ROUND is: %.2f\n", finalScore);
 	return finalScore;
 }
 
