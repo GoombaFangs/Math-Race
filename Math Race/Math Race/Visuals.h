@@ -19,7 +19,7 @@ void clearConsole()
 #endif
 }
 
-void PrintText(const char* format, ...)
+void printg(const char* format, ...)
 {
     va_list args;
     va_start(args, format);
@@ -40,22 +40,22 @@ void GetReadyForNextRound(int round)//ROUNDS.H
 	if (round == 0)
 	{
         clearConsole();
-        PrintText("Get ready!\n");
+        printg("Get ready!\n");
         HoldSeconds(0.4);
 	}
     else
     {
         clearConsole();
         HoldSeconds(0.2);
-        PrintText("Get ready for the next round!\n");
+        printg("Get ready for the next round!\n");
         HoldSeconds(0.4);
     }
 	for (int i = 3; i > 0; i--)
 	{
-        PrintText("%d...\n", i);
+        printg("%d...\n", i);
 		HoldSeconds(1.0);
 	}
-    PrintText("Go!\n");
+    printg("Go!\n");
     HoldSeconds(0.2);
 	clearConsole();
 }
