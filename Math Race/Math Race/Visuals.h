@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <stdarg.h>
 #include "Title.h"
 #include "Timer.h"
 #include "Menu.h"
@@ -18,19 +19,45 @@ void clearConsole()
 #endif
 }
 
+void PrintText(const char* format, ...)
+{
+    va_list args;
+    va_start(args, format);
+
+    char buffer[256]; // Temporary buffer to store the formatted string
+    vsnprintf(buffer, sizeof(buffer), format, args); // Format the string
+    va_end(args);
+
+    for (int i = 0; buffer[i] != '\0'; i++)
+    {
+        printf("%c", buffer[i]);
+        HoldSeconds(0.008);
+    }
+}
+
 void GetReadyForNextRound(int round)//ROUNDS.H
 {
-	if (round != 0)
+	if (round == 0)
 	{
-		printf("Get ready for the next round!\n");
-		HoldSeconds(0.4);
+        clearConsole();
+        PrintText("Get ready!\n");
+        HoldSeconds(0.4);
 	}
+    else
+    {
+        clearConsole();
+        HoldSeconds(0.2);
+        PrintText("Get ready for the next round!\n");
+        HoldSeconds(0.4);
+    }
 	for (int i = 3; i > 0; i--)
 	{
-		printf("%d...\n", i);
+        PrintText("%d...\n", i);
 		HoldSeconds(1.0);
 	}
-	printf("Go!\n");
+    PrintText("Go!\n");
+    HoldSeconds(0.2);
+	clearConsole();
 }
 
 int PrintPlayerOptions(int numberOfPlayers)//PLAYERMANAGER.H
