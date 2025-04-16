@@ -81,9 +81,10 @@ Player PlayerManager(int decision)
 		}
 		else if (players == 0)
 		{
-			currentPlayer = NewPlayer(players);
+			NewPlayer(players);
 			players++;
 			SaveNumberOfPlayers(players);
+			currentPlayer = ChooseAPlayer(players);
 		}
 		break;
 

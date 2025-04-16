@@ -33,6 +33,7 @@ double generate_and_check_question(int round_number) // returns the penalty for 
 		int operator_index2 = 0;
 		if (round_number == 0) // Difficulty based on round_nubmer TURN THIS INTO  A FUNCTION takes diffrent ranges 50 1 2
 		{
+			clearConsole();
 			num[0] = rand() % 50 + 1;
 			num[1] = rand() % 50 + 1;
 			num[2] = rand() % 50 + 1;
@@ -41,6 +42,7 @@ double generate_and_check_question(int round_number) // returns the penalty for 
 		}
 		else if (round_number == 1)
 		{
+			clearConsole();
 			num[0] = rand() % 20 + 1;
 			num[1] = rand() % 20 + 1;
 			num[2] = rand() % 20 + 1;
@@ -49,6 +51,7 @@ double generate_and_check_question(int round_number) // returns the penalty for 
 		}
 		else if (round_number == 2)
 		{
+			clearConsole();
 			num[0] = rand() % 30 + 5;
 			num[1] = rand() % 30 + 5;
 			num[2] = rand() % 30 + 5;
@@ -153,23 +156,19 @@ double answer_checker(int questionAnswer, char* maarah) // Outputs penalty
 			{
 				printg("Wrong answer, Next Question\nPenalty: 5 Seconds, Be careful!\n");
 				HoldSeconds(2);
-				//clearConsole();
 				print_question(maarah);
 			}
 			else
 			{
 				printg("Wrong answer, Try again!\nPenalty: 5 Seconds, Be careful!\n");
 				HoldSeconds(2);
-				//clearConsole();
 				print_question(maarah);
 			}
 		}
 		else
 		{
 			printg("Correct!\n");
-			HoldSeconds(1);
-			clearConsole();
-			HoldSeconds(1);
+			HoldSeconds(0.6);
 			return penalty; // No penalty
 			break;
 		}

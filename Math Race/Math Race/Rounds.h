@@ -18,6 +18,8 @@ void RoundTime(clock_t* startTime, clock_t* endTime, int* round)
 	double finalScore = 0;
 	roundDuration[*round] = ElapsedTime(*startTime, *endTime);//TIMER_H
 	printg("round %d: %.2f seconds\n", *round + 1, roundDuration[*round]);
+	HoldSeconds(0.2);
+	printg("Get ready for the next round!\n");
 	GetScore(roundDuration[*round], *round);//SCORECALCULATOR_H
 }
 
@@ -26,8 +28,7 @@ void PlayTheGame()
 	int round = 0; 
 	while (round < TOTAL_ROUNDS)
 	{
-		printg("Round %d\n", round + 1);
-		HoldSeconds(2);
+		PrintRound(round + 1);
 		GetReadyForNextRound(round);//VISUALS_H
 		clock_t startTime = TimerStart();
 		generate_and_check_question(round); //QGENERATORANDCHECKER_H
