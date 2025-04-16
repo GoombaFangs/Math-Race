@@ -14,7 +14,7 @@ int OnExit();
 int MenuDecision()
 {
     int ch;
-    int defaultOption = OnPlay();
+    int defaultOption = OnStart();
     while (1) 
     {
         ch = _getch();

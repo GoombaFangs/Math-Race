@@ -55,32 +55,15 @@ void UpdatePlayerScore(Player player)
 
 Player ChooseAPlayer(int numberOfPlayers)
 {
-	PrintPlayerOptions(numberOfPlayers);//VISUALS_H
-	int choice;
-	while (true)
+	int choice = PrintPlayerOptions(numberOfPlayers);//VISUALS_H
+	if (choice == numberOfPlayers)
 	{
-		if (scanf_s("%d", &choice) == 1)
-		{
-			if (choice >= 1 && choice <= numberOfPlayers)
-			{
-				printf("You chose %s\n", players[choice - 1].name);
-				return players[choice - 1];
-			}
-			else if(choice == numberOfPlayers + 1)
-			{
-				Player newPlayer = PlayerManager(3); //New Player
-				return newPlayer;
-			}
-			else
-			{
-				PrintPlayerOptions(numberOfPlayers);//VISUALS_H
-			}
-		}
-		else
-		{
-			PrintPlayerOptions(numberOfPlayers);//VISUALS_H
-			while (getchar() != '\n'); // Clear the input buffer
-		}
+		Player newPlayer = PlayerManager(3); // New Player
+		return newPlayer;
+	}
+	else
+	{
+		return players[choice];
 	}
 }
 

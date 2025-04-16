@@ -31,7 +31,7 @@ int LoadNumberOfPlayers(int numberOfPlayers)
 	FILE* file = fopen("numberOfPlayers.dat", "r"); // Open file
 	if (file == NULL)
 	{
-		printf("No players found. Starting with 0 players\n");
+		printf("No players found\n");
 		return 0;
 	}
 
@@ -42,7 +42,6 @@ int LoadNumberOfPlayers(int numberOfPlayers)
 		return 0;
 	}
 
-	printf("Number of players found: %d\n", numberOfPlayers);
 	fclose(file); // Close file
 	return numberOfPlayers;
 }
