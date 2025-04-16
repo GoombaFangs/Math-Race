@@ -3,19 +3,17 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "Visuals.h"
+#include <Windows.h>
 #include <time.h>
-#include "Timer.h"
 
 #define NUBMER_OF_QUESTIONS 2
 
-//srand((unsigned int)time(NULL)); MUST FOR RANDOM
 int operator_calculator(int total_sum, int new_nubmer, int operator_index);
 void print_operator(int operator_index);
-void print_question(char* question_array);
-double answer_checker(int question_answer, char* question_array);
-int answer_calculator(char* generatedQString);
-
+void print_question(int question_array[]);
+double answer_checker(int questionAnswer, int generated_question[]);
+int answer_calculator(int question_array[]);
+int generate_question(int min_random_number, int max_random_number, int include_muliplication, int question_array[]);
 
 double generate_and_check_question(int round_number) // returns the penalty for the whole round
 {
@@ -28,70 +26,45 @@ double generate_and_check_question(int round_number) // returns the penalty for 
 
 	for (int i = 0; i < NUBMER_OF_QUESTIONS; i++)
 	{
-		int num[3] = { 0,0,0 };
-		int operator_index1 = 0;
-		int operator_index2 = 0;
-		if (round_number == 0) // Difficulty based on round_nubmer TURN THIS INTO  A FUNCTION takes diffrent ranges 50 1 2
+		int generated_question[5] = { 0, };
+		if (round_number == 0) // Difficulty based on round_nubmer 
 		{
-			clearConsole();
-			num[0] = rand() % 50 + 1;
-			num[1] = rand() % 50 + 1;
-			num[2] = rand() % 50 + 1;
-			operator_index1 = rand() % 2;
-			operator_index2 = rand() % 2;
+			generate_question(1, 10, 2, generated_question);
 		}
 		else if (round_number == 1)
 		{
-			clearConsole();
-			num[0] = rand() % 20 + 1;
-			num[1] = rand() % 20 + 1;
-			num[2] = rand() % 20 + 1;
-			operator_index1 = rand() % 3;
-			operator_index2 = rand() % 3;
+			generate_question(1, 30, 2, generated_question);
 		}
 		else if (round_number == 2)
 		{
-			clearConsole();
-			num[0] = rand() % 30 + 5;
-			num[1] = rand() % 30 + 5;
-			num[2] = rand() % 30 + 5;
-			operator_index1 = rand() % 3;
-			operator_index2 = rand() % 3;
+			generate_question(1, 15, 3, generated_question);
 		}
-
-		char question_string[6] = "";
-		question_string[0] = num[0];
-		question_string[1] = operator_index1;
-		question_string[2] = num[1];
-		question_string[3] = operator_index2;
-		question_string[4] = num[2];
-
-		
-		print_question(question_string);
-		round_penalty += answer_checker(answer_calculator(question_string), question_string);
+		clearConsole();
+		print_question(generated_question);
+		round_penalty += answer_checker(answer_calculator(generated_question), generated_question);
 	}
 	return round_penalty; // Return the penalty	
 }
 
-int answer_calculator(char* question_string)
+int answer_calculator(int question_array[])
 {
 	int calculated_answer = 0; // checking operator precidence because of *
-	if (question_string[1] == 2) // Try making a function that does this regardless of the amount of nubmers 
+	if (question_array[1] == 2) // Try making a function that does this regardless of the amount of nubmers 
 	{
-		int first_calc1 = operator_calculator(question_string[0], question_string[2], question_string[1]);
-		calculated_answer = operator_calculator(first_calc1, question_string[4], question_string[3]);
+		int first_calc1 = operator_calculator(question_array[0], question_array[2], question_array[1]);
+		calculated_answer = operator_calculator(first_calc1, question_array[4], question_array[3]);
 		return calculated_answer;
 	}
-	else if (question_string[3] == 2)
+	else if (question_array[3] == 2)
 	{
-		int first_calc2 = operator_calculator(question_string[2], question_string[4], question_string[3]);
-		calculated_answer = operator_calculator(question_string[0], first_calc2, question_string[1]);
+		int first_calc2 = operator_calculator(question_array[2], question_array[4], question_array[3]);
+		calculated_answer = operator_calculator(question_array[0], first_calc2, question_array[1]);
 		return calculated_answer;
 	}
 	else
 	{
-		int first_calc3 = operator_calculator(question_string[0], question_string[2], question_string[1]);
-		calculated_answer = operator_calculator(first_calc3, question_string[4], question_string[3]);
+		int first_calc3 = operator_calculator(question_array[0], question_array[2], question_array[1]);
+		calculated_answer = operator_calculator(first_calc3, question_array[4], question_array[3]);
 		return calculated_answer;
 	}
 }
@@ -136,39 +109,39 @@ void print_operator(int operator_index) //Prints Operator to the screen
 	}
 }
 
-double answer_checker(int questionAnswer, char* maarah) // Outputs penalty
+double answer_checker(int questionAnswer, int generated_question[]) // Outputs penalty
 {
-	if (maarah == NULL)
+	if (generated_question == NULL)
 	{
-		printg("Error: maarah is NULL\n"); // Check for NULL pointer bug
+		printg("Error:generated_question is NULL\n"); // Check for NULL pointer bug
 		return -1; // Return an error code
 	}
 
 	int playerAnswer = 0;
 	double penalty = 0.0;
-	for (int j = 0; j < 3; j++)//try
+	for (int tries = 0; tries < 3; tries++)
 	{
 		scanf_s("%d", &playerAnswer);
 		if (playerAnswer != questionAnswer)
 		{
 			penalty += 5.0;
-			if (j == 2)
+			if (tries == 2)
 			{
 				printg("Wrong answer, Next Question\nPenalty: 5 Seconds, Be careful!\n");
-				HoldSeconds(2);
-				print_question(maarah);
+				HoldSeconds(2);; // Sleep for 2 seconds
+				print_question(generated_question);
 			}
 			else
 			{
 				printg("Wrong answer, Try again!\nPenalty: 5 Seconds, Be careful!\n");
 				HoldSeconds(2);
-				print_question(maarah);
+				print_question(generated_question);
 			}
 		}
 		else
 		{
 			printg("Correct!\n");
-			HoldSeconds(0.6);
+			HoldSeconds(0.6); // Sleep for 1 seconds
 			return penalty; // No penalty
 			break;
 		}
@@ -176,14 +149,31 @@ double answer_checker(int questionAnswer, char* maarah) // Outputs penalty
 	return penalty; // Return the penalty
 }
 
-void print_question(char* maarah) // Prints the question
+void print_question(int question[]) // Prints the question
 {
-	printg("%d ", maarah[0]);
-	print_operator(maarah[1]);
-	printg("%d ", maarah[2]);
-	print_operator(maarah[3]);
-	printg("%d ", maarah[4]);
+	printg("%d ", question[0]);
+	print_operator(question[1]);
+	printg("%d ", question[2]);
+	print_operator(question[3]);
+	printg("%d ", question[4]);
 	printg("= ?\n");
+}
+
+int generate_question(int min_random_number, int max_random_number, int include_muliplication /*multiplication 2 exclude 3 include uses operator_calculatur()*/, int question_array[]) {
+	int num[3] = { 0,0,0 };
+	int operator_index1 = 0;
+	int operator_index2 = 0;
+	num[0] = rand() % max_random_number + min_random_number;
+	num[1] = rand() % max_random_number + min_random_number;
+	num[2] = rand() % max_random_number + min_random_number;
+	operator_index1 = rand() % include_muliplication;
+	operator_index2 = rand() % include_muliplication;
+	question_array[0] = num[0];
+	question_array[1] = operator_index1;
+	question_array[2] = num[1];
+	question_array[3] = operator_index2;
+	question_array[4] = num[2];
+	return question_array;
 }
 #endif
 
