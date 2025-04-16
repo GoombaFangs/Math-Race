@@ -9,14 +9,14 @@
 clock_t TimerStart()
 {
     clock_t start = clock();
-    printg("Timer started...\n");
+    printf("Timer started...\n");
     return start;
 }
 
 clock_t TimerStop()
 {
     clock_t end = clock();
-    printg("Timer stopped...\n"); 
+    printf("Timer stopped...\n"); 
 	return end;
 }
 

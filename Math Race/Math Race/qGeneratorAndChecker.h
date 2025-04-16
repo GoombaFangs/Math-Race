@@ -143,7 +143,7 @@ double answer_checker(int questionAnswer, char* maarah) // Outputs penalty
 
 	int playerAnswer = 0;
 	double penalty = 0.0;
-	for (int j = 0; j < 3; j++)
+	for (int j = 0; j < 3; j++)//try
 	{
 		scanf_s("%d", &playerAnswer);
 		if (playerAnswer != questionAnswer)
@@ -152,22 +152,24 @@ double answer_checker(int questionAnswer, char* maarah) // Outputs penalty
 			if (j == 2)
 			{
 				printg("Wrong answer, Next Question\nPenalty: 5 Seconds, Be careful!\n");
-				HoldSeconds(2); // wait for 2 seconds
-				clearConsole();
+				HoldSeconds(2);
+				//clearConsole();
 				print_question(maarah);
 			}
 			else
 			{
 				printg("Wrong answer, Try again!\nPenalty: 5 Seconds, Be careful!\n");
 				HoldSeconds(2);
-				clearConsole();
+				//clearConsole();
 				print_question(maarah);
 			}
 		}
 		else
 		{
-			printg("Correct! Next Question:\n");
-			HoldSeconds(1); // wait for 1 seconds
+			printg("Correct!\n");
+			HoldSeconds(1);
+			clearConsole();
+			HoldSeconds(1);
 			return penalty; // No penalty
 			break;
 		}

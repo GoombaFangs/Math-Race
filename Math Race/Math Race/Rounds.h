@@ -26,13 +26,14 @@ void PlayTheGame()
 	int round = 0; 
 	while (round < TOTAL_ROUNDS)
 	{
+		printg("Round %d\n", round + 1);
+		HoldSeconds(2);
 		GetReadyForNextRound(round);//VISUALS_H
 		clock_t startTime = TimerStart();
-		printg("Round %d\n", round + 1);
 		generate_and_check_question(round); //QGENERATORANDCHECKER_H
 		clock_t endTime = TimerStop();
 		RoundTime(&startTime, &endTime ,&round);
-		HoldSeconds(0.2);
+		HoldSeconds(3);
 		round++;
 	}
 }

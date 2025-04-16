@@ -30,7 +30,7 @@ void printg(const char* format, ...)
     for (int i = 0; buffer[i] != '\0'; i++)
     {
         printf("%c", buffer[i]);
-        HoldSeconds(0.008);
+        HoldSeconds(0.035);
     }
 }
 

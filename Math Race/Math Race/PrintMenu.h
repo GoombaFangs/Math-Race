@@ -10,6 +10,7 @@ int OnStart()
 {
 	clearConsole();
 	printg("  Press an Up or Down arrow and Enter to confirm :\n");
+	HoldSeconds(0.5);
     printf("                                                                                                         \n");
     printf("                 _________                                                                               \n");
     printf("                |  Play!  |                                                                              \n");
