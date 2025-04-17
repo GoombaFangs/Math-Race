@@ -59,16 +59,24 @@ int Menu()
 
             case 2://LeaderBoard
                 clearConsole();
-                return 1;
+                return 2;
                 break;
 
             case 3://Exit
                 clearConsole();
-                return 0;
+                return 3;
 
             }
         }
     }
+}
+void EndSceen()
+{
+	HoldSeconds(0.5);
+    printg("Thanks for playing!\n");
+	HoldSeconds(0.5);
+	printg("Press any key to continue...");
+    _getch();
 }
 
 void AppStart()
@@ -78,34 +86,23 @@ void AppStart()
 	int theGameIsRunning = 1;
 	int DoNext = Menu();	
 	Player currentPlayer;
-	currentPlayer = PlayerManager(DoNext);
 	while (theGameIsRunning != 0)
 	{
 		switch (DoNext)
 		{
-		case 0:// exit the game
-			theGameIsRunning = 0;
-			break;
-
-		case 1:// default
+		case 1:// Play
+            currentPlayer = PlayerManager(DoNext);
 			PlayTheGame();//ROUNDS.H
 			UpdatePlayerScore(currentPlayer);//PLAYERMANAGER.H
-			printg("Thanks for playing!");
+            EndSceen();
 			DoNext = Menu();
 			break;
 
-		case 2:// play
-			currentPlayer = PlayerManager(DoNext);
-			PlayTheGame();//ROUNDS.H
-			UpdatePlayerScore(currentPlayer);//PLAYERMANAGER.H
-			printg("Thanks for playing!");
-			DoNext = Menu();
-			break;
+		case 2:// Leaderboad
 
-		case 3: //new player
-			PlayerManager(DoNext);
-			DoNext = 1;
-			break;
+        case 3:// Exit
+            theGameIsRunning = 0;
+            break;
 
 		default:
 			break;

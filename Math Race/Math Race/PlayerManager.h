@@ -43,6 +43,7 @@ void UpdatePlayerScore(Player player)
 		players[player.playerNumber - 1].score = finalScore;
 	}
 
+	HoldSeconds(0.2);
 	printg("Yours final score is: %.2f\n", players[player.playerNumber - 1].score);
 
 	if (player.playerNumber > 1) 
@@ -55,6 +56,7 @@ void UpdatePlayerScore(Player player)
 
 Player ChooseAPlayer(int numberOfPlayers)
 {
+	HoldSeconds(0.1);
 	int choice = PrintPlayerOptions(numberOfPlayers);//VISUALS_H
 	if (choice == numberOfPlayers)
 	{
@@ -88,9 +90,9 @@ Player PlayerManager(int decision)
 		}
 		break;
 
-	case 2: // Try again
-		currentPlayer = ChooseAPlayer(players);
+	case 2: // leaderborad
 		break;
+
 
 	case 3: // New Player
 		currentPlayer = NewPlayer(players);

@@ -8,7 +8,9 @@
 #include "PlayerManager.h"
 #include "Visuals.h"
 
+#ifndef _countof
 #define _countof(array) (sizeof(array) / sizeof(array[0]))
+#endif
 
 Player players[MAX_PLAYERS];
 
@@ -32,7 +34,6 @@ int LoadNumberOfPlayers(int numberOfPlayers)
 	FILE* file = fopen("numberOfPlayers.dat", "r"); // Open file
 	if (file == NULL)
 	{
-		printg("No players found\n");
 		return 0;
 	}
 
