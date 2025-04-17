@@ -28,7 +28,8 @@ void GetScore(double seconds, int round)
 
 double FinalScore(int playerNumber) 
 {
-    double finalScore = 100 - (score[0] + score[1] + score[2]);
+    double finalScore = score[0] + score[1] + score[2];
+	clearConsole(); 
     printg("%s\n", players[playerNumber - 1].name);
     printg("Yours final Score THIS ROUND is: %.2f\n", finalScore);
 	return finalScore;
@@ -40,7 +41,7 @@ void PlacePlayers(int numberOfPlayer)//sort
 	{
         for (int j = 0; j < numberOfPlayer - i - 1; j++)
         {
-            if (players[j].score < players[j + 1].score)
+            if (players[j].score > players[j + 1].score)
             {
                 int temp = players[j].place;
                 players[j].place = players[j+1].place;

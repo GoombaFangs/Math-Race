@@ -2,43 +2,81 @@
 #define MANAGER_H
 
 #include <stdio.h>
-#include <string.h> 
+#include <string.h>
+#include <conio.h>
 #include <time.h>
 #include "PlayerManager.h"
 #include "Rounds.h"
 #include "Timer.h"
 #include "ScoreCalculator.h"
 #include "Visuals.h"
+#include "PrintMenu.h"
 
 
-int WhatNext()
+int Menu()
 {
-	printg("\n\nPress...\nA) Try again\nB) New Player\nC) Exit\n");
-	char choice[2];
-	scanf_s("%1s", choice, (unsigned)_countof(choice));
+    int keyboardInput;
+    int defaultOption = OnStart();
+    while (1)
+    {
+        keyboardInput = _getch();
+        if (keyboardInput == 0 || keyboardInput == 224)
+        {
+            keyboardInput = _getch();
 
-	switch (choice[0])
-	{
-	case 'a':// Try again
-		return 2;
+            switch (keyboardInput)
+            {
+            case 72://Up arrow
+                if (defaultOption == 3)
+                {
+                    defaultOption = OnLeaderBoard();
+                }
+                else if (defaultOption == 2)
+                {
+                    defaultOption = OnPlay();
+                }
+                break;
+            case 80://Down arrow
+                if (defaultOption == 1)
+                {
+                    defaultOption = OnLeaderBoard();
+                }
+                else if (defaultOption == 2)
+                {
+                    defaultOption = OnExit();
+                }
+                break;
+            }
+        }
+        else if (keyboardInput == 13)
+        {
+            switch (defaultOption)
+            {
+            case 1://Play
+                clearConsole();
+                return 1;
+                break;
 
-	case 'b': // New Player
-		return 3;
+            case 2://LeaderBoard
+                clearConsole();
+                return 1;
+                break;
 
-	case 'c': // Exit
-		return 0;
+            case 3://Exit
+                clearConsole();
+                return 0;
 
-	default:
-		printg("Invalid choice. Please enter A, B, or C\n");
-		return WhatNext();
-	}
+            }
+        }
+    }
 }
 
 void AppStart()
 {
 	srand((unsigned int)time(NULL));
+	VisualManager();
 	int theGameIsRunning = 1;
-	int DoNext = VisualManager();
+	int DoNext = Menu();	
 	Player currentPlayer;
 	currentPlayer = PlayerManager(DoNext);
 	while (theGameIsRunning != 0)
@@ -53,15 +91,15 @@ void AppStart()
 			PlayTheGame();//ROUNDS.H
 			UpdatePlayerScore(currentPlayer);//PLAYERMANAGER.H
 			printg("Thanks for playing!");
-			DoNext = WhatNext();
+			DoNext = Menu();
 			break;
 
-		case 2:// try again
+		case 2:// play
 			currentPlayer = PlayerManager(DoNext);
 			PlayTheGame();//ROUNDS.H
 			UpdatePlayerScore(currentPlayer);//PLAYERMANAGER.H
 			printg("Thanks for playing!");
-			DoNext = WhatNext();
+			DoNext = Menu();
 			break;
 
 		case 3: //new player

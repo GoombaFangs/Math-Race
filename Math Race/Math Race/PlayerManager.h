@@ -21,6 +21,7 @@ Player NewPlayer(int numberOfPlayers)
 
 		NameArrangement(numberOfPlayers);//VISUALS_H
 
+		players[numberOfPlayers].score = 1000.0;
 		players[numberOfPlayers].playerNumber = numberOfPlayers + 1;
 		players[numberOfPlayers].place = numberOfPlayers + 1;
 
@@ -37,7 +38,7 @@ Player NewPlayer(int numberOfPlayers)
 void UpdatePlayerScore(Player player)
 {
 	double finalScore = FinalScore(player.playerNumber);//SCORECALCULATOR_H
-	if (finalScore > players[player.playerNumber - 1].score)
+	if (finalScore < players[player.playerNumber - 1].score)
 	{
 		players[player.playerNumber - 1].score = finalScore;
 	}
@@ -81,10 +82,9 @@ Player PlayerManager(int decision)
 		}
 		else if (players == 0)
 		{
-			NewPlayer(players);
+			currentPlayer = NewPlayer(players);
 			players++;
 			SaveNumberOfPlayers(players);
-			currentPlayer = ChooseAPlayer(players);
 		}
 		break;
 

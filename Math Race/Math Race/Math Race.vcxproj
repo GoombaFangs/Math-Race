@@ -130,7 +130,6 @@
     <ClCompile Include="Main.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Menu.h" />
     <ClInclude Include="Manager.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerManager.h" />

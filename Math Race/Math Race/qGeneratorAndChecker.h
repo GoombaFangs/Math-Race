@@ -6,7 +6,7 @@
 #include <Windows.h>
 #include <time.h>
 
-#define NUBMER_OF_QUESTIONS 2
+#define NUBMER_OF_QUESTIONS 1
 
 int operator_calculator(int total_sum, int new_nubmer, int operator_index);
 void print_operator(int operator_index);
@@ -29,15 +29,15 @@ double generate_and_check_question(int round_number) // returns the penalty for 
 		int generated_question[5] = { 0, };
 		if (round_number == 0) // Difficulty based on round_nubmer 
 		{
-			generate_question(1, 10, 2, generated_question);
+			generate_question(1, 1, 2, generated_question);//1, 10, 2
 		}
 		else if (round_number == 1)
 		{
-			generate_question(1, 30, 2, generated_question);
+			generate_question(1, 1, 2, generated_question);//1, 30, 2
 		}
 		else if (round_number == 2)
 		{
-			generate_question(1, 15, 3, generated_question);
+			generate_question(1, 1, 2, generated_question);//1, 15, 3
 		}
 		clearConsole();
 		print_question(generated_question);

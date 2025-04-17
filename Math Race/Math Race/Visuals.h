@@ -7,7 +7,6 @@
 #include <stdarg.h>
 #include "Title.h"
 #include "Timer.h"
-#include "Menu.h"
 #include "PrintRounds.h"
 
 void clearConsole() 
@@ -177,12 +176,10 @@ void NameArrangement(int PlayerNumber)//PLAYERMANAGER.H
     }
 }
 
-int VisualManager()
+void VisualManager()
 {
 	clearConsole();
 	PrintTitle();
-	int DoNext = MenuDecision();
-	return DoNext;
 	//Game tutorial
 }
 #endif
