@@ -13,13 +13,13 @@ void GetScore(double seconds, int round)
     switch (round)
     {
     case 0:
-        score[0] = seconds * 0.2;
+        score[0] = seconds;
         break;
     case 1:
-        score[1] = seconds * 0.3;
+        score[1] = seconds;
         break;
     case 2:
-        score[2] = seconds * 0.5;
+        score[2] = seconds;
         break;
     default:
         break;
@@ -36,20 +36,24 @@ double FinalScore(int playerNumber)
 	return finalScore;
 }
 
-void PlacePlayers(int numberOfPlayer)// Bubble sort
+void PlacePlayers(int numberOfPlayers)// Bubble sort
 {
-	for (int i = 0; i < numberOfPlayer; i++)
+    for (int i = 0; i < numberOfPlayers - 1; i++)
 	{
-        for (int j = i + 1; j < numberOfPlayer ; j++)
+        for (int j = 0; j < numberOfPlayers - i - 1; j++)
         {
-            if (players[i].score > players[j].score)
+            if (players[j].score < players[j + 1].score)
             {
-                int temp = players[i].place;
-                players[i].place = players[j].place;
-                players[j].place = temp;
+                Player temp = players[j];
+                players[j] = players[j + 1];
+                players[j + 1] = temp;
             }
         }
 	}
+    for (int i = 0; i < numberOfPlayers; i++)
+    {
+        players[i].place = numberOfPlayers - i;
+    }
 }
 #endif
 
