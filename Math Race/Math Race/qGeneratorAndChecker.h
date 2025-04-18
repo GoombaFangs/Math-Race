@@ -128,7 +128,7 @@ double answer_checker(int questionAnswer, int generated_question[]) // Outputs p
 			if (tries == 2)
 			{
 				printg("Wrong answer, Next Question\nPenalty: 2 Seconds, Be careful!\n");
-				HoldSeconds(2);; // Sleep for 2 seconds
+				HoldSeconds(2);
 				print_question(generated_question);
 			}
 			else
