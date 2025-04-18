@@ -96,6 +96,9 @@ Player PlayerManager(int decision)
 		break;
 
 	case 2: // leaderborad
+		players = LoadNumberOfPlayers(players);
+		LoadPlayers(players);
+
 		break;
 
 

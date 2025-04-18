@@ -99,6 +99,11 @@ void AppStart()
 			break;
 
 		case 2:// Leaderboad
+            PlayerManager(2);
+            printLeaderboard(GetNumberOfPlayers());
+            EndSceen();
+			DoNext = Menu();
+            break;
 
         case 3:// Exit
             theGameIsRunning = 0;

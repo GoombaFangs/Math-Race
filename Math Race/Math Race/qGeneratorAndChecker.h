@@ -6,7 +6,7 @@
 #include <Windows.h>
 #include <time.h>
 
-#define NUBMER_OF_QUESTIONS 5
+#define NUBMER_OF_QUESTIONS 2
 
 int operator_calculator(int total_sum, int new_nubmer, int operator_index);
 void print_operator(int operator_index);

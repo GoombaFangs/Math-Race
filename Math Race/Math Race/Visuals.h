@@ -175,6 +175,34 @@ void NameArrangement(int PlayerNumber)//PLAYERMANAGER.H
         players[PlayerNumber].name[i] = tolower((unsigned char)players[PlayerNumber].name[i]);
     }
 }
+void printLeaderboard(int playerArray)//SCORECALCULATOR.H
+{
+    clearConsole();
+    printg(0.025, "Leaderboard\n");
+    for (int i = 1; i <= GetNumberOfPlayers(); i++)
+		for (int j = 0; j < playerArray; j++)
+		{
+			if (i == players[j].place)
+			{
+				if (i == 1)
+                {
+					printf("1st place: %s Best score : %.1f Seconds\n", players[j].name, players[j].score);
+				}
+				else if (i == 2)
+				{
+                    printf("2nd place: %s  Best Score : %.1f Seconds\n", players[j].name,players[j].score);
+				}
+				else if (i == 3)
+				{
+                    printf("3rd place: %s  Best score : %.1f Seconds\n", players[j].name, players[j].score);
+				}
+				else
+				{
+                    printf("%dth place: %s  Best score : %.1f Seconds\n", i, players[j].name, players[j].score);
+                }
+			}
+		}
+}
 
 void VisualManager()
 {
