@@ -35,7 +35,7 @@ Player NewPlayer(int numberOfPlayers)
 	}
 }
 
-void UpdatePlayerScore(Player player)
+void UpdatePlayerScore(Player player , int numberOfPlayers)
 {
 	double finalScore = FinalScore(player.playerNumber);//SCORECALCULATOR_H
 	if (finalScore < players[player.playerNumber - 1].score)
@@ -46,12 +46,12 @@ void UpdatePlayerScore(Player player)
 	HoldSeconds(0.2);
 	printg("Yours final score is: %.2f\n", players[player.playerNumber - 1].score);
 
-	if (player.playerNumber > 1) 
+	if(numberOfPlayers > 1)
 	{
-		PlacePlayers(player.playerNumber);//SCORECALCULATOR_H
+		PlacePlayers(numberOfPlayers);//SCORECALCULATOR_H
 	}
 
-	SavePlayers(player.playerNumber);
+	SavePlayers(numberOfPlayers);
 }
 
 Player ChooseAPlayer(int numberOfPlayers)
@@ -67,6 +67,11 @@ Player ChooseAPlayer(int numberOfPlayers)
 	{
 		return players[choice];
 	}
+}
+int GetNumberOfPlayers()
+{
+	int numberOfPlayers = LoadNumberOfPlayers(0);
+	return numberOfPlayers;
 }
 
 Player PlayerManager(int decision)
@@ -100,6 +105,7 @@ Player PlayerManager(int decision)
 		SaveNumberOfPlayers(players);
 		break;
 	}
+
 	return currentPlayer;
 }
 #endif

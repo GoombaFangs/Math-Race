@@ -31,7 +31,7 @@ void printg(const char* format, ...)
     for (int i = 0; buffer[i] != '\0'; i++)
     {
         printf("%c", buffer[i]);
-        HoldSeconds(0.015);
+        HoldSeconds(0.025);
     }
 }
 void PrintRounds(int round)

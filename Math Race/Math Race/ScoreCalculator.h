@@ -36,17 +36,17 @@ double FinalScore(int playerNumber)
 	return finalScore;
 }
 
-void PlacePlayers(int numberOfPlayer)//sort
+void PlacePlayers(int numberOfPlayer)// Bubble sort
 {
-	for (int i = 0; i < numberOfPlayer - 1; i++)
+	for (int i = 0; i < numberOfPlayer; i++)
 	{
-        for (int j = 0; j < numberOfPlayer - i - 1; j++)
+        for (int j = i + 1; j < numberOfPlayer ; j++)
         {
-            if (players[j].score > players[j + 1].score)
+            if (players[i].score > players[j].score)
             {
-                int temp = players[j].place;
-                players[j].place = players[j+1].place;
-                players[j+1].place = temp;
+                int temp = players[i].place;
+                players[i].place = players[j].place;
+                players[j].place = temp;
             }
         }
 	}

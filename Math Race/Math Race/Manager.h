@@ -93,7 +93,7 @@ void AppStart()
 		case 1:// Play
             currentPlayer = PlayerManager(DoNext);
 			PlayTheGame();//ROUNDS.H
-			UpdatePlayerScore(currentPlayer);//PLAYERMANAGER.H
+			UpdatePlayerScore(currentPlayer, GetNumberOfPlayers());//PLAYERMANAGER.H
             EndSceen();
 			DoNext = Menu();
 			break;
