@@ -124,16 +124,16 @@ double answer_checker(int questionAnswer, int generated_question[]) // Outputs p
 		scanf_s("%d", &playerAnswer);
 		if (playerAnswer != questionAnswer)
 		{
-			penalty += 5.0;
+			penalty += 2.0;
 			if (tries == 2)
 			{
-				printg("Wrong answer, Next Question\nPenalty: 5 Seconds, Be careful!\n");
+				printg("Wrong answer, Next Question\nPenalty: 2 Seconds, Be careful!\n");
 				HoldSeconds(2);; // Sleep for 2 seconds
 				print_question(generated_question);
 			}
 			else
 			{
-				printg("Wrong answer, Try again!\nPenalty: 5 Seconds, Be careful!\n");
+				printg("Wrong answer, Try again!\nPenalty: 2 Seconds, Be careful!\n");
 				HoldSeconds(2);
 				print_question(generated_question);
 			}
@@ -141,7 +141,7 @@ double answer_checker(int questionAnswer, int generated_question[]) // Outputs p
 		else
 		{
 			printg("Correct!\n");
-			HoldSeconds(0.6); // Sleep for 1 seconds
+			HoldSeconds(0.6);
 			return penalty; // No penalty
 			break;
 		}

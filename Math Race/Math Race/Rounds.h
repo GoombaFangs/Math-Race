@@ -12,11 +12,11 @@
 #define TOTAL_ROUNDS 3
 
 
-void RoundTime(clock_t* startTime, clock_t* endTime, int* round)
+void RoundTime(clock_t* startTime, clock_t* endTime, int* round, double penalty)
 {
 	double roundDuration[TOTAL_ROUNDS];
 	double finalScore = 0;
-	roundDuration[*round] = ElapsedTime(*startTime, *endTime);//TIMER_H
+	roundDuration[*round] = (ElapsedTime(*startTime, *endTime) + penalty);//TIMER_H
 	printg("round %d: %.2f seconds\n", *round + 1, roundDuration[*round]);
 	HoldSeconds(0.2);
 	if(*round < 2)
@@ -34,9 +34,9 @@ void PlayTheGame()
 		PrintRounds(round + 1);
 		GetReadyForNextRound(round);//VISUALS_H
 		clock_t startTime = TimerStart();
-		generate_and_check_question(round); //QGENERATORANDCHECKER_H
+		double penalty = generate_and_check_question(round); //QGENERATORANDCHECKER_H
 		clock_t endTime = TimerStop();
-		RoundTime(&startTime, &endTime ,&round);
+		RoundTime(&startTime, &endTime ,&round, penalty);
 		HoldSeconds(3);
 		round++;
 	}
