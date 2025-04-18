@@ -73,9 +73,9 @@ int Menu()
 void EndSceen()
 {
 	HoldSeconds(0.5);
-    printg("Thanks for playing!\n");
+    printg(0.045, "Thanks for playing!\n");
 	HoldSeconds(0.5);
-	printg("Press any key to continue...");
+	printg(0.045, "Press any key to continue...");
     _getch();
 }
 

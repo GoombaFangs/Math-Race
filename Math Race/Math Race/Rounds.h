@@ -17,11 +17,11 @@ void RoundTime(clock_t* startTime, clock_t* endTime, int* round, double penalty)
 	double roundDuration[TOTAL_ROUNDS];
 	double finalScore = 0;
 	roundDuration[*round] = (ElapsedTime(*startTime, *endTime) + penalty);//TIMER_H
-	printg("round %d: %.2f seconds\n", *round + 1, roundDuration[*round]);
+	printg(0.025, "round %d: %.2f seconds\n", *round + 1, roundDuration[*round]);
 	HoldSeconds(0.2);
 	if(*round < 2)
 	{
-		printg("Get ready for the next round!\n");
+		printg(0.025, "Get ready for the next round!\n");
 	}
 	GetScore(roundDuration[*round], *round);//SCORECALCULATOR_H
 }

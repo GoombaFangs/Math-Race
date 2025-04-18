@@ -20,7 +20,7 @@ double generate_and_check_question(int round_number) // returns the penalty for 
 	double round_penalty = 0;
 	if (round_number < 0 || round_number > 2) // stops bugs if round_number is wrong
 	{
-		printg("Invalid round number. Please enter a number between 0 and 2.\n");
+		printg(0.025, "Invalid round number. Please enter a number between 0 and 2.\n");
 		return -1; // Return an error code
 	}
 
@@ -92,19 +92,19 @@ void print_operator(int operator_index) //Prints Operator to the screen
 	switch (operator_index)
 	{
 	case 0:
-		printg("+ ");
+		printg(0.015, "+ ");
 		break;
 
 	case 1:
-		printg("- ");
+		printg(0.015, "- ");
 		break;
 
 	case 2:
-		printg("* ");
+		printg(0.015, "* ");
 		break;
 
 	default:
-		printg(" ");
+		printg(0.015, " ");
 		break;
 	}
 }
@@ -113,7 +113,7 @@ double answer_checker(int questionAnswer, int generated_question[]) // Outputs p
 {
 	if (generated_question == NULL)
 	{
-		printg("Error:generated_question is NULL\n"); // Check for NULL pointer bug
+		printg(0.01, "Error:generated_question is NULL\n"); // Check for NULL pointer bug
 		return -1; // Return an error code
 	}
 
@@ -127,20 +127,20 @@ double answer_checker(int questionAnswer, int generated_question[]) // Outputs p
 			penalty += 2.0;
 			if (tries == 2)
 			{
-				printg("Wrong answer, Next Question\nPenalty: 2 Seconds, Be careful!\n");
-				HoldSeconds(2);
+				printg(0.01, "Wrong answer, Next Question\nPenalty: 2 Seconds, Be careful!\n");
+				HoldSeconds(1);
 				print_question(generated_question);
 			}
 			else
 			{
-				printg("Wrong answer, Try again!\nPenalty: 2 Seconds, Be careful!\n");
-				HoldSeconds(2);
+				printg(0.01, "Wrong answer, Try again!\nPenalty: 2 Seconds, Be careful!\n");
+				HoldSeconds(1);
 				print_question(generated_question);
 			}
 		}
 		else
 		{
-			printg("Correct!\n");
+			printg(0.01, "Correct!\n");
 			HoldSeconds(0.6);
 			return penalty; // No penalty
 			break;
@@ -151,12 +151,12 @@ double answer_checker(int questionAnswer, int generated_question[]) // Outputs p
 
 void print_question(int question[]) // Prints the question
 {
-	printg("%d ", question[0]);
+	printg(0.015, "%d ", question[0]);
 	print_operator(question[1]);
-	printg("%d ", question[2]);
+	printg(0.015, "%d ", question[2]);
 	print_operator(question[3]);
-	printg("%d ", question[4]);
-	printg("= ?\n");
+	printg(0.015, "%d ", question[4]);
+	printg(0.015, "= ?\n");
 }
 
 int generate_question(int min_random_number, int max_random_number, int include_muliplication /*multiplication 2 exclude 3 include uses operator_calculatur()*/, int question_array[]) {

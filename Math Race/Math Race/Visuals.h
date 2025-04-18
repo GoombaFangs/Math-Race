@@ -19,7 +19,7 @@ void clearConsole()
 }
 
 
-void printg(const char* format, ...)
+void printg(double duration , const char* format, ...)
 {
     va_list args;
     va_start(args, format);
@@ -31,7 +31,7 @@ void printg(const char* format, ...)
     for (int i = 0; buffer[i] != '\0'; i++)
     {
         printf("%c", buffer[i]);
-        HoldSeconds(0.025);
+        HoldSeconds(duration);
     }
 }
 void PrintRounds(int round)
@@ -57,7 +57,7 @@ void GetReadyForNextRound(int round)//ROUNDS.H
 	if (round == 0)
 	{
         clearConsole();
-        printg("Get ready!\n\n");
+        printg(0.015, "Get ready!\n\n");
         HoldSeconds(0.4);
 	}
     else
@@ -67,10 +67,10 @@ void GetReadyForNextRound(int round)//ROUNDS.H
     }
 	for (int i = 3; i > 0; i--)
 	{
-        printg("%d...\n", i);
+        printg(0.015, "%d...\n", i);
 		HoldSeconds(1.0);
 	}
-    printg("\nGo!\n");
+    printg(0.015, "\nGo!\n");
     HoldSeconds(0.1);
 }
 
@@ -79,26 +79,26 @@ int PrintPlayerOptions(int numberOfPlayers)//PLAYERMANAGER.H
     int ch;
     int defaultOption = 0; 
 
-    printg("Choose a player\n\n");
+    printg(0.03, "Choose a player\n\n");
     for (int i = 0; i < numberOfPlayers; i++)
     {
         if (i == defaultOption)
         {
-            printg("  - %s -\n", players[i].name);
+            printg(0.02, "  - %s -\n", players[i].name);
         }
         else
         {
-            printg("    %s\n", players[i].name);
+            printg(0.02, "    %s\n", players[i].name);
         }
     }
 
     if (defaultOption == numberOfPlayers)
     {
-        printg("\n  - New Player -\n");
+        printg(0.02, "\n  - New Player -\n");
     }
     else
     {
-        printg("\n    New Player\n");
+        printg(0.02, "\n    New Player\n");
     }
 
     while (1)
@@ -110,7 +110,7 @@ int PrintPlayerOptions(int numberOfPlayers)//PLAYERMANAGER.H
         {
             if (i == defaultOption)
             {
-                printf("  - %s -\n", players[i].name); 
+                printf("  - %s -\n", players[i].name);
             }
             else
             {

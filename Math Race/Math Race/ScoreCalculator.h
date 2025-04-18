@@ -31,8 +31,8 @@ double FinalScore(int playerNumber)
     double finalScore = score[0] + score[1] + score[2];
 	clearConsole();
 	HoldSeconds(0.3);
-    printg("%s\n", players[playerNumber - 1].name);
-    printg("Yours final Score THIS ROUND is: %.2f\n", finalScore);
+    printg(0.025 ,"%s\n", players[playerNumber - 1].name);
+    printg(0.025, "Yours final Score THIS ROUND is: %.2f\n", finalScore);
 	return finalScore;
 }
 

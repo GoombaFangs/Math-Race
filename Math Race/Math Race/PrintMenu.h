@@ -4,12 +4,12 @@
 #include <stdio.h>
 #include "Visuals.h"
 
-void printg(const char* format, ...);
+void printg(double duration, const char* format, ...);
 
 int OnStart()
 {
 	clearConsole();
-	printg("  Press an Up or Down arrow and Enter to confirm :\n");
+	printg(0.035, "  Press an Up or Down arrow and Enter to confirm :\n");
 	HoldSeconds(0.2);
     printf("                                                                                                         \n");
     printf("                 _________                                                                               \n");

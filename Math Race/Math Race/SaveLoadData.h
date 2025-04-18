@@ -20,7 +20,7 @@ void SaveNumberOfPlayers(int numberOfPlayers)
 	FILE* file = fopen("numberOfPlayers.dat", "w"); // Open file
 	if (file == NULL)
 	{
-		printg("Error: Could not open file player.dat for writing\n");
+		printg(0.025, "Error: Could not open file player.dat for writing\n");
 		return;
 	}
 
@@ -39,7 +39,7 @@ int LoadNumberOfPlayers(int numberOfPlayers)
 
 	if (fscanf_s(file, "%d", &numberOfPlayers) != 1 || numberOfPlayers > MAX_PLAYERS)
 	{
-		printg("Error: Invalid player count in file\n");
+		printg(0.025, "Error: Invalid player count in file\n");
 		fclose(file); // Close file
 		return 0;
 	}
@@ -58,7 +58,7 @@ void SavePlayers(int numberOfPlayers)
 		FILE* file = fopen(fileName, "w"); // Open files
 		if (file == NULL)
 		{
-			printg("Error: Could not open file %s for writing\n", fileName);
+			printg(0.025, "Error: Could not open file %s for writing\n", fileName);
 			continue; 
 		}
 
@@ -83,7 +83,7 @@ void LoadPlayers(int numberOfPlayers)
 		FILE* file = fopen(fileName, "r"); // Open files
 		if (file == NULL)
 		{
-			printg("Error: Could not open file %s for reading\n", fileName);
+			printg(0.025, "Error: Could not open file %s for reading\n", fileName);
 			continue;
 		}
 
@@ -95,7 +95,7 @@ void LoadPlayers(int numberOfPlayers)
 			&players[i].score , 
 			&players[i].place) != 4)
 		{
-			printg("Error: Invalid data in %s. Stopping load for this player\n", fileName);
+			printg(0.025, "Error: Invalid data in %s. Stopping load for this player\n", fileName);
 			fclose(file);
 			continue; 
 		}

@@ -16,7 +16,7 @@ Player NewPlayer(int numberOfPlayers)
 {
 	if (numberOfPlayers < MAX_PLAYERS)
 	{
-		printg("Enter Your name: ");
+		printg(0.035, "Enter Your name: ");
 		scanf_s("%19s", players[numberOfPlayers].name, (unsigned)_countof(players[numberOfPlayers].name));
 
 		NameArrangement(numberOfPlayers);//VISUALS_H
@@ -30,7 +30,7 @@ Player NewPlayer(int numberOfPlayers)
 	}
 	else
 	{
-		printg("Maximum number of players reached\n");
+		printg(0.025, "Maximum number of players reached\n");
 		return players[0];
 	}
 }
@@ -44,7 +44,7 @@ void UpdatePlayerScore(Player player , int numberOfPlayers)
 	}
 
 	HoldSeconds(0.2);
-	printg("Yours final score is: %.2f\n", players[player.playerNumber - 1].score);
+	printg(0.025, "Yours final score is: %.2f\n", players[player.playerNumber - 1].score);
 
 	if(numberOfPlayers > 1)
 	{
