@@ -176,12 +176,12 @@ void NameArrangement(int PlayerNumber)//PLAYERMANAGER.H
     }
 }
 
-void printLeaderboard(int playerArray)//SCORECALCULATOR.H
+void printLeaderboard(int numberOfPlayers)//SCORECALCULATOR.H
 {
     clearConsole();
     printg(0.025, "Leaderboard\n");
-    for (int i = 1; i <= GetNumberOfPlayers(); i++)
-		for (int j = 0; j < playerArray; j++)
+    for (int i = 1; i <= numberOfPlayers; i++)
+		for (int j = 0; j < numberOfPlayers; j++)
 		{
 			if (i == players[j].place)
 			{
