@@ -70,7 +70,7 @@ int Menu()
         }
     }
 }
-void EndSceen()
+void EndScreen()
 {
 	HoldSeconds(0.5);
 	printg(0.045, "Press any key to continue...");
@@ -96,14 +96,14 @@ void AppStart()
             printg(0.045, "Thanks for playing!\n");
             HoldSeconds(0.5);
             printLeaderboard(GetNumberOfPlayers());
-            EndSceen();
+            EndScreen();
 			DoNext = Menu();
 			break;
 
 		case 2:// Leaderboad
             PlayerManager(2);
             printLeaderboard(GetNumberOfPlayers());
-            EndSceen();
+            EndScreen();
 			DoNext = Menu();
             break;
 
