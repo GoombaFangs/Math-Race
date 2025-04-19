@@ -209,14 +209,5 @@ void VisualManager()
 {
 	clearConsole();
 	PrintTitle();
-	//Game tutorial
-    /*
-	* This is a simple game where you have to answer math questions as fast as possible
-	* Each game consists of 3 rounds with increasing difficulty
-	* Each round has 5 questions
-	* Wrong answers will add a penalty of 2 seconds to your time so be careful!
-	* Good Luck !
-    */
-
 }
 #endif
