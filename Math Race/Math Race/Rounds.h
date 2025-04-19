@@ -7,7 +7,7 @@
 #include "Timer.h"
 #include "ScoreCalculator.h"
 #include "visuals.h"
-#include "qGeneratorAndChecker.h"
+#include "Q&A.h"
 
 #define TOTAL_ROUNDS 3
 

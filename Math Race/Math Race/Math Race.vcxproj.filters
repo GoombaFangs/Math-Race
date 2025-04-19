@@ -47,13 +47,10 @@
     <ClInclude Include="Title.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Menu.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="PrintMenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="qGeneratorAndChecker.h">
+    <ClInclude Include="Q&amp;A.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PrintRounds.h">

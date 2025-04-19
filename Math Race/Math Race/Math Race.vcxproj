@@ -135,7 +135,7 @@
     <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="PrintMenu.h" />
     <ClInclude Include="PrintRounds.h" />
-    <ClInclude Include="qGeneratorAndChecker.h" />
+    <ClInclude Include="Q&amp;A.h" />
     <ClInclude Include="Rounds.h" />
     <ClInclude Include="SaveLoadData.h" />
     <ClInclude Include="ScoreCalculator.h" />
