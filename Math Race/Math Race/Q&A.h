@@ -145,9 +145,8 @@ double AnswerChecker(int questionAnswer, int questions[])
 			penalty += 5.0;
 			if (tries == 2)
 			{
-				printg(0.01, "Wrong answer, Next Question\nPenalty: 5 Seconds, Be careful!\n");
-				HoldSeconds(1);
-				PrintQuestion(questions);
+				printg(0.025, "Wrong answer, Next Question\nPenalty: 5 Seconds, Be careful!\n");
+				HoldSeconds(2);
 			}
 			else
 			{
