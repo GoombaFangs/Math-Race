@@ -34,7 +34,7 @@ void PlayTheGame()
 		PrintRounds(round + 1);
 		GetReadyForNextRound(round);//VISUALS_H
 		clock_t startTime = TimerStart();
-		double penalty = generate_and_check_question(round); //QGENERATORANDCHECKER_H
+		double penalty = GenerateAndCheckQuestion(round); //QGENERATORANDCHECKER_H
 		clock_t endTime = TimerStop();
 		RoundTime(&startTime, &endTime ,&round, penalty);
 		HoldSeconds(3);

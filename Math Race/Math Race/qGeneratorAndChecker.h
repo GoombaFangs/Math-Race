@@ -8,14 +8,14 @@
 
 #define NUBMER_OF_QUESTIONS 5
 
-int operator_calculator(int total_sum, int new_nubmer, int operator_index);
-void print_operator(int operator_index);
-void print_question(int question_array[]);
-double answer_checker(int questionAnswer, int generated_question[]);
-int answer_calculator(int question_array[]);
-int generate_question(int min_random_number, int max_random_number, int include_muliplication, int question_array[]);
+int OperatorCalculator(int total_sum, int new_nubmer, int operator_index);
+void PrintOperator(int operator_index);
+void PrintQuestion(int question_array[]);
+double AnswerChecker(int questionAnswer, int generated_question[]);
+int AnswerCalculator(int question_array[]);
+int GenerateQuestion(int min_random_number, int max_random_number, int include_muliplication, int question_array[]);
 
-double generate_and_check_question(int round_number) // returns the penalty for the whole round
+double GenerateAndCheckQuestion(int round_number) // returns the penalty for the whole round
 {
 	double round_penalty = 0;
 	if (round_number < 0 || round_number > 2) // stops bugs if round_number is wrong
@@ -29,47 +29,47 @@ double generate_and_check_question(int round_number) // returns the penalty for 
 		int generated_question[5] = { 0, };
 		if (round_number == 0) // Difficulty based on round_nubmer 
 		{
-			generate_question(1, 10, 2, generated_question);
+			GenerateQuestion(1, 10, 2, generated_question);
 		}
 		else if (round_number == 1)
 		{
-			generate_question(1, 30, 2, generated_question);
+			GenerateQuestion(1, 30, 2, generated_question);
 		}
 		else if (round_number == 2)
 		{
-			generate_question(1, 15, 3, generated_question);
+			GenerateQuestion(1, 15, 3, generated_question);
 		}
 		clearConsole();
-		print_question(generated_question);
-		round_penalty += answer_checker(answer_calculator(generated_question), generated_question);
+		PrintQuestion(generated_question);
+		round_penalty += AnswerChecker(AnswerCalculator(generated_question), generated_question);
 	}
 	return round_penalty; // Return the penalty	
 }
 
-int answer_calculator(int question_array[])
+int AnswerCalculator(int question_array[])
 {
 	int calculated_answer = 0; // checking operator precidence because of *
 	if (question_array[1] == 2) // Try making a function that does this regardless of the amount of nubmers 
 	{
-		int first_calc1 = operator_calculator(question_array[0], question_array[2], question_array[1]);
-		calculated_answer = operator_calculator(first_calc1, question_array[4], question_array[3]);
+		int first_calc1 = OperatorCalculator(question_array[0], question_array[2], question_array[1]);
+		calculated_answer = OperatorCalculator(first_calc1, question_array[4], question_array[3]);
 		return calculated_answer;
 	}
 	else if (question_array[3] == 2)
 	{
-		int first_calc2 = operator_calculator(question_array[2], question_array[4], question_array[3]);
-		calculated_answer = operator_calculator(question_array[0], first_calc2, question_array[1]);
+		int first_calc2 = OperatorCalculator(question_array[2], question_array[4], question_array[3]);
+		calculated_answer = OperatorCalculator(question_array[0], first_calc2, question_array[1]);
 		return calculated_answer;
 	}
 	else
 	{
-		int first_calc3 = operator_calculator(question_array[0], question_array[2], question_array[1]);
-		calculated_answer = operator_calculator(first_calc3, question_array[4], question_array[3]);
+		int first_calc3 = OperatorCalculator(question_array[0], question_array[2], question_array[1]);
+		calculated_answer = OperatorCalculator(first_calc3, question_array[4], question_array[3]);
 		return calculated_answer;
 	}
 }
 
-int operator_calculator(int total_sum, int next_nubmer, int operator_index)
+int OperatorCalculator(int total_sum, int next_nubmer, int operator_index)
 {
 	switch (operator_index)
 	{
@@ -87,7 +87,7 @@ int operator_calculator(int total_sum, int next_nubmer, int operator_index)
 	}
 }
 
-void print_operator(int operator_index) //Prints Operator to the screen
+void PrintOperator(int operator_index) //Prints Operator to the screen
 {
 	switch (operator_index)
 	{
@@ -109,7 +109,7 @@ void print_operator(int operator_index) //Prints Operator to the screen
 	}
 }
 
-double answer_checker(int questionAnswer, int generated_question[]) // Outputs penalty
+double AnswerChecker(int questionAnswer, int generated_question[]) // Outputs penalty
 {
 	if (generated_question == NULL)
 	{
@@ -121,14 +121,23 @@ double answer_checker(int questionAnswer, int generated_question[]) // Outputs p
 	double penalty = 0.0;
 	for (int tries = 0; tries < 3; tries++)
 	{
-		if (scanf_s("%d", &playerAnswer) != 1 || getchar() != '\n')
+		int error = 1;
+		while (error == 1)
 		{
-			while (getchar() != '\n');
-			printg(0.01, "Invalid input. Please enter a valid number.\n");
-			HoldSeconds(1);
-			print_question(generated_question);
-			continue;
+			if (scanf_s("%d", &playerAnswer) != 1 || getchar() != '\n')
+			{
+				while (getchar() != '\n');
+				printg(0.01, "Invalid input. Please enter a valid number.\n");
+				HoldSeconds(1);
+				PrintQuestion(generated_question);
+				error = 1; 
+			}
+			else
+			{
+				error = 0;
+			}	
 		}
+		
 		//scanf_s("%d", &playerAnswer); // check validity ofinput
 		if (playerAnswer != questionAnswer)
 		{
@@ -137,13 +146,13 @@ double answer_checker(int questionAnswer, int generated_question[]) // Outputs p
 			{
 				printg(0.01, "Wrong answer, Next Question\nPenalty: 5 Seconds, Be careful!\n");
 				HoldSeconds(1);
-				print_question(generated_question);
+				PrintQuestion(generated_question);
 			}
 			else
 			{
 				printg(0.01, "Wrong answer, Try again!\nPenalty: 5 Seconds, Be careful!\n");
 				HoldSeconds(1);
-				print_question(generated_question);
+				PrintQuestion(generated_question);
 			}
 		}
 		else
@@ -157,17 +166,17 @@ double answer_checker(int questionAnswer, int generated_question[]) // Outputs p
 	return penalty; // Return the penalty
 }
 
-void print_question(int question[]) // Prints the question
+void PrintQuestion(int question[]) // Prints the question
 {
 	printg(0.015, "%d ", question[0]);
-	print_operator(question[1]);
+	PrintOperator(question[1]);
 	printg(0.015, "%d ", question[2]);
-	print_operator(question[3]);
+	PrintOperator(question[3]);
 	printg(0.015, "%d ", question[4]);
 	printg(0.015, "= ?\n");
 }
 
-int generate_question(int min_random_number, int max_random_number, int include_muliplication /*multiplication 2 exclude 3 include uses operator_calculatur()*/, int question_array[]) {
+int GenerateQuestion(int min_random_number, int max_random_number, int include_muliplication /*multiplication 2 exclude 3 include uses operator_calculatur()*/, int question_array[]) {
 	int num[3] = { 0,0,0 };
 	int operator_index1 = 0;
 	int operator_index2 = 0;
