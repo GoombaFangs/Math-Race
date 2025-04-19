@@ -6,14 +6,14 @@
 #include <Windows.h>
 #include <time.h>
 
-#define NUBMER_OF_QUESTIONS 5
+#define NUMBER_OF_QUESTIONS 5
 
-int OperatorCalculator(int totalSum, int newNubmer, int operatorIndex);
+int OperatorCalculator(int totalSum, int newNumber, int operatorIndex);
 void PrintOperator(int operatorIndex);
 void PrintQuestion(int questions[]);
 double AnswerChecker(int questionAnswer, int question[]);
 int AnswerCalculator(int questions[]);
-int GenerateQuestion(int minRandomNumber, int maxRandomNumber, int muliplication, int questions[]);
+int GenerateQuestion(int minRandomNumber, int maxRandomNumber, int multiplication, int questions[]);
 
 
 double GenerateAndCheckQuestion(int round)
@@ -25,10 +25,10 @@ double GenerateAndCheckQuestion(int round)
 		return -1; // Return an error code
 	}
 
-	for (int i = 0; i < NUBMER_OF_QUESTIONS; i++)
+	for (int i = 0; i < NUMBER_OF_QUESTIONS; i++)
 	{
 		int question[5] = { 0,0,0,0,0 };
-		if (round == 0) // Difficulty based on round nubmer 
+		if (round == 0) // Difficulty based on round number 
 		{
 			GenerateQuestion(1, 10, 2, question);
 		}
@@ -71,18 +71,18 @@ int AnswerCalculator(int questions[])
 	}
 }
 
-int OperatorCalculator(int totalSum, int nextNubmer, int operatorIndex)
+int OperatorCalculator(int totalSum, int nextNumber, int operatorIndex)
 {
 	switch (operatorIndex)
 	{
 	case 0:
-		return totalSum + nextNubmer;
+		return totalSum + nextNumber;
 
 	case 1:
-		return totalSum - nextNubmer;
+		return totalSum - nextNumber;
 
 	case 2:
-		return totalSum * nextNubmer;
+		return totalSum * nextNumber;
 
 	default:
 		return totalSum;
@@ -177,7 +177,7 @@ void PrintQuestion(int question[])
 	printg(0.015, "= ?\n");
 }
 
-int GenerateQuestion(int minRandomNumber, int maxRandomNumber, int includeMuliplication , int questions[])
+int GenerateQuestion(int minRandomNumber, int maxRandomNumber, int multiplication , int questions[])
 {
 	int numbers[3] = { 0,0,0 };
 	int operatorIndex1 = 0;
@@ -185,8 +185,8 @@ int GenerateQuestion(int minRandomNumber, int maxRandomNumber, int includeMulipl
 	numbers[0] = rand() % maxRandomNumber + minRandomNumber;
 	numbers[1] = rand() % maxRandomNumber + minRandomNumber;
 	numbers[2] = rand() % maxRandomNumber + minRandomNumber;
-	operatorIndex1 = rand() % includeMuliplication;
-	operatorIndex2 = rand() % includeMuliplication;
+	operatorIndex1 = rand() % multiplication;
+	operatorIndex2 = rand() % multiplication;
 	questions[0] = numbers[0];
 	questions[1] = operatorIndex1;
 	questions[2] = numbers[1];
