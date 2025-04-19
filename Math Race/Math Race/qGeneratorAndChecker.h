@@ -121,7 +121,15 @@ double answer_checker(int questionAnswer, int generated_question[]) // Outputs p
 	double penalty = 0.0;
 	for (int tries = 0; tries < 3; tries++)
 	{
-		scanf_s("%d", &playerAnswer);
+		if (scanf_s("%d", &playerAnswer) != 1 || getchar() != '\n')
+		{
+			while (getchar() != '\n');
+			printg(0.01, "Invalid input. Please enter a valid number.\n");
+			HoldSeconds(1);
+			print_question(generated_question);
+			continue;
+		}
+		//scanf_s("%d", &playerAnswer); // check validity ofinput
 		if (playerAnswer != questionAnswer)
 		{
 			penalty += 2.0;
