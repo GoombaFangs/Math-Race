@@ -1,0 +1,47 @@
+Everyone likes math right?... right? :)
+
+This is a simple game where you have to answer math questions as fast as possible
+Each game consists of 3 rounds with increasing difficulty
+Each round has 5 questions
+Wrong answers will add a penalty of 2 seconds to your time so be careful!
+Good Luck !
+
+
+When you run the project for the first time you will be asked to enter a player name,
+after one game is played, your information of: name and score get saved in a file. 
+afterwards each new player added will automatically be added to the leaderboards
+so dont worry if you close the game, the score will be saved for your next playthrought
+the all players save so you can go the the leaderboard and see who is the best!
+
+
+We work on this project with version manager ( SourceTree ) and git for easy push and pull commit..
+we used Headers to organize the all project:
+headers we had:
+ 
+Manager - managed the project order of operations
+player - create a player for the project
+PlayerManager - managed the all players function ( New Player , Choose a Player , Update Player Score etc )
+SaveLoadData - saveing and loading the all players data in file 
+Timer - trak the time
+Rounds - in rounds header we run the acsoull game and count the round time
+Q&A - genegert the questions and cheking the answer 
+ScoreCalculator - calculator the score
+Visuals - controll the all visuals of the project
+Title - print the title 
+
+inside the headers we use functions for each relevant action (like AnswerChecker, GetReadyForNextRound , FinalScore etc )
+
+for the Visuals we used printg (are function the we carte to print text with animition) and text ascii art.
+
+
+thanks 
+Eden and Ronnie
+
+
+
+ 
+
+
+
+
+
