@@ -21,7 +21,7 @@ int OnStart()
     printf("                                                                                                         \n");
     printf("                                                                                                         \n");
     printf("                                                                                                         \n");
-    printf("                   exit                                                                                  \n");
+    printf("                   Exit                                                                                  \n");
     printf("                                                                                                         \n");
 	return 1;
 }
@@ -39,7 +39,7 @@ int OnPlay()
     printf("                                                                                                         \n");
     printf("                                                                                                         \n");
     printf("                                                                                                         \n");
-    printf("                   exit                                                                                  \n");
+    printf("                   Exit                                                                                  \n");
     printf("                                                                                                         \n");
 	return 1;
 }
@@ -57,7 +57,7 @@ int OnLeaderBoard()
     printf("                  ---------------                                                                        \n");
     printf("                                                                                                         \n");
     printf("                                                                                                         \n");
-    printf("                   exit                                                                                  \n");
+    printf("                   Exit                                                                                  \n");
     printf("                                                                                                         \n");
     return 2;
 }

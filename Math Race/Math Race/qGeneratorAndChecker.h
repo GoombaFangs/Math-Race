@@ -6,7 +6,7 @@
 #include <Windows.h>
 #include <time.h>
 
-#define NUBMER_OF_QUESTIONS 2
+#define NUBMER_OF_QUESTIONS 5
 
 int operator_calculator(int total_sum, int new_nubmer, int operator_index);
 void print_operator(int operator_index);
@@ -132,16 +132,16 @@ double answer_checker(int questionAnswer, int generated_question[]) // Outputs p
 		//scanf_s("%d", &playerAnswer); // check validity ofinput
 		if (playerAnswer != questionAnswer)
 		{
-			penalty += 2.0;
+			penalty += 5.0;
 			if (tries == 2)
 			{
-				printg(0.01, "Wrong answer, Next Question\nPenalty: 2 Seconds, Be careful!\n");
+				printg(0.01, "Wrong answer, Next Question\nPenalty: 5 Seconds, Be careful!\n");
 				HoldSeconds(1);
 				print_question(generated_question);
 			}
 			else
 			{
-				printg(0.01, "Wrong answer, Try again!\nPenalty: 2 Seconds, Be careful!\n");
+				printg(0.01, "Wrong answer, Try again!\nPenalty: 5 Seconds, Be careful!\n");
 				HoldSeconds(1);
 				print_question(generated_question);
 			}

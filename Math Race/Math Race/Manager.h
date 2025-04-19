@@ -73,8 +73,6 @@ int Menu()
 void EndSceen()
 {
 	HoldSeconds(0.5);
-    printg(0.045, "Thanks for playing!\n");
-	HoldSeconds(0.5);
 	printg(0.045, "Press any key to continue...");
     _getch();
 }
@@ -94,6 +92,10 @@ void AppStart()
             currentPlayer = PlayerManager(DoNext);
 			PlayTheGame();//ROUNDS.H
 			UpdatePlayerScore(currentPlayer, GetNumberOfPlayers());//PLAYERMANAGER.H
+            HoldSeconds(0.5);
+            printg(0.045, "Thanks for playing!\n");
+            HoldSeconds(0.5);
+            printLeaderboard(GetNumberOfPlayers());
             EndSceen();
 			DoNext = Menu();
 			break;

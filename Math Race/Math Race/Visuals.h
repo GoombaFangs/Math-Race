@@ -175,6 +175,7 @@ void NameArrangement(int PlayerNumber)//PLAYERMANAGER.H
         players[PlayerNumber].name[i] = tolower((unsigned char)players[PlayerNumber].name[i]);
     }
 }
+
 void printLeaderboard(int playerArray)//SCORECALCULATOR.H
 {
     clearConsole();
