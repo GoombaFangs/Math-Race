@@ -18,6 +18,39 @@
     <ClCompile Include="Main.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Timer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Title.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Visuals.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreCalculator.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveLoadData.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Rounds.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Q&amp;A.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PrintRounds.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PrintMenu.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerManager.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Manager.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">

@@ -128,6 +128,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Main.c" />
+    <ClCompile Include="Manager.c" />
+    <ClCompile Include="PlayerManager.c" />
+    <ClCompile Include="PrintMenu.c" />
+    <ClCompile Include="PrintRounds.c" />
+    <ClCompile Include="Q&amp;A.c" />
+    <ClCompile Include="Rounds.c" />
+    <ClCompile Include="SaveLoadData.c" />
+    <ClCompile Include="ScoreCalculator.c" />
+    <ClCompile Include="Timer.c" />
+    <ClCompile Include="Title.c" />
+    <ClCompile Include="Visuals.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Manager.h" />
