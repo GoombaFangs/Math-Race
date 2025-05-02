@@ -160,7 +160,7 @@ void PrintQuestion(int question[])
 	printg(0.015, "= ?\n");
 }
 
-int GenerateQuestion(int minRandomNumber, int maxRandomNumber, int multiplication, int questions[])
+void GenerateQuestion(int minRandomNumber, int maxRandomNumber, int multiplication, int questions[])
 {
 	int numbers[3] = { 0,0,0 };
 	int operatorIndex1 = 0;
@@ -175,5 +175,4 @@ int GenerateQuestion(int minRandomNumber, int maxRandomNumber, int multiplicatio
 	questions[2] = numbers[1];
 	questions[3] = operatorIndex2;
 	questions[4] = numbers[2];
-	return questions;
 }

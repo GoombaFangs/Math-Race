@@ -3,7 +3,6 @@
 
 #define MAX_PLAYERS 15 
 
-
 typedef struct player 
 {
 	int playerNumber;

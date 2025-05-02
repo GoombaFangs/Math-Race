@@ -1,6 +1,4 @@
-
 #include "Timer.h"
-
 
 clock_t TimerStart()
 {

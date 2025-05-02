@@ -9,5 +9,3 @@ void GetScore(double seconds, int round);
 double FinalScore(int playerNumber);
 void PlacePlayers(int numberOfPlayers);
 #endif
-
-

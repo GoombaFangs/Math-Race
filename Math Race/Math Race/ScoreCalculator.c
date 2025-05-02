@@ -2,7 +2,6 @@
 
 double score[3] = { 0.0, 0.0 , 0.0 };
 
-
 void GetScore(double seconds, int round)
 {
     switch (round)

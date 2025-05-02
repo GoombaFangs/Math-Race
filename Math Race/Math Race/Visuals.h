@@ -11,7 +11,6 @@
 #include "PrintRounds.h"
 #include "PlayerManager.h"
 
-
 void clearConsole();
 void printg(double duration, const char* format, ...);
 void PrintRounds(int round);

@@ -15,5 +15,4 @@
 int Menu();
 void EndScreen();
 void AppStart();
-
 #endif

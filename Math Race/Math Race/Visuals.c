@@ -9,7 +9,6 @@ void clearConsole()
 #endif
 }
 
-
 void printg(double duration, const char* format, ...)
 {
     va_list args;

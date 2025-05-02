@@ -8,7 +8,6 @@
 #include "SaveLoadData.h"
 #include "Visuals.h"
 
-
 Player NewPlayer(int numberOfPlayers);
 void UpdatePlayerScore(Player player, int numberOfPlayers);
 Player ChooseAPlayer(int numberOfPlayers);

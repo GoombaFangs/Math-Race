@@ -11,7 +11,6 @@
 
 #define TOTAL_ROUNDS 3
 
-
 void RoundTime(clock_t* startTime, clock_t* endTime, int* round, double penalty);
 void PlayTheGame();
 #endif
