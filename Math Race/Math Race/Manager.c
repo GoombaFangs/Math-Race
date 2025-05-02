@@ -61,7 +61,8 @@ void EndScreen()
 {
     HoldSeconds(0.5);
     printg(0.045, "Press any key to continue...");
-    _getch();
+    int keyPress = _getch(); 
+    (void)keyPress;
 }
 
 void AppStart()
