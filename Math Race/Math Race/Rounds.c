@@ -14,7 +14,7 @@ void RoundTime(clock_t* startTime, clock_t* endTime, int* round, double penalty)
 	GetScore(roundDuration[*round], *round);//SCORECALCULATOR_H
 }
 
-void PlayTheGame()
+int PlayTheGame()
 {
 	int round = 0;
 	while (round < TOTAL_ROUNDS)
@@ -23,9 +23,16 @@ void PlayTheGame()
 		GetReadyForNextRound(round);//VISUALS_H
 		clock_t startTime = TimerStart();
 		double penalty = GenerateAndCheckQuestion(round); //QGENERATORANDCHECKER_H
-		clock_t endTime = TimerStop();
-		RoundTime(&startTime, &endTime, &round, penalty);
-		HoldSeconds(3);
-		round++;
+		if (penalty < 0)
+		{
+			return 0;
+		}
+		else 
+		{
+			clock_t endTime = TimerStop();
+			RoundTime(&startTime, &endTime, &round, penalty);
+			HoldSeconds(3);
+			round++;
+		}
 	}
 }

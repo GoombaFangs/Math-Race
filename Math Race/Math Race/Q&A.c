@@ -33,7 +33,12 @@ double GenerateAndCheckQuestion(int round)
 			}
 		}
 		PrintQuestion(question);
-		roundPenalty += AnswerChecker(AnswerCalculator(question), question);
+    	int result = AnswerChecker(AnswerCalculator(question), question);
+		if (result < 0)
+		{
+			return -1;
+		}
+		roundPenalty += result;
 	}
 	if (q == NUMBER_OF_QUESTIONS)
 	{
@@ -169,7 +174,10 @@ double AnswerChecker(int questionAnswer, int questions[])
 		}
 		else if (keyboardInput == 27) // Escape key
 		{
-			break;
+			q = 0; 
+			tries = 0;
+			question[0] = 0;
+			return -1;
 		}
 		else if (keyboardInput == '\b' && bufferIndex > 0) // Backspace
 		{

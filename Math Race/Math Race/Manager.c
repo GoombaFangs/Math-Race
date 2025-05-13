@@ -78,7 +78,12 @@ void AppStart()
         {
         case 1:// Play
             currentPlayer = PlayerManager(DoNext);
-            PlayTheGame();//ROUNDS.H
+            int result = PlayTheGame();//ROUNDS.H
+            if (result == 0)
+            {
+                DoNext = Menu();
+                break;
+            }
             UpdatePlayerScore(currentPlayer, GetNumberOfPlayers());//PLAYERMANAGER.H
             HoldSeconds(0.5);
             printg(0.045, "Thanks for playing!\n");
