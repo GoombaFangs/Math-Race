@@ -51,6 +51,11 @@ Player ChooseAPlayer(int numberOfPlayers)
 		Player newPlayer = PlayerManager(3); // New Player
 		return newPlayer;
 	}
+	else if(choice < 0)
+	{
+		Player invalidPlayer = { -1 };
+		return invalidPlayer;
+	}
 	else
 	{
 		return players[choice];

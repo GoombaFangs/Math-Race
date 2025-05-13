@@ -151,11 +151,17 @@ int PrintPlayerOptions(int numberOfPlayers)//PLAYERMANAGER.H
                 }
                 break;
             }
+			
         }
         else if (ch == 13) // Enter key
         {
             clearConsole();
             return defaultOption;
+        }
+        else if (ch == 27) // Escape Key
+        {
+            clearConsole();
+            return -1;
         }
     }
 }

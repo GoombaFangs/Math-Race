@@ -172,7 +172,7 @@ double AnswerChecker(int questionAnswer, int questions[])
 				break;
 			}
 		}
-		else if (keyboardInput == 27) // Escape key
+		else if (keyboardInput == 27) // Escape Key
 		{
 			q = 0; 
 			tries = 0;

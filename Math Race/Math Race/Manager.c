@@ -78,6 +78,11 @@ void AppStart()
         {
         case 1:// Play
             currentPlayer = PlayerManager(DoNext);
+            if (currentPlayer.playerNumber == -1)
+            {
+                DoNext = Menu();
+                break;
+            }
             int result = PlayTheGame();//ROUNDS.H
             if (result == 0)
             {
