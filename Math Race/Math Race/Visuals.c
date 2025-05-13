@@ -41,6 +41,11 @@ void PrintRounds(int round)
     }
 
 }
+void PrintBackToMenu()
+{
+    clearConsole();
+    printg(0.005, "Press escape to go back to the menu...\n");
+}
 
 void GetReadyForNextRound(int round)//ROUNDS.H
 {

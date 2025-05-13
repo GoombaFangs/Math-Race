@@ -6,9 +6,11 @@
 #include <Windows.h>
 #include <time.h>
 #include "Visuals.h"
+#include "Manager.h"
 
 #define NUMBER_OF_QUESTIONS 5
 
+void PrintBackToMenu();
 double GenerateAndCheckQuestion(int round);
 int AnswerCalculator(int questions[]);
 int OperatorCalculator(int totalSum, int nextNumber, int operatorIndex);

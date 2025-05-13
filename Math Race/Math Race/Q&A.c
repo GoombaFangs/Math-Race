@@ -1,5 +1,10 @@
 #include "Q&A.h"
 
+int question[5] = { 0,0,0,0,0 };
+double penalty = 5.0;
+int tries = 0;
+int q = 0;
+
 double GenerateAndCheckQuestion(int round)
 {
 	double roundPenalty = 0;
@@ -9,24 +14,30 @@ double GenerateAndCheckQuestion(int round)
 		return -1; // Return an error code
 	}
 
-	for (int i = 0; i < NUMBER_OF_QUESTIONS; i++)
+	for (; q < NUMBER_OF_QUESTIONS;)
 	{
-		int question[5] = { 0,0,0,0,0 };
-		if (round == 0) // Difficulty based on round number 
+		PrintBackToMenu();
+		if(question[0] == 0)
 		{
-			GenerateQuestion(1, 10, 2, question);
+			if (round == 0) // Difficulty based on round number 
+			{
+				GenerateQuestion(1, 10, 2, question);
+			}
+			else if (round == 1)
+			{
+				GenerateQuestion(1, 30, 2, question);
+			}
+			else if (round == 2)
+			{
+				GenerateQuestion(1, 15, 3, question);
+			}
 		}
-		else if (round == 1)
-		{
-			GenerateQuestion(1, 30, 2, question);
-		}
-		else if (round == 2)
-		{
-			GenerateQuestion(1, 15, 3, question);
-		}
-		clearConsole();
 		PrintQuestion(question);
 		roundPenalty += AnswerChecker(AnswerCalculator(question), question);
+	}
+	if (q == NUMBER_OF_QUESTIONS)
+	{
+		q = 0;
 	}
 	return roundPenalty; // Return the penalty	
 }
@@ -97,54 +108,73 @@ void PrintOperator(int operatorIndex)
 
 double AnswerChecker(int questionAnswer, int questions[])
 {
+	int playerAnswer = 0;
+	int keyboardInput;
+	int bufferIndex = 0;
+	char inputBuffer[10] = { 0 };
 	if (questions == NULL)  // Check for NULL pointer bug
 	{
 		printg(0.01, "Error: question is NULL\n");
 		return -1; // Return an error code
 	}
-
-	int playerAnswer = 0;
-	double penalty = 0.0;
-	for (int tries = 0; tries < 3; tries++)
+	while (1)
 	{
-		int error = 1;
-		while (error == 1)
+		keyboardInput = _getch();
+		if (keyboardInput >= '0' && keyboardInput <= '9')
 		{
-			if (scanf_s("%d", &playerAnswer) != 1 || getchar() != '\n')
+			if (bufferIndex < sizeof(inputBuffer) - 1)
 			{
-				while (getchar() != '\n');
-				printg(0.01, "Invalid input. Please enter a valid number.\n");
-				HoldSeconds(1);
-				PrintQuestion(questions);
-				error = 1;
+				inputBuffer[bufferIndex++] = keyboardInput;
+				putchar(keyboardInput);
+			}
+		}
+		else if (keyboardInput == '-' && bufferIndex == 0)
+		{
+			inputBuffer[bufferIndex++] = keyboardInput;
+			putchar(keyboardInput);
+		}
+		else if (keyboardInput == '\r') // Enter key
+		{
+			inputBuffer[bufferIndex] = '\0';
+			playerAnswer = atoi(inputBuffer);
+			if (playerAnswer != questionAnswer)
+			{
+				if (tries == 2)
+				{
+					tries = 0;
+					question[0] = 0;
+					printg(0.025, "\nWrong answer, Next Question\nPenalty: 5 Seconds, Be careful!\n");
+					HoldSeconds(1);
+					return penalty;
+					break;
+				}
+				else
+				{
+					tries++;
+					printg(0.01, "\nWrong answer, Try again!\nPenalty: 5 Seconds, Be careful!\n");
+					HoldSeconds(1);
+					return penalty;
+				}
 			}
 			else
 			{
-				error = 0;
+				q++;
+				tries = 0;
+				question[0] = 0;
+				printg(0.01, "\nCorrect!\n");
+				HoldSeconds(0.6);
+				return 0;
+				break;
 			}
 		}
-
-		if (playerAnswer != questionAnswer)
+		else if (keyboardInput == 27) // Escape key
 		{
-			penalty += 5.0;
-			if (tries == 2)
-			{
-				printg(0.025, "Wrong answer, Next Question\nPenalty: 5 Seconds, Be careful!\n");
-				HoldSeconds(2);
-			}
-			else
-			{
-				printg(0.01, "Wrong answer, Try again!\nPenalty: 5 Seconds, Be careful!\n");
-				HoldSeconds(1);
-				PrintQuestion(questions);
-			}
-		}
-		else
-		{
-			printg(0.01, "Correct!\n");
-			HoldSeconds(0.6);
-			return penalty; // No penalty
 			break;
+		}
+		else if (keyboardInput == '\b' && bufferIndex > 0) // Backspace
+		{
+			bufferIndex--;
+			printf("\b \b"); // Remove the last character from the console
 		}
 	}
 	return penalty;
@@ -170,9 +200,9 @@ void GenerateQuestion(int minRandomNumber, int maxRandomNumber, int multiplicati
 	numbers[2] = rand() % maxRandomNumber + minRandomNumber;
 	operatorIndex1 = rand() % multiplication;
 	operatorIndex2 = rand() % multiplication;
-	questions[0] = numbers[0];
-	questions[1] = operatorIndex1;
-	questions[2] = numbers[1];
-	questions[3] = operatorIndex2;
-	questions[4] = numbers[2];
+	question[0] = numbers[0];
+	question[1] = operatorIndex1;
+	question[2] = numbers[1];
+	question[3] = operatorIndex2;
+	question[4] = numbers[2];
 }
